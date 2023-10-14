@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterPersonalProfileActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0863DE"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+
+                android:background="#0863DE"
+
+                android:scaleType="centerCrop"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="248dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Chính sách và riêng tư"
+                android:textColor="@color/white"
+
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="67dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+
+                    android:text="VNVC VÀ CHÍNH SÁCH VỀ DỮ LIỆU CÁ NHÂN"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="Trang web app.vnvc.vn và ứng dụng VNVC (sau đây được gọi chung là “VNVC app”) được điều hành bởi Công ty Cổ phần Vacxin Việt Nam (sau đây gọi là  “VNVC”/ “Chúng Tôi”), giúp kết nối VNVC với khách hàng (sau đây gọi là “Khách Hàng” hoặc “Người Dùng”) bằng cách ứng dụng các nền tảng công nghệ thông tin mới thông qua việc Khách Hàng sử dụng các dịch vụ do Chúng Tôi cung cấp (“Dịch Vụ”), với mong muốn mang lại tiện ích cho Người Dùng trong việc theo dõi, quản lý hồ sơ tiêm chủng, tương tác với chuyên gia, đặt mua các sản phẩm/dịch vụ của Chúng Tôi dễ dàng.
+
+ \n \nChúng Tôi nhận thức được tầm quan trọng của các dữ liệu cá nhân mà Người Dùng trao cho Chúng tôi. Vì vậy, chính sách về dữ liệu cá nhân này (sau đây được gọi là “Chính Sách”) cung cấp thông tin tổng quan nhất về việc Chúng Tôi sẽ thực hiện một hoặc nhiều hoạt động tác động tới dữ liệu cá nhân như thu thập, ghi, phân tích, xác nhận, lưu trữ, chỉnh sửa, công khai, kết hợp, truy cập, truy xuất, thu hồi, mã hóa, giải mã, sao chép, chia sẻ, truyền đưa, cung cấp, chuyển giao, xóa, hủy dữ liệu cá nhân hoặc các hành động khác có liên quan đến dữ liệu cá nhân (“Xử Lý”) mà Người Dùng đã cung cấp cho Chúng Tôi, cũng như cách mà Chúng Tôi sẽ hỗ trợ Người Dùng trước khi đưa ra bất cứ quyết định nào liên quan đến việc Xử Lý dữ liệu cá nhân của Người Dùng. "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+
+                    android:text="I.Nguyên tắc chung:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="“Dữ Liệu Cá Nhân” của Người Dùng là bất kỳ thông tin, dữ liệu nào có thể được sử dụng để nhận dạng Người Dùng hoặc dựa vào đó mà Người Dùng được xác định, chẳng hạn như họ, chữ đệm và tên khai sinh, tên gọi khác; giới tính; nơi sinh, nơi đăng ký khai sinh, nơi thường trú, nơi tạm trú, nơi ở hiện tại, quê quán, địa chỉ liên hệ; quốc tịch; hình ảnh của cá nhân; số điện thoại, số chứng minh nhân dân, số định danh cá nhân, số hộ chiếu, số giấy phép lái xe, số biển số xe, số mã số thuế cá nhân, số bảo hiểm xã hội, số thẻ bảo hiểm y tế; tình trạng hôn nhân; thông tin về mối quan hệ gia đình (cha mẹ, con cái); thông tin về tài khoản số của cá nhân, dữ liệu cá nhân phản ánh hoạt động, lịch sử hoạt động trên không gian mạng và các thông tin khác gắn liền với Người Dùng cụ thể hoặc giúp xác định một Người Dùng cụ thể không thuộc dữ liệu cá nhân nhạy cảm. Ngoài ra, một số thông tin mang tính nhạy cảm như: quan điểm chính trị, quan điểm tôn giáo; tình trạng sức khỏe và đời tư được ghi trong hồ sơ bệnh án, không bao gồm thông tin về nhóm máu; thông tin liên quan đến nguồn gốc chủng tộc, nguồn gốc dân tộc; thông tin về đặc điểm di truyền được thừa hưởng hoặc có được của cá nhân; thông tin về thuộc tính vật lý, đặc điểm sinh hoạt riêng của cá nhân; thông tin về đời sống tình dục, xu hướng tình dục của cá nhân; dữ liệu về vị trí của cá nhân được xác định qua dịch vụ định vị và các Dữ Liệu Cá Nhân khác được pháp luật quy định là đặc thù và cần có biện pháp bảo mật cần thiết (“Dữ Liệu Cá Nhân Nhạy Cảm”) có thể được Chúng Tôi Xử Lý khi cần thiết. Chúng Tôi sẽ thông báo cho Người Dùng khi Xử Lý các Dữ Liệu Cá Nhân Nhạy Cảm này.
+
+\n\nTại từng thời điểm, Chúng Tôi có toàn quyền sửa đổi, bổ sung, và/hoặc cập nhật Chính Sách này. Chúng Tôi sẽ đăng tải Chính Sách được sửa đổi, bổ sung và/hoặc cập nhật trên VNVC App. Việc Người Dùng tiếp tục sử dụng Dịch Vụ được hiểu là Người Dùng đồng ý với nội dung Chính Sách sửa đổi, bổ sung và/hoặc cập nhật đó.
+
+\n\nĐể sử dụng Dịch Vụ trên VNVC, Khách Hàng bắt buộc phải khởi tạo tài khoản trên VNVC app, tài khoản này là tài sản của Chúng Tôi và Chúng Tôi có toàn quyền quyết định với tài sản này theo các quy định của pháp luật, bao gồm nhưng không giới hạn việc: Sử dụng cho mục đích tối ưu trải nghiệm Dịch Vụ của VNVC cũng như cá nhân hóa luồng thông tin của Người Dùng.
+
+Chúng Tôi bảo lưu quyền miễn trừ trách nhiệm về bất kỳ thiệt hại nào phát sinh nếu Dữ Liệu Cá Nhân của Người Dùng bị đánh cắp, bị mất hoặc bị thiệt hại do sự vi phạm các thoả thuận sử dụng dịch vụ của Người Dùng trong quá trình sử dụng Dịch Vụ."
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="II. Mục đích thu thập Dữ Liệu Cá Nhân của Người Dùng:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="Bằng cách, bấm chọn “Tôi đã đọc và đồng ý” ở phía dưới Chính sách này, đăng ký tài khoản tại VNVC app, sử dụng một hoặc nhiều Dịch Vụ, Người Dùng thừa nhận, đồng ý cung cấp Dữ Liệu Cá Nhân của Người Dùng cho Chúng Tôi và đồng ý cho phép Chúng Tôi sử dụng Dữ Liệu Cá Nhân của Người Dùng trong việc Xử Lý theo các quy định, thực tiễn áp dụng thuộc Chính Sách này với tất cả các mục đích như liệt kê dưới đây. Nếu Người Dùng không đồng ý với Chính Sách này, vui lòng không sử dụng Dịch Vụ của Chúng Tôi hoặc sử dụng các quyền như được nêu tại Mục VI dưới đây.
+                \n\nChúng Tôi thực hiện việc thu thập Dữ Liệu Cá Nhân của Người Dùng nhằm:
+
+                \n\n     -  Giới thiệu các hàng hóa và dịch vụ có thể phù hợp với các
+                \n        nhu cầu của Người Dùng.
+                \n     -  Cá nhân hóa luồng nội dung của Người Dùng trên VNVC \n        app.
+                \n     -  Cung cấp những thông tin mới nhất của Chúng Tôi.
+                \n     -  Giải đáp thắc mắc của Người Dùng về cách chăm sóc \n       sức khỏe, phòng ngừa và hỗ trợ cải thiện các vấn đề về
+                \n       sức khỏe, đăng ký tiêm chủng, khảo sát điều tra sau \n       tiêm,…
+                \n     -  Xem xét và nâng cấp nội dung, giao diện của VNVC app.
+                \n     -  Thực hiện hoạt động khảo sát khách hàng.
+                \n     -  Thực hiện các hoạt động quảng bá sản phẩm và \n        giới thiệu những chương trình khuyến mãi.
+                \n    -  Giải quyết các vấn đề, tranh chấp phát sinh liên quan đến \n       việc \n        sử dụng VNVC app.
+                \n    -  Thực hiện các yêu cầu của Người Dùng nhằm cải thiện \n       chất lượng dịch vụ và sản phẩm.
+                \n\nLiên hệ với Người Dùng hoặc giới thiệu Người Dùng đến các cuộc nghiên cứu bao gồm nghiên cứu sự hài lòng của khách hàng, thị trường, nội dung cá nhân khác, hoặc có liên quan đến một số giao dịch nhất định.
+                Người Dùng cũng thừa nhận rằng: Người Dùng biết và cho phép Dữ Liệu Cá Nhân của Người Dùng có thể được Chúng tôi hoặc/và các đơn vị do Chúng tôi chỉ định Xử lý trong nước hoặc/và tại nước ngoài cho các mục đích nêu trên."
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="III. Phạm vi truy cập thông tin" />
+
+                <TextView
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chúng Tôi thu thập Dữ Liệu Cá Nhân của Người Dùng khi: (i) Người Dùng thực hiện giao dịch, đăng ký mở tài khoản, đăng nhập, tương tác với Chúng Tôi trên tất cả các kênh tương tác, (ii) Người Dùng sử dụng các Dịch Vụ do Chúng Tôi cung cấp; (iii) Người Dùng tham gia các cuộc thi, trò chơi hoặc sự kiện do Chúng Tôi tổ chức, (iv) Người Dùng sử dụng chức năng sinh trắc học để nhận diện cá nhân, xác thực giao dịch, (v) Người Dùng tham gia thực hiện các khảo sát, điều tra,…
+
+\n\n Thông tin được thu thập tự động: Chúng Tôi tự động thu thập một số loại thông tin nhất định khi Người Dùng tương tác với Dịch Vụ. Chúng Tôi có quyền thu thập các thông tin, dữ liệu liên quan đến hoạt động mà Người Dùng thực hiện trong khuôn khổ Dịch Vụ, bao gồm nhưng không giới hạn ở thông tin, dữ liệu về các bên cung cấp Dịch Vụ, hàng hóa cho Người Dùng, thông tin giao dịch mà Người Dùng thực hiện (loại hàng hóa, Dịch Vụ, địa điểm, thời gian giao dịch), phương thức thanh toán (Chúng tôi không lưu giữ các dữ liệu quan trọng của thẻ thanh toán được sử dụng cho việc thanh toán bao gồm số thẻ chi tiết, số CVV hoặc mã số xác thực khác có giá trị pháp lý tương đương), thông tin thiết bị (như địa chỉ IP, hệ điều hành, loại trình duyệt, thông số phần cứng, UDID, MEIDs, định vị, địa chỉ của trang web giới thiệu (nếu có), số lần truy cập, phản hồi, tên tệp, phiên bản, nhận dạng quảng cáo và các thông tin liên quan khác (nếu có).
+
+\n\n Thông tin từ các nguồn khác: Chúng Tôi có thể thu thập Dữ Liệu Cá Nhân của Người Dùng từ các nguồn khác, bao gồm nhà cung cấp Dịch Vụ, đối tác, các chương trình giới thiệu, khi có Người Dùng thêm thông tin của người thứ ba trong các cuộc khảo sát, điều tra, chương trình khuyến mại hay các hình thức tương tự và các nguồn công khai có sẵn. Khi Chúng Tôi thu thập Dữ Liệu Cá Nhân của Người Dùng từ các nguồn khác, chúng tôi đảm bảo rằng dữ liệu đó được chuyển đến Chúng Tôi phù hợp theo luật pháp hiện hành.
+
+\n\n Người Dùng có trách nhiệm đảm bảo những thông tin Người Dùng cung cấp là đầy đủ, chính xác và luôn cập nhật thông tin nhằm đảm bảo phù hợp với các quy định của pháp luật cũng như đảm bảo quyền lợi của Người Dùng theo quy định của việc sử dụng Dịch Vụ tương ứng. Chúng Tôi không chịu trách nhiệm trong trường hợp Người Dùng cung cấp không chính xác hoặc không đầy đủ theo quy định của pháp luật và Dịch Vụ.
+
+\n\n Trong trường hợp Người Dùng cung cấp thông tin của bên thứ ba, Người Dùng cam đoan và đảm bảo rằng Người Dùng có và đã có được đầy đủ sự đồng ý và chấp thuận của bên thứ ba đó đối với việc Người Dùng cung cấp thông tin cho Chúng Tôi và đối với việc Chúng Tôi sử dụng các thông tin đó theo cách thức và quy định tại Chính Sách Bảo Mật này.
+
+\n\n Người Dùng bảo đảm và cam kết rằng các thông tin mà Người Dùng cung cấp cho Chúng Tôi sẽ không nằm trong bất cứ loại thông tin nào sau đây: (i) bí mật nhà nước, (ii) bí mật kinh doanh; và (iii) bất cứ thông tin nào khác mà Người Dùng không được phép cung cấp theo quy định của pháp luật hoặc thỏa thuận bảo mật." />
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IV. Quyền truy cập" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="Để sử dụng và khai thác hiệu quả toàn bộ các tính năng của VNVC app, Người Dùng cần cho phép VNVC app có quyền truy cập và sử dụng những chức năng sau đây trên điện thoại/thiết bị di động của Người Dùng:
+
+\n\n(1) Quyền truy cập vào Internet từ điện thoại/thiết bị di động.
+
+\n\n(2) Quyền truy cập và sử dụng Camera trên điện thoại/thiết bị di động để chụp hình làm avatar cho hồ sơ của Người Dùng.
+
+\n\n(3) Quyền truy cập và sử dụng bộ nhớ trên điện thoại/thiết bị di động để: tải về và lưu trữ các tập tin hình ảnh, tài liệu dạng pdf hồ sơ sức khoẻ của Người Dùng;
+
+\n\n(4) Truy cập thư viện hình ảnh để tải lên hình ảnh làm avatar hồ sơ của Người Dùng hoặc gửi hình trong quá trình Người Dùng đăng ký sử dụng Dịch Vụ.
+
+\n\n(5) Quyền truy cập vị trí Người Dùng sử dụng ứng dụng: để đề xuất, tìm kiếm được trung tâm gần Người Dùng nhất." />
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="IV. Thời gian lưu trữ thông tin" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="Chúng Tôi sẽ lưu trữ Dữ Liệu Cá Nhân của Người Dùng cho đến khi Người Dùng có yêu cầu hủy bỏ hoặc Người Dùng tự đăng nhập và thực hiện hủy bỏ." />
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="VI. Phân quyền của Khách Hàng đối với thông tin cá nhân::"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="Chúng Tôi sẽ lưu trữ Dữ Liệu Cá Nhân của Người Dùng cho đến khi Người Dùng có yêu cầu hủy bỏ hoặc Người Dùng tự đăng nhập và thực hiện hủy bỏ." />
+                <TextView
+                    android:id="@+id/txt4"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="VI. Cam kết bảo mật thông tin cá nhân Khách Hàng:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="Chúng Tôi sẽ lưu trữ Dữ Liệu Cá Nhân của Người Dùng cho đến khi Người Dùng có yêu cầu hủy bỏ hoặc Người Dùng tự đăng nhập và thực hiện hủy bỏ." />
+                <TextView
+                    android:id="@+id/txt5"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="VIII. Thông tin liên hệ:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="Chúng Tôi sẽ lưu trữ Dữ Liệu Cá Nhân của Người Dùng cho đến khi Người Dùng có yêu cầu hủy bỏ hoặc Người Dùng tự đăng nhập và thực hiện hủy bỏ." />
+                <TextView
+                    android:id="@+id/txt6"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="IX. Đơn vị thu thập và quản lý thông tin:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/black"
+                    android:text="CÔNG TY CỔ PHẦN VACXIN VIETNAM
+\n\nThành lập và hoạt động theo Giấy chứng nhận đăng ký doanh nghiệp số: 0107631488 do Sở Kế hoạch và Đầu tư thành phố Hà Nội cấp, đăng ký lần đầu ngày 11 tháng 11 năm 2016.
+
+\n\nTrụ sở chính: Số 180 Trường Chinh, Phường Khương Thượng, Quận Đống Đa, Thành phố Hà Nội, Việt Nam.
+
+\n\nĐịa chỉ liên hệ: Số 180 Trường Chinh, Phường Khương Thượng, Quận Đống Đa, Thành phố Hà Nội, Việt Nam." />
+                <TextView
+                    android:id="@+id/txt7"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+
+
+                    android:text="X.Hiệu lực"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="Chính Sách Dữ Liệu Cá Nhân này có hiệu lực từ ngày 02/06/2023."
+                    android:textColor="@color/black" />
+                    <Button
+                        android:id="@+id/btn_accept"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#0863DE"
+                        android:textAllCaps="false"
+                        android:gravity="center"
+                        android:text="Tôi đã đọc và đồng  ý" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

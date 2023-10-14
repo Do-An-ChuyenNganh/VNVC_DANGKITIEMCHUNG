@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="635dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="131dp"
+                    android:background="#0863DE"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="35dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:background="#0863DE"
+                        android:paddingTop="50dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icons_bell" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton4"
+                        android:layout_width="48dp"
+                        android:layout_height="49dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="43dp"
+                        android:background="@drawable/custom_info_profile"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icons_egistration" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="40dp"
+                            android:text="Xin chào"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:text="NGUYỄN HỮU TRUNG"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <ViewFlipper
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:flipInterval="3000"
+                    android:autoStart="true"
+                    android:inAnimation="@android:anim/slide_in_left"
+                    android:outAnimation="@android:anim/slide_out_right"
+                    >
+
+                    <ImageView
+                       android:layout_margin="12dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/custom_borderimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/banner14" />
+
+                    <ImageView
+                        android:layout_margin="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/banner13" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_margin="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/banner_12" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_margin="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/banner_11" />
+                </ViewFlipper>
+                <GridLayout
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="13dp"
+
+                    android:layout_marginRight="10dp">
+
+                    <ImageButton
+
+                        android:id="@+id/imageButton5"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="0"
+                        android:layout_column="0"
+
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_syringe" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton7"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_menu" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton8"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="0"
+                        android:layout_column="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_ookmark" />
+
+                    <ImageButton
+
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="0"
+                        android:layout_column="3"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_medical" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Đặt mua \n vắc xin"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Danh mục \n   vắc xin"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="   Lịch sử \ntiêm chủng"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="3"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:text="   Lịch sử \n đặt vắc xin"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <ImageButton
+
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="2"
+                        android:layout_column="0"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="13dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_search" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="    Tra cứu \n điểm thường"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <ImageButton
+
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="13dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_clock" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="3"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="    Nhật ký \n tiêm chủng"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <ImageButton
+
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="2"
+                        android:layout_column="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="13dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_testtube" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="3"
+                        android:layout_column="2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="    Vắc xin \n    cho bạn"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                    <ImageButton
+
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_row="2"
+                        android:layout_column="3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/custom_button"
+                        android:padding="13dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_ews" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="3"
+                        android:layout_column="3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="    Vắc xin \n    cho bạn"
+                        android:textColor="#233249"
+                        android:textSize="12dp" />
+
+                </GridLayout>
+
+           <ViewFlipper
+               android:layout_width="match_parent"
+               android:layout_height="130dp"
+               android:flipInterval="2000"
+               android:autoStart="true"
+               android:inAnimation="@android:anim/slide_in_left"
+               android:outAnimation="@android:anim/slide_out_right"
+
+               >
+
+               <ImageView
+                   android:id="@+id/imageView6"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:srcCompat="@drawable/banner4" />
+
+               <ImageView
+                   android:id="@+id/imageView5"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:srcCompat="@drawable/banner1" />
+
+               <ImageView
+                   android:id="@+id/imageView4"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:srcCompat="@drawable/banner2" />
+
+               <ImageView
+                   android:id="@+id/imageView3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:srcCompat="@drawable/banner3" />
+           </ViewFlipper>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="19dp"
+
+                    android:background="#F7F8FD"
+
+                    >
+
+                    <ImageButton
+                        android:id="@+id/imageButton9"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/white"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/icons_map" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Trung tâm VNVC gần bạn"
+                        android:textColor="#6A7289" />
+
+                    <TextView
+                        android:id="@+id/textView32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:paddingLeft="20dp"
+                        android:text="Cho phép truy cập vị trí"
+                        android:textColor="#0D57DA" />
+
+                </GridLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Tin tức và kiến thức"
+                    android:textColor="@color/black"
+                    android:textSize="19dp" />
+
+                <HorizontalScrollView
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:orientation="horizontal"
+           >
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 <TextView
+                     android:id="@+id/txt_vaccinenguoilon"
+                     android:background="@drawable/custom_edittextphone"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black"
+                     android:layout_weight="1"
+                     android:layout_marginRight="15dp"
+                     android:layout_marginLeft="10dp"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                     android:text="Vaccine người lớn" />
+                 <TextView
+                     android:id="@+id/vaccine_trem"
+                     android:background="#0856DE"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/white"
+                     android:layout_weight="1"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                      android:layout_marginRight="15dp"
+                     android:text="Vaccine trẻ em" />
+                 <TextView
+
+                     android:background="@drawable/custom_edittextphone"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black"
+                     android:layout_weight="1"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                     android:layout_marginRight="15dp"
+                     android:text="Bệnh truyền nhiễm" />
+                 <TextView
+
+                     android:background="@drawable/custom_edittextphone"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black"
+                     android:layout_weight="1"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                     android:layout_marginRight="15dp"
+                     android:text="Lịch tiêm chủng" />
+                 <TextView
+
+                     android:background="@drawable/custom_edittextphone"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black"
+                     android:layout_weight="1"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                     android:layout_marginRight="15dp"
+                     android:text="Thông tin ưu đãi" />
+                 <TextView
+
+                     android:background="@drawable/custom_edittextphone"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black"
+                     android:layout_weight="1"
+                     android:paddingLeft="10dp"
+                     android:paddingRight="10dp"
+                     android:paddingTop="5dp"
+                     android:layout_marginRight="15dp"
+                     android:paddingBottom="5dp"
+
+                     android:text="Cẩm nang tiêm chủng" />
+             </LinearLayout>
+         </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_news"
+                android:layout_width="380dp"
+                android:layout_height="350dp"
+                android:layout_gravity="center"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="400dp"
+           android:layout_gravity="center"
+
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="27dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="37dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                app:layout_column="0"
+                app:layout_gravity="center"
+                app:layout_row="0"
+
+                app:srcCompat="@drawable/icons_home" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:text="TRANG CHỦ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="11dp"
+                android:textColor="#6C7385"
+                android:paddingLeft="1dp"
+                android:textStyle="bold"
+                app:layout_column="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_row="1" />
+
+            <ImageButton
+                     app:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_column="1"
+                app:layout_row="0"
+
+                android:scaleType="centerCrop"
+                android:background="@color/white"
+
+                app:srcCompat="@drawable/icons_calender" />
+
+
+            <TextView
+                android:textSize="11dp"
+                android:textColor="#6C7385"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="7dp"
+                android:text="LỊCH HẸN"
+                app:layout_column="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_row="1" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                app:layout_column="2"
+                app:layout_gravity="center"
+                app:layout_row="0"
+
+                app:srcCompat="@drawable/icons_shield" />
+
+
+            <TextView
+                android:textSize="11dp"
+                android:textColor="#6C7385"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="VẮC XIN"
+                app:layout_column="2"
+                android:gravity="center"
+                android:layout_marginRight="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_row="1" />
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                app:layout_column="3"
+                app:layout_gravity="center"
+                app:layout_row="0"
+
+                app:srcCompat="@drawable/icons_heart" />
+
+
+            <TextView
+                android:textSize="11dp"
+                android:textColor="#6C7385"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+
+                android:text="HỒ SƠ \n TIÊM CHỦNG"
+                    android:gravity="center"
+                app:layout_column="3"
+                android:layout_marginRight="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_row="1" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                app:layout_column="4"
+                android:layout_marginLeft="10dp"
+                app:layout_row="0"
+
+                app:srcCompat="@drawable/icons_personal" />
+
+
+            <TextView
+                android:textSize="11dp"
+                android:textColor="#6C7385"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="CÁ NHÂN"
+                app:layout_column="4"
+                android:gravity="center"
+                android:layout_marginRight="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_row="1" />
+        </androidx.gridlayout.widget.GridLayout>
+
+    </LinearLayout>
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>

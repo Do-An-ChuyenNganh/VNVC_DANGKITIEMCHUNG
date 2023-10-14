@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="0.3dp" android:color="#808080" /> <!-- Màu xám của border -->
+            <corners android:radius="3dp" /> <!-- Độ cong của các góc -->
+        </shape>
+    </item>
+    <!-- Mũi tên hướng về góc phải -->
+    <item
+        android:gravity="right"
+        android:left="10dp"
+        android:top="14dp"
+        android:bottom="10dp"
+        android:end="10dp"
+        android:width="20dp"
+        android:height="20dp"
+        android:drawable="@drawable/arrow_right"
+
+
+        />
+
+
+</layer-list>

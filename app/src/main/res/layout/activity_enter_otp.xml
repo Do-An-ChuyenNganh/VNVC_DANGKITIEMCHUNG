@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterOTPActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#0863DE"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:paddingTop="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_image_email"
+            android:src="@drawable/icon_email"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingTop="9dp"
+            android:text="Xác thực số điện thoại \n "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_contentSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Nhập mã xác thực (OTP) được gửi đến số điện thoại \n 034****112" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="329dp"
+            android:layout_height="181dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/txt_OTP1"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+                    <EditText
+                        android:id="@+id/txt_OTP2"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+                    <EditText
+                        android:id="@+id/txt_OTP3"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+                    <EditText
+                        android:id="@+id/txt_OTP4"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+                    <EditText
+                        android:id="@+id/txt_OTP5"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+                    <EditText
+                        android:id="@+id/txt_OTP6"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:paddingTop="20dp"
+                        android:textSize="25dp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_sendOTP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:layout_marginTop="9dp"
+                    android:textStyle="bold"
+                    android:textColor="#1057CD"
+                    android:text="Gửi OTP"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/txt_senOTPAgain"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="11dp"
+                    android:text="Bạn không nhận được OTP ?" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingLeft="30dp"
+                        android:scaleType="centerCrop"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icons_sync" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:text="Đổi số điện thoại"
+                        android:textColor="#1057CD"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="56dp"
+                        android:layout_height="26dp"
+                        android:background="@color/white"
+                        android:paddingLeft="30dp"
+                        android:scaleType="centerCrop"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icons_phone" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:text="Hotline hổ trợ"
+                        android:textColor="#1057CD"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:paddingBottom="32dp"
+            android:text="VNVVC version 1.1.8" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

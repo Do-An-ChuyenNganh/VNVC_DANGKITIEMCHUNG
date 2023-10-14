@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerifyPhoneNumberActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#0863DE"
+
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:paddingTop="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_image_email"
+            android:src="@drawable/icon_email"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingTop="9dp"
+            android:text="Nhập số điện thoại"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:textAlignment="center"
+            android:text="Dùng số điện thoại của Quý khách để đăng ký \n hoặc đăng nhập VNVC" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="329dp"
+            android:layout_height="181dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:text="Số điện thoại"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/txt_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_edittextphone"
+                    android:ems="10"
+                    android:hint="   Nhập số điện thoại"
+                    android:inputType="textPersonName"
+                    android:textColor="#B1B6C9"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:id="@+id/btn_continue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#84ABEE"
+                    android:text="Tiếp tục"
+                    android:textAllCaps="false"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:paddingBottom="32dp"
+            android:text="VNVVC version 1.1.8" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
