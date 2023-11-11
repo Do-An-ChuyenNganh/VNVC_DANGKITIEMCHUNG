@@ -10,14 +10,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Mai_LichTiemChung"
+            android:name=".EnterOTPActivity"
             android:exported="false" />
         <activity
             android:name=".PolicyAndPrivacyActivity"
@@ -35,7 +34,7 @@
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".EnterOTPActivity"
+            android:name=".Mai_LichTiemChung"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
