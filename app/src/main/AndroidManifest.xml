@@ -10,21 +10,16 @@
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-<<<<<<< HEAD
-        android:label="@string/app_name"
-=======
->>>>>>> brach_test
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-            android:name=".VerifyPhoneNumberActivity"
-=======
             android:name=".EnterOTPActivity"
->>>>>>> brach_test
+            android:exported="false" />
+        <activity
+            android:name=".Enter_Password"
             android:exported="false" />
         <activity
             android:name=".PolicyAndPrivacyActivity"
@@ -36,17 +31,13 @@
             android:name=".SetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-<<<<<<< HEAD
-            android:name=".Enter_Password"
-=======
-            android:name=".Mai_LichTiemChung"
->>>>>>> brach_test
+            android:name=".VerifyPhoneNumberActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
