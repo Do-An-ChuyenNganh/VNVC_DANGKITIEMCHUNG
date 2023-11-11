@@ -19,6 +19,9 @@
             android:name=".EnterOTPActivity"
             android:exported="false" />
         <activity
+            android:name=".Enter_Password"
+            android:exported="false" />
+        <activity
             android:name=".PolicyAndPrivacyActivity"
             android:exported="false" />
         <activity
@@ -28,13 +31,13 @@
             android:name=".SetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Mai_LichTiemChung"
+            android:name=".VerifyPhoneNumberActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

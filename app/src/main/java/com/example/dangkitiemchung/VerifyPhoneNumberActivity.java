@@ -25,6 +25,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -52,12 +57,39 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             String strPhoneNumber=txt_phone.getText().toString().trim();
-                if (strPhoneNumber.startsWith("0")) {
-                    strPhoneNumber = "+84" + strPhoneNumber.substring(1);
-                }
-                showAlertDialog();
-                onClickVerityPhoneNumber(strPhoneNumber);
+             String strPhoneNumber = txt_phone.getText().toString().trim();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
+                databaseReference.orderByChild("UserName").equalTo(strPhoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Số điện thoại tồn tại, chuyển hướng sang activity nhập mật khẩu
+                            String strPhoneNumber = txt_phone.getText().toString().trim();
+                            Intent intent = new Intent(VerifyPhoneNumberActivity.this, Enter_Password.class);
+                            intent.putExtra("PhoneNumber", strPhoneNumber);
+                            startActivity(intent);
+                        } else {
+                            String strPhoneNumber = txt_phone.getText().toString().trim();
+                            // Số điện thoại không tồn tại, xử lý tại đây
+                            if (strPhoneNumber.startsWith("0")) {
+                                strPhoneNumber = "+84" + strPhoneNumber.substring(1);
+                            }
+                            showAlertDialog();
+                           // onClickVerityPhoneNumber(strPhoneNumber);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Xử lý khi có lỗi truy vấn đến cơ sở dữ liệu
+                        Log.e("FirebaseError", databaseError.getMessage());
+                    }
+                });
+
+
+
+
+
 
             }
         });
