@@ -6,7 +6,6 @@
     <application
         android:usesCleartextTraffic="true"
 
-
         android:hardwareAccelerated="false"
         android:largeHeap="true"
 

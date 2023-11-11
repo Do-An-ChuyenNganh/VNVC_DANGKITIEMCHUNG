@@ -8,12 +8,14 @@
     tools:context=".EnterOTPActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#0863DE"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
+       
 
         <ImageView
             android:layout_marginTop="60dp"
@@ -144,7 +146,7 @@
                     android:id="@+id/txt_sendOTP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:textSize="15dp"
                     android:gravity="center"
                     android:layout_marginTop="9dp"
                     android:textStyle="bold"
@@ -154,12 +156,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/txt_senOTPAgain"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:text="Bạn không nhận được OTP ?" />
 
                 <LinearLayout

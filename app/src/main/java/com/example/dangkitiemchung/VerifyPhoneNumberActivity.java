@@ -1,10 +1,12 @@
 package com.example.dangkitiemchung;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -30,6 +32,8 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
 Button btn_continue;
 TextView txt_phone;
 FirebaseAuth mAuth;
+private AlertDialog alertDialog;
+private Handler handler = new Handler();
 public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,9 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                 if (strPhoneNumber.startsWith("0")) {
                     strPhoneNumber = "+84" + strPhoneNumber.substring(1);
                 }
+                showAlertDialog();
                 onClickVerityPhoneNumber(strPhoneNumber);
+
             }
         });
 
@@ -61,7 +67,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(strPhoneNumber)       // Phone number to verify
-                        .setTimeout(90L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // (optional) Activity for callback binding
                         // If no activity is passed, reCAPTCHA verification can not be used.
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -69,7 +75,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                 signInWithPhoneAuthCredential(phoneAuthCredential);
                             }
-
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
                                 Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",
@@ -119,6 +124,30 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                         }
                     }
                 });
+    }
+
+
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")
+                .setCancelable(false);
+
+        alertDialog = builder.create();
+        alertDialog.show();
+
+        // Đặt một sự kiện đóng AlertDialog sau 2 giây
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissAlertDialog();
+            }
+        }, 2000);
+    }
+    private void dismissAlertDialog() {
+        if (alertDialog != null && alertDialog.isShowing()) {
+            alertDialog.dismiss();
+        }
     }
 
 }

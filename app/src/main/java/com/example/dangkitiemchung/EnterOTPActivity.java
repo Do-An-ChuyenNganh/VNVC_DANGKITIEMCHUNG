@@ -1,14 +1,20 @@
 package com.example.dangkitiemchung;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +35,10 @@ public class EnterOTPActivity extends AppCompatActivity {
 TextView txt_sendOTP,txt_sendOTPAgain,txt_OTP1,txt_OTP2,txt_OTP3,txt_OTP4,txt_OTP5,txt_OTP6, txt_contentSend;
 String mPhoneNumber,mVerificationId;
 FirebaseAuth mAuth;
+private TextView[] editTexts;
+private boolean clearedLastEditText = false;
+private AlertDialog alertDialog;
+private Handler handler = new Handler();
 private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     public static  final String TAG= EnterOTPActivity.class.getName();
 
@@ -40,13 +50,17 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         addControl();
         getDataIntent();
         setTextContent();
+        inputOTP();
+
         mAuth = FirebaseAuth.getInstance();
+
 
         txt_sendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String str =  getTextOTP();
                 onClickSenOTP(str);
+              //  showAlertDialog();
             }
         });
 
@@ -55,9 +69,55 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
             public void onClick(View view) {
                 getTextOTP();
                 onClickSenOTPAgain();
+
             }
         });
+
+
+
     }
+    public void inputOTP()
+    {
+        editTexts = new TextView[]{txt_OTP1, txt_OTP2, txt_OTP3, txt_OTP4, txt_OTP5, txt_OTP6};
+        for (int i = 0; i < editTexts.length; i++) {
+            final int currentIndex = i;
+            editTexts[i].addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+                    // Khi có ký tự được nhập, chuyển sự chú ý đến ô tiếp theo (nếu có)
+                    if (count > 0 && currentIndex < editTexts.length - 1) {
+
+                        editTexts[currentIndex + 1].requestFocus();
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    // Kiểm tra nếu ô cuối cùng được xóa, xóa nội dung của tất cả các ô
+
+                    if (currentIndex == editTexts.length - 1 && editable.length() == 0 ) {
+                        for (TextView editText : editTexts) {
+                            txt_OTP1.setText("");
+                            txt_OTP2.setText("");
+                            txt_OTP3.setText("");
+                            txt_OTP4.setText("");
+                            txt_OTP5.setText("");
+                        }
+
+                      txt_OTP1.requestFocus();
+                      //txt_OTP1.setText("");
+                    }
+
+                }
+            });
+        }
+    }
+
     public String getTextOTP(){
         String strOTP = txt_OTP1.getText().toString().trim() + txt_OTP2.getText().toString().trim()
                 + txt_OTP3.getText().toString().trim()+ txt_OTP4.getText().toString().trim()
@@ -67,7 +127,29 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     public  void setTextContent(){
-        txt_contentSend.setText("Nhập mã xác thực (OTP) được gửi đến số điện thoại \n"+mPhoneNumber);
+        txt_contentSend.setText("Nhập mã xác thực (OTP) được gửi đến số điện thoại \n" + mPhoneNumber);
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Đang xác thực, chờ trong giây lát")
+                .setCancelable(false);
+
+        alertDialog = builder.create();
+        alertDialog.show();
+
+        // Đặt một sự kiện đóng AlertDialog sau 2 giây
+         handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dismissAlertDialog();
+            }
+        }, 2000);
+    }
+    private void dismissAlertDialog() {
+        if (alertDialog != null && alertDialog.isShowing()) {
+            alertDialog.dismiss();
+        }
     }
 
     public  void hideActionBar(){
@@ -90,10 +172,12 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     private  void onClickSenOTP(String strOTP){
+
         System.out.println("------------------------------------------------------------------------------------------------");
-        System.out.println("mVerificationId " + mVerificationId);
-        System.out.println("strOTP " + strOTP);
+        System.out.println("mã kiểm tra mVerificationId " + mVerificationId);
+        System.out.println(" chuỗi strOTP " + strOTP);
         System.out.println("------------------------------------------------------------------------------------------------");
+        txt_sendOTP.setTextColor(Color.RED);
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, strOTP);
         signInWithPhoneAuthCredential(credential);
     }
@@ -102,7 +186,7 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(mPhoneNumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // (optional) Activity for callback binding
                         .setForceResendingToken(mForceResendingToken)
                         // If no activity is passed, reCAPTCHA verification can not be used.
@@ -128,10 +212,8 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     private  void getDataIntent(){
-
             mPhoneNumber=getIntent().getStringExtra("phone_number");
             mVerificationId=getIntent().getStringExtra("verification_id");
-
 //        System.out.println( "verification_Id" + mVerificationId);
     }
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -163,4 +245,8 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         intent.putExtra("phone_number",phoneNumber);
         startActivity(intent);
     }
+
+
+
+    //--
 }
