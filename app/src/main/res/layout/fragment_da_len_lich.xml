@@ -6,9 +6,10 @@
     tools:context=".Fragment.DaLenLichFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="55dp"
+        android:id="@+id/rec_dalenlich"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="620dp"
+        />
 </FrameLayout>
