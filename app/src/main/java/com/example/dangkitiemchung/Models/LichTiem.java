@@ -11,9 +11,8 @@ public class LichTiem {
     private String Hinh;
     private String NoiTiem;
 
-    public LichTiem(int id, int giaBan, String userName, String tenVX, String tinhTrang, String ngayDat, String ngayTiem, String noiTiem) {
+    public LichTiem(int id, String userName, String tenVX, String tinhTrang, String ngayDat, String ngayTiem, String noiTiem) {
         this.id = id;
-        this.GiaBan = giaBan;
         this.UserName = userName;
         this.TenVX = tenVX;
         this.TinhTrang = tinhTrang;
@@ -94,4 +93,5 @@ public class LichTiem {
     public void setNoiTiem(String noiTiem) {
         NoiTiem = noiTiem;
     }
+
 }

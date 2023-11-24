@@ -102,7 +102,6 @@ public class DaLenLichFragment extends Fragment {
                 {
                     String tinhTrang = dataSnapshot.child("TinhTrang").getValue(String.class);
                     Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    Integer giaBan = dataSnapshot.child("GiaBan").getValue(Integer.class);
                     String userName = dataSnapshot.child("UserName").getValue(String.class);
                     String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
                     String ngayDat = dataSnapshot.child("NgayDat").getValue(String.class);
@@ -113,7 +112,7 @@ public class DaLenLichFragment extends Fragment {
 //                    String ha = ""+hinh;
 
                     if(tinhTrang.equals("Đã lên lịch")) {
-                        LichTiem tl = new LichTiem(id, giaBan, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
+                        LichTiem tl = new LichTiem(id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }
 

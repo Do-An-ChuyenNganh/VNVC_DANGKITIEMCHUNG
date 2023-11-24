@@ -29,11 +29,11 @@ public class ChiTietMuiTiepTheo extends AppCompatActivity {
 
     DatabaseReference database;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = firebaseDatabase.getReference("MuiTiepTheo");
+    DatabaseReference myRef = firebaseDatabase.getReference("TaiKhoan");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         setContentView(R.layout.activity_chi_tiet_mui_tiep_theo);
         truyenDuLieu();
         addControls();
@@ -72,7 +72,6 @@ public class ChiTietMuiTiepTheo extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     MuiTiepTheo mtt = dataSnapshot.getValue(MuiTiepTheo.class);
                     if (mtt.getUserName().equals("0366850669")) {
-
 
                     }
                 }

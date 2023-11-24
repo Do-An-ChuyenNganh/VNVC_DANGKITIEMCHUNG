@@ -17,15 +17,23 @@
         tools:targetApi="31">
         <activity
             android:name=".ChiTietDaHuy"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Lịch đã hủy"
+            android:parentActivityName=".Mai_LichTiemChung"/>
         <activity
             android:name=".ChiTietMuiTiepTheo"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Mũi tiêm tiếp theo"
+            android:parentActivityName=".Mai_LichTiemChung"/>
         <activity
             android:name=".ChiTietLichSuTiemChung"
+            android:label="Lịch sử tiêm chủng"
+            android:parentActivityName=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".ChiTietLichHen"
+            android:label="Lịch hẹn tiêm chủng"
+            android:parentActivityName=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".EnterOTPActivity"
