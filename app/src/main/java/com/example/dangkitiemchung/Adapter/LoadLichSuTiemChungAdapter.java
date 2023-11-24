@@ -10,42 +10,38 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dangkitiemchung.ChiTietLichHen;
-import com.example.dangkitiemchung.Models.LichTiem;
+import com.example.dangkitiemchung.ChiTietDaHuy;
+import com.example.dangkitiemchung.ChiTietLichSuTiemChung;
+import com.example.dangkitiemchung.Models.LichSuTiemChung;
 import com.example.dangkitiemchung.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.util.ArrayList;
 
-public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapter.MyViewHolder>{
-
-    ArrayList<LichTiem> newLichTiem;
+public class LoadLichSuTiemChungAdapter extends RecyclerView.Adapter<LoadLichSuTiemChungAdapter.MyViewHolder>{
+    ArrayList<LichSuTiemChung> newLSTC;
     String UserName;
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LoadLichSuTiemChungAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.mai_layout_dalenlich, parent, false);
-        return new MyViewHolder(itemView);
+                .inflate(R.layout.mai_layout_lichsutiemchung, parent, false);
+        return new LoadLichSuTiemChungAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        LichTiem l = newLichTiem.get(position);
+    public void onBindViewHolder(@NonNull LoadLichSuTiemChungAdapter.MyViewHolder holder, int position) {
+        LichSuTiemChung l = newLSTC.get(position);
+        holder.muiso.setText("MŨI "+l.getMuiSo());
         holder.tenvx.setText(""+l.getTenVX());
         holder.noitiem.setText(""+l.getNoiTiem());
-        holder.ngaytiem.setText("Ngày tiêm: "+l.getNgayTiem());
-//        holder.img.setImageResource(Integer.parseInt(taiLieu.getHinh().trim()));
+        holder.ngaytiem.setText(""+l.getNgayTiem());
+        holder.phongbenh.setText("Phòng bệnh: "+ l.getPhongBenh());
 
         holder.tenvx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(view.getContext(), ChiTietLichHen.class);
-//                intent.putExtra("id", ""+taiLieu.getID());
+                intent.setClass(view.getContext(), ChiTietLichSuTiemChung.class);
                 view.getContext().startActivity(intent);
             }
         });
@@ -53,28 +49,30 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(view.getContext(), ChiTietLichHen.class);
+                intent.setClass(view.getContext(), ChiTietLichSuTiemChung.class);
 //                intent.putExtra("id", ""+taiLieu.getID());
                 view.getContext().startActivity(intent);
             }
         });
     }
 
-    public LoadLichTiemAdapter(ArrayList<LichTiem> newArrayList1, String Ten) {
 
-        newLichTiem = newArrayList1;
+    public LoadLichSuTiemChungAdapter(ArrayList<LichSuTiemChung> newArrayList1, String Ten) {
+
+        newLSTC = newArrayList1;
         this.UserName = Ten;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView tenvx, noitiem, ngaytiem;
-        ImageView img, chitiet;
+        public TextView muiso, tenvx, noitiem, ngaytiem, phongbenh;
+        ImageView chitiet;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            muiso = itemView.findViewById(R.id.muiso);
             tenvx = itemView.findViewById(R.id.tenvx);
             noitiem = itemView.findViewById(R.id.diadiemtiem);
             ngaytiem = itemView.findViewById(R.id.ngaytiem);
-            img = itemView.findViewById(R.id.imgSach);
+            phongbenh = itemView.findViewById(R.id.phongbenh);
             chitiet = itemView.findViewById(R.id.imageView4);
 
         }
@@ -82,7 +80,7 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
 
     @Override
     public int getItemCount() {
-        return newLichTiem.size();
+        return newLSTC.size();
     }
 
 }

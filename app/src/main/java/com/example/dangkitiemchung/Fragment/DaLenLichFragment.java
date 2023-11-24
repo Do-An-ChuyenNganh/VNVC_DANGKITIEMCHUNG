@@ -111,9 +111,11 @@ public class DaLenLichFragment extends Fragment {
 //                    String tenHinh = dataSnapshot.child("Hinh").getValue(String.class);
 //                    Integer hinh = getResources().getIdentifier(tenHinh,"drawable", getActivity().getPackageName());
 //                    String ha = ""+hinh;
-//                    if(tinhTrang == "Đã lên lịch") {
-                        LichTiem tl = new LichTiem(id, giaBan, userName, tenVX, tinhTrang,  ngayDat, ngayTiem, noiTiem);
+
+                    if(tinhTrang.equals("Đã lên lịch")) {
+                        LichTiem tl = new LichTiem(id, giaBan, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
+                    }
 
                 }
                 recycleView.setAdapter(adapter);

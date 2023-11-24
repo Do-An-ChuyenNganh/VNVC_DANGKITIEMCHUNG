@@ -2,13 +2,28 @@ package com.example.dangkitiemchung.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.dangkitiemchung.Adapter.LoadLichSuTiemChungAdapter;
+import com.example.dangkitiemchung.Adapter.LoadMuiTiepTheoAdapter;
+import com.example.dangkitiemchung.Models.LichSuTiemChung;
+import com.example.dangkitiemchung.Models.MuiTiepTheo;
 import com.example.dangkitiemchung.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,17 +32,17 @@ import com.example.dangkitiemchung.R;
  */
 public class MuiTiepTheoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    String UserName;
+    private ArrayList<MuiTiepTheo> newArrayList = new ArrayList<>();
+    private RecyclerView recycleView;
+    private LoadMuiTiepTheoAdapter adapter;
+    private LinearLayoutManager layout;
 
     public MuiTiepTheoFragment() {
         // Required empty public constructor
+    }
+    public MuiTiepTheoFragment(String userName) {
+        this.UserName = userName;
     }
 
     /**
@@ -42,8 +57,6 @@ public class MuiTiepTheoFragment extends Fragment {
     public static MuiTiepTheoFragment newInstance(String param1, String param2) {
         MuiTiepTheoFragment fragment = new MuiTiepTheoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,10 +64,6 @@ public class MuiTiepTheoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -62,5 +71,49 @@ public class MuiTiepTheoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mui_tiep_theo, container, false);
+    }
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        layout = new LinearLayoutManager(getContext());
+        recycleView = view.findViewById(R.id.rec_dalenlich);
+        recycleView.setHasFixedSize(true);
+        recycleView.setLayoutManager(layout);
+        adapter = new LoadMuiTiepTheoAdapter(newArrayList,UserName);
+        adapter.notifyDataSetChanged();
+        Data();
+    }
+
+    private void Data() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("MuiTiepTheo");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(newArrayList != null)
+                {
+                    newArrayList.clear();
+                }
+                for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+
+                    Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
+                    Integer muiSo = dataSnapshot.child("MuiSo").getValue(Integer.class);
+                    String userName = dataSnapshot.child("UserName").getValue(String.class);
+                    String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
+                    String phongBenh = dataSnapshot.child("PhongBenh").getValue(String.class);
+                    String ngayTiem = dataSnapshot.child("NgayTiemDuTinh").getValue(String.class);
+                    MuiTiepTheo tl = new MuiTiepTheo( id, userName, tenVX, muiSo, ngayTiem, phongBenh);
+                    newArrayList.add(tl);
+
+                }
+                recycleView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "lỗi rồi máaaa", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

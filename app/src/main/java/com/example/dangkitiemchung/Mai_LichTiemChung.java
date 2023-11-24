@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.dangkitiemchung.Fragment.DaHuyFragment;
 import com.example.dangkitiemchung.Fragment.DaLenLichFragment;
@@ -30,6 +31,10 @@ public class Mai_LichTiemChung extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mai_lich_tiem_chung);
+        // Ẩn thanh trạng thái (status bar)
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         tabLayout = (TabLayout) findViewById(R.id.tab_lichtiem);
         replaceFrag(new DaLenLichFragment());
 //        Intent intent = getIntent();

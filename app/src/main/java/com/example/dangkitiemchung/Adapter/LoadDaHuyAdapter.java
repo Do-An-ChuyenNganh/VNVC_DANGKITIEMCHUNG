@@ -10,29 +10,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dangkitiemchung.ChiTietDaHuy;
 import com.example.dangkitiemchung.ChiTietLichHen;
 import com.example.dangkitiemchung.Models.LichTiem;
 import com.example.dangkitiemchung.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.util.ArrayList;
 
-public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapter.MyViewHolder>{
-
+public class LoadDaHuyAdapter extends RecyclerView.Adapter<LoadDaHuyAdapter.MyViewHolder>{
     ArrayList<LichTiem> newLichTiem;
     String UserName;
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LoadDaHuyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.mai_layout_dalenlich, parent, false);
-        return new MyViewHolder(itemView);
+        return new LoadDaHuyAdapter.MyViewHolder(itemView);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LoadDaHuyAdapter.MyViewHolder holder, int position) {
 
         LichTiem l = newLichTiem.get(position);
         holder.tenvx.setText(""+l.getTenVX());
@@ -44,8 +42,7 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(view.getContext(), ChiTietLichHen.class);
-//                intent.putExtra("id", ""+taiLieu.getID());
+                intent.setClass(view.getContext(), ChiTietDaHuy.class);
                 view.getContext().startActivity(intent);
             }
         });
@@ -53,14 +50,14 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(view.getContext(), ChiTietLichHen.class);
+                intent.setClass(view.getContext(), ChiTietDaHuy.class);
 //                intent.putExtra("id", ""+taiLieu.getID());
                 view.getContext().startActivity(intent);
             }
         });
     }
 
-    public LoadLichTiemAdapter(ArrayList<LichTiem> newArrayList1, String Ten) {
+    public LoadDaHuyAdapter(ArrayList<LichTiem> newArrayList1, String Ten) {
 
         newLichTiem = newArrayList1;
         this.UserName = Ten;
