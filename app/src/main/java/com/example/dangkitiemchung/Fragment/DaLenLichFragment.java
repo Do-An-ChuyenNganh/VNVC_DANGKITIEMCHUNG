@@ -107,9 +107,6 @@ public class DaLenLichFragment extends Fragment {
                     String ngayDat = dataSnapshot.child("NgayDat").getValue(String.class);
                     String ngayTiem = dataSnapshot.child("NgayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("NoiTiem").getValue(String.class);
-//                    String tenHinh = dataSnapshot.child("Hinh").getValue(String.class);
-//                    Integer hinh = getResources().getIdentifier(tenHinh,"drawable", getActivity().getPackageName());
-//                    String ha = ""+hinh;
 
                     if(tinhTrang.equals("Đã lên lịch")) {
                         LichTiem tl = new LichTiem(id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +26,13 @@ public class ChiTietLichHen extends AppCompatActivity {
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem;
     String strUser;
+    private String userId;
+    Button btnHuy, btnDaTiem;
     private ArrayList<Vaccine> lstVaccine = new ArrayList<>();
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
+    FirebaseDatabase firebaseDatabase1 = FirebaseDatabase.getInstance();
+    DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,7 @@ public class ChiTietLichHen extends AppCompatActivity {
         diadiemtiem.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
+
 
     }
     public void truyenDuLieu()
@@ -59,6 +66,8 @@ public class ChiTietLichHen extends AppCompatActivity {
         ngaydat = (TextView)findViewById(R.id.ngaydat);
         gia = (TextView)findViewById(R.id.gia);
         diadiemtiem = (TextView)findViewById(R.id.diadiemtiem);
+        btnHuy = (Button) findViewById(R.id.btnhuy);
+        btnDaTiem = (Button) findViewById(R.id.btndatiem);
 
 
     }
@@ -88,4 +97,18 @@ public class ChiTietLichHen extends AppCompatActivity {
             }
         });
     }
+    public void huyLichTiem()
+    {
+        userId = myRefLichSuDat.push().getKey();
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myRefLichSuDat.child(String.valueOf(userId)).child("TinhTrang").setValue("Đã hủy");
+                Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+
 }

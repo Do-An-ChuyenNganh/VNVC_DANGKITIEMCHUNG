@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.example.dangkitiemchung.Fragment.DaHuyFragment;
 import com.example.dangkitiemchung.Fragment.DaLenLichFragment;
@@ -16,11 +14,10 @@ import com.example.dangkitiemchung.Fragment.LichSuTiemFragment;
 import com.example.dangkitiemchung.Fragment.MuiTiepTheoFragment;
 import com.example.dangkitiemchung.Models.LichTiem;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-public class Mai_LichTiemChung extends AppCompatActivity {
+public class Mai_LichSuTiemChung extends AppCompatActivity {
 
     TabLayout tabLayout;
     ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
@@ -29,9 +26,9 @@ public class Mai_LichTiemChung extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mai_lich_tiem_chung);
+        setContentView(R.layout.activity_mai_lich_su_tiem_chung);
         tabLayout = (TabLayout) findViewById(R.id.tab_lichtiem);
-        replaceFrag(new DaLenLichFragment());
+        replaceFrag(new LichSuTiemFragment());
 //        Intent intent = getIntent();
 //        madg = intent.getStringExtra("madg");
 ////        System.out.println("t mún đi ngủ"+madg);
@@ -40,13 +37,11 @@ public class Mai_LichTiemChung extends AppCompatActivity {
             public void onTabSelected(@NonNull TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        replaceFrag(new DaLenLichFragment());
+                        replaceFrag(new LichSuTiemFragment());
                         break;
                     case 1:
-                        replaceFrag(new DaHuyFragment());
+                        replaceFrag(new MuiTiepTheoFragment());
                         break;
-
-
                 }
             }
 
