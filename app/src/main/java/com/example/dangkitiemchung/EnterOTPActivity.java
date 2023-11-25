@@ -205,6 +205,10 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
                                 super.onCodeSent(verificationId, forceResendingToken);
                                 mVerificationId=verificationId;
                                 mForceResendingToken=forceResendingToken;
+
+
+
+
                             }
                         })          // OnVerificationStateChangedCallbacks
                         .build();
@@ -212,6 +216,7 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     private  void getDataIntent(){
+
             mPhoneNumber=getIntent().getStringExtra("phone_number");
             mVerificationId=getIntent().getStringExtra("verification_id");
 //        System.out.println( "verification_Id" + mVerificationId);
