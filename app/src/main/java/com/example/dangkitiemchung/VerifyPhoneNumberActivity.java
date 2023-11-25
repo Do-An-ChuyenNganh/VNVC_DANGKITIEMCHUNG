@@ -66,7 +66,8 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             // Số điện thoại tồn tại, chuyển hướng sang activity nhập mật khẩu
                             String strPhoneNumber = txt_phone.getText().toString().trim();
                             Intent intent = new Intent(VerifyPhoneNumberActivity.this, Enter_Password.class);
-                            intent.putExtra("PhoneNumber", strPhoneNumber);
+                            intent.putExtra("phone_number",strPhoneNumber);
+
                             startActivity(intent);
                         } else {
                             String strPhoneNumber = txt_phone.getText().toString().trim();
@@ -75,7 +76,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                                 strPhoneNumber = "+84" + strPhoneNumber.substring(1);
                             }
                             showAlertDialog();
-                           // onClickVerityPhoneNumber(strPhoneNumber);
+                            onClickVerityPhoneNumber(strPhoneNumber);
                         }
                     }
 
@@ -85,11 +86,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                         Log.e("FirebaseError", databaseError.getMessage());
                     }
                 });
-
-
-
-
-
 
             }
         });
@@ -112,7 +108,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                                 Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",
                                 Toast.LENGTH_SHORT).show();
                             }
-
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verificationId, forceResendingToken);

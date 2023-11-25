@@ -95,10 +95,10 @@
                         android:id="@+id/txt_nation"
                         android:layout_width="wrap_content"
                         android:layout_height="57dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_weight="1"
                         android:paddingTop="20dp"
                         android:text="Dân tộc *"
-                        android:layout_marginLeft="30dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -134,30 +134,30 @@
                     android:id="@+id/txt_provinces"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
-                    android:text="Tỉnh/Thành phố *"
                     android:layout_marginLeft="20dp"
+                    android:text="Tỉnh/Thành phố *"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
+
                 <Spinner
                     android:id="@+id/spinner_provinces"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:background="@drawable/custom_sinpper"
                     android:paddingLeft="10dp"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/txt_district"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Quận / Huyện *"
                     android:layout_marginTop="10dp"
+                    android:text="Quận / Huyện *"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -165,10 +165,10 @@
                     android:id="@+id/spinner_district"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:background="@drawable/custom_sinpper"
                     android:paddingLeft="10dp"
 
@@ -179,8 +179,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Phường / Xã *"
                     android:layout_marginTop="10dp"
+                    android:text="Phường / Xã *"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -188,68 +188,135 @@
                     android:id="@+id/spinner_ward"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
                     android:background="@drawable/custom_sinpper"
                     android:paddingLeft="10dp"
 
                     android:textAlignment="center" />
+
                 <TextView
                     android:id="@+id/txt_address"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Địa chỉ *"
                     android:layout_marginTop="10dp"
+                    android:text="Địa chỉ *"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
                 <EditText
-                    android:id="@+id/txt_email"
+                    android:id="@+id/edt_address"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:hint="Số nhà, tên đường"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/custom_edittextphone"
+                    android:hint="Số nhà, tên đường"
                     android:paddingLeft="10dp"
                     android:textColor="@color/black"
-                    android:layout_gravity="center"
-                    android:background="@drawable/custom_edittextphone"
-                    android:textSize="15dp"
-                    />
+                    android:textSize="15dp" />
+
                 <TextView
-                    android:id="@+id/txt_carrer"
+                    android:id="@+id/txt_name"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Nghề nghiệp"
                     android:layout_marginTop="10dp"
+                    android:text="Họ tên *"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
-                <Spinner
-                    android:id="@+id/spinner_carrer"
+
+                <EditText
+                    android:id="@+id/edt_name"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:background="@drawable/custom_sinpper"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/custom_edittextphone"
+                    android:hint="Họ tên của bạn"
                     android:paddingLeft="10dp"
-                    android:textAlignment="center"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txt_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Giới tính *"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rad_male"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_marginLeft="20dp"
+                        android:text="Nam" />
+
+                    <RadioButton
+                        android:id="@+id/rad_female"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nữ" />
+
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/txt_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ngày sinh *"
+                    android:textColor="@color/black"
+
+                    android:textSize="15dp" />
+                <EditText
+                    android:id="@+id/edt_birthday"
+                    android:inputType="none"
+                    android:clickable="true"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+
+                    android:hint="Chọn ngày sinh của bạn"
+                    android:background="@drawable/custom_edittextphone"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
                 <Button
                     android:id="@+id/btn_register"
-                    android:layout_marginTop="65dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Đăng kí"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="65dp"
                     android:layout_marginRight="20dp"
+                    android:backgroundTint="#3F51B5"
+                    android:text="Đăng kí"
+
 
                     />
 

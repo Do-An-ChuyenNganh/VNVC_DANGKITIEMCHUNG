@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +22,20 @@ import org.w3c.dom.Text;
 
 public class Enter_Password extends AppCompatActivity {
 
-
     TextView txt_password;
     Button btn_login;
+    String mPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_password);
+
+        Window window = getWindow();
+        // Ẩn thanh trạng thái (status bar)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
         txt_password = (TextView) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.btn_login);
      btn_login.setOnClickListener(new View.OnClickListener() {
@@ -35,8 +43,9 @@ public class Enter_Password extends AppCompatActivity {
          public void onClick(View view) {
              Intent intent = getIntent();
              if (intent != null) {
-                 String phoneNumber = intent.getStringExtra("PhoneNumber");
+                 String phoneNumber = intent.getStringExtra("phone_number");
                  String password = txt_password.getText().toString().trim();
+
                  if (phoneNumber != null) {
                      checkPassword(phoneNumber, password);
 
@@ -63,9 +72,15 @@ public class Enter_Password extends AppCompatActivity {
                         // Kiểm tra mật khẩu
                         if (enteredPassword1.equals(passwordFromDatabase)) {
                             Intent mainIntent = new Intent(Enter_Password.this, MenuMainActivity.class);
-                            mainIntent.putExtra("PhoneNumber_main", phoneNumber);
+                            System.out.println("Nhap dung:---------: "+ phoneNumber );
+                            mainIntent.putExtra("phone_number",phoneNumber);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(mainIntent);
                             finish();
+
+
+
+
                         }
                         else {
                             Toast.makeText(Enter_Password.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
