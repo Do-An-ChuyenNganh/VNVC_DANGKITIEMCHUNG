@@ -1,16 +1,26 @@
 package com.example.dangkitiemchung;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.dangkitiemchung.Adapter.NewsAdapter;
 import com.example.dangkitiemchung.Models.News;
+import com.example.dangkitiemchung.Models.TaiKhoan;
 import com.example.dangkitiemchung.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +28,8 @@ import java.util.List;
 public class MenuMainActivity extends AppCompatActivity {
     RecyclerView recyclerView_news;
     NewsAdapter newsAdapter ;
+    String  mPhoneNumber,mVerificationId;
+    TextView txt_welcome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +38,12 @@ public class MenuMainActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-
-
         addControl();
+        getPhone();
+        getWelcome();
+
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView_news.setLayoutManager(linearLayoutManager);
         newsAdapter =new NewsAdapter(getListNews());
@@ -45,5 +60,50 @@ public class MenuMainActivity extends AppCompatActivity {
     }
     public void addControl(){
         recyclerView_news=findViewById(R.id.recyclerView_news);
+        txt_welcome=(TextView) findViewById(R.id.txt_welcome);
+    }
+    public String getPhone(){
+
+        mPhoneNumber=getIntent().getStringExtra("phone_number");
+        System.out.println("sdt: menu main  ***************" + mPhoneNumber);
+        if (mPhoneNumber.startsWith("+84")) {
+            mPhoneNumber = "0" + mPhoneNumber.substring(3);
+            System.out.println("sdt: ***************" + mPhoneNumber);
+        }
+        return mPhoneNumber;
+    }
+
+    public void getWelcome(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference taiKhoanRef = database.getReference("TaiKhoan");
+
+// Điều này giả sử "userName" là giá trị bạn muốn tìm
+        String userNameToFind = mPhoneNumber;
+// Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
+        Query query = taiKhoanRef.orderByChild("UserName").equalTo(userNameToFind).limitToFirst(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        TaiKhoan taiKhoan = snapshot.getValue(TaiKhoan.class);
+
+                        if (taiKhoan != null) {
+                            // Sử dụng thông tin tài khoản ở đây
+                            Log.d("Firebase", "HoTen: " + taiKhoan.getHoTen());
+                            txt_welcome.setText(taiKhoan.getHoTen());
+                            // Các thông tin khác
+                        }
+                    }
+                } else {
+                    Log.d("Firebase", "Không tìm thấy người dùng với UserName: " + userNameToFind);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Lỗi khi đọc dữ liệu từ Firebase", databaseError.toException());
+            }
+        });
+
     }
 }
