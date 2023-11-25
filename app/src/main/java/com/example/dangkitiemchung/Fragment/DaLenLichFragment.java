@@ -100,6 +100,7 @@ public class DaLenLichFragment extends Fragment {
                 }
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
+                    String key = dataSnapshot.getKey();
                     String tinhTrang = dataSnapshot.child("TinhTrang").getValue(String.class);
                     Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
                     String userName = dataSnapshot.child("UserName").getValue(String.class);
@@ -107,9 +108,9 @@ public class DaLenLichFragment extends Fragment {
                     String ngayDat = dataSnapshot.child("NgayDat").getValue(String.class);
                     String ngayTiem = dataSnapshot.child("NgayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("NoiTiem").getValue(String.class);
-
+                    System.out.println("Key of the child with userId "  + key);
                     if(tinhTrang.equals("Đã lên lịch")) {
-                        LichTiem tl = new LichTiem(id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
+                        LichTiem tl = new LichTiem( key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }
 

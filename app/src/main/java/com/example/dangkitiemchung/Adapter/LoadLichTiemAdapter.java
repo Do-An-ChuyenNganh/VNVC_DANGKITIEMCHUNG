@@ -46,6 +46,7 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietLichHen.class);
                 intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
                 intent.putExtra("user", ""+l.getUserName());
                 intent.putExtra("ngaydat", ""+l.getNgayDat());
                 intent.putExtra("ngaytiem",""+l.getNgayTiem());
@@ -59,6 +60,7 @@ public class LoadLichTiemAdapter extends RecyclerView.Adapter<LoadLichTiemAdapte
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietLichHen.class);
                 intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
                 intent.putExtra("user", ""+l.getUserName());
                 intent.putExtra("ngaydat", ""+l.getNgayDat());
                 intent.putExtra("ngaytiem",""+l.getNgayTiem());

@@ -43,6 +43,12 @@ public class LoadDaHuyAdapter extends RecyclerView.Adapter<LoadDaHuyAdapter.MyVi
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietDaHuy.class);
+                intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
+                intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaydat", ""+l.getNgayDat());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
+                intent.putExtra("noitiem", ""+l.getNoiTiem());
                 view.getContext().startActivity(intent);
             }
         });
@@ -51,7 +57,12 @@ public class LoadDaHuyAdapter extends RecyclerView.Adapter<LoadDaHuyAdapter.MyVi
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietDaHuy.class);
-//                intent.putExtra("id", ""+taiLieu.getID());
+                intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
+                intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaydat", ""+l.getNgayDat());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
+                intent.putExtra("noitiem", ""+l.getNoiTiem());
                 view.getContext().startActivity(intent);
             }
         });

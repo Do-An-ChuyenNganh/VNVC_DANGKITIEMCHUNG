@@ -4,6 +4,16 @@ public class LichTiem {
     private int id;
     private int GiaBan;
     private String UserName;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
     private String TenVX;
     private String TinhTrang;
     private String NgayDat;
@@ -11,7 +21,7 @@ public class LichTiem {
     private String Hinh;
     private String NoiTiem;
 
-    public LichTiem(int id, String userName, String tenVX, String tinhTrang, String ngayDat, String ngayTiem, String noiTiem) {
+    public LichTiem(String key, int id, String userName, String tenVX, String tinhTrang, String ngayDat, String ngayTiem, String noiTiem) {
         this.id = id;
         this.UserName = userName;
         this.TenVX = tenVX;
@@ -19,6 +29,7 @@ public class LichTiem {
         this.NgayDat = ngayDat;
         this.NgayTiem = ngayTiem;
         this.NoiTiem = noiTiem;
+        this.key = key;
     }
 
 

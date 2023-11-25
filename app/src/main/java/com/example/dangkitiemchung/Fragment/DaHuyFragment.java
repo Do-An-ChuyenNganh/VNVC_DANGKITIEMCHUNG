@@ -95,6 +95,7 @@ public class DaHuyFragment extends Fragment {
                 }
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
+                    String key = dataSnapshot.getKey();
                     String tinhTrang = dataSnapshot.child("TinhTrang").getValue(String.class);
                     Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
                     String userName = dataSnapshot.child("UserName").getValue(String.class);
@@ -106,7 +107,7 @@ public class DaHuyFragment extends Fragment {
 //                    Integer hinh = getResources().getIdentifier(tenHinh,"drawable", getActivity().getPackageName());
 //                    String ha = ""+hinh;
                     if(tinhTrang.equals("Đã hủy")) {
-                        LichTiem tl = new LichTiem(id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
+                        LichTiem tl = new LichTiem(key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }
 

@@ -3,6 +3,8 @@ package com.example.dangkitiemchung;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +28,12 @@ public class ChiTietLichHen extends AppCompatActivity {
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem;
     String strUser;
-    private String userId;
+    private String key, keyLS;
     Button btnHuy, btnDaTiem;
-    private ArrayList<Vaccine> lstVaccine = new ArrayList<>();
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
-    FirebaseDatabase firebaseDatabase1 = FirebaseDatabase.getInstance();
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
+    DatabaseReference myRefLichSuTC = firebaseDatabase.getReference("LichSuTiem");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class ChiTietLichHen extends AppCompatActivity {
         diadiemtiem.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
+        huyLichTiem();
 
 
     }
@@ -51,6 +53,7 @@ public class ChiTietLichHen extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         strUser = intent.getStringExtra("user");
+        key = intent.getStringExtra("key");
         strNgaydat =  intent.getStringExtra("ngaydat");
         strNgaytiem =  intent.getStringExtra("ngaytiem");
         strNoiTiem =  intent.getStringExtra("noitiem");
@@ -99,15 +102,43 @@ public class ChiTietLichHen extends AppCompatActivity {
     }
     public void huyLichTiem()
     {
-        userId = myRefLichSuDat.push().getKey();
+        keyLS = myRefLichSuTC.push().getKey();
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myRefLichSuDat.child(String.valueOf(userId)).child("TinhTrang").setValue("Đã hủy");
-                Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muôn hủy lịch?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        myRefLichSuTC.child(String.valueOf(keyLS)).child("TinhTrang").setValue("Đã hủy");
+                        Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
 
-            }
+                    }
+                }).setNegativeButton("Cancel",null).show();
+                    }
+
+
         });
+
+    }
+    public void daTiem()
+    {
+        btnDaTiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Xác nhận đã tiêm chủng?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        System.out.println("Xuất id coi thử key: " + key);
+                        myRefLichSuDat.child(String.valueOf(key)).child("TinhTrang").setValue("Đã hủy");
+                        Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).setNegativeButton("Cancel",null).show();
+            }
+
+
+        });
+
     }
 
 

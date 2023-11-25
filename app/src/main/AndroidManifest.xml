@@ -16,9 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Mai_LichSuTiemChung"
+            android:name=".Mai_LichTiemChung"
             android:exported="false"
-            android:label="Lịch sử tiêm chủng"
+            android:label="Lịch hẹn tiêm chủng"
             android:parentActivityName=".MenuMainActivity"/>
         <activity
             android:name=".ChiTietDaHuy"
@@ -62,8 +62,8 @@
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Mai_LichTiemChung"
-            android:label="Lịch hẹn tiêm chủng"
+            android:name=".Mai_LichSuTiemChung"
+            android:label="Lịch sử tiêm chủng"
             android:parentActivityName=".MenuMainActivity"
             android:exported="true">
             <intent-filter>
