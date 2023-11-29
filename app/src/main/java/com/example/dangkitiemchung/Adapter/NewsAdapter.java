@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dangkitiemchung.Models.News;
 import com.example.dangkitiemchung.R;
+import com.squareup.picasso.Picasso;
+
 import  java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private  List<News> mlistNews;
+    private static final int TARGET_WIDTH = 70; // Kích thước mục tiêu theo chiều rộng
+    private static final int TARGET_HEIGHT = 60; // Kích thước mục tiêu theo chiều cao
 
     public NewsAdapter(List<News> mlistNews) {
         this.mlistNews = mlistNews;
@@ -32,7 +36,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                 if(newsModel == null)
                     return;
 
-                holder.resourseId.setImageResource(newsModel.getResourceId());
+
+                //holder.resourseId.setImageResource(newsModel.getResourceId());
+                Picasso.get()
+                .load(newsModel.getResourceId())  // Assume getResId trả về URL hoặc đường dẫn hình ảnh
+                .resize(TARGET_WIDTH, TARGET_HEIGHT)
+                .onlyScaleDown()
+                .into(holder.resourseId);
                 holder.tilte.setText(newsModel.getTitle());
                 holder.date.setText(newsModel.getDate());
                 holder.hours.setText(newsModel.getDate());

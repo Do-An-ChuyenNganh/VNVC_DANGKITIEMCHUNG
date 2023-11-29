@@ -178,6 +178,7 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         System.out.println(" chuỗi strOTP " + strOTP);
         System.out.println("------------------------------------------------------------------------------------------------");
         txt_sendOTP.setTextColor(Color.RED);
+
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, strOTP);
         signInWithPhoneAuthCredential(credential);
     }
@@ -205,10 +206,6 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
                                 super.onCodeSent(verificationId, forceResendingToken);
                                 mVerificationId=verificationId;
                                 mForceResendingToken=forceResendingToken;
-
-
-
-
                             }
                         })          // OnVerificationStateChangedCallbacks
                         .build();
@@ -245,6 +242,7 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
                     }
                 });
     }
+
     public void goToRegisterPersonalProfileActivity(String phoneNumber){
         Intent intent = new Intent(EnterOTPActivity.this, RegisterPersonalProfileActivity.class);
         intent.putExtra("phone_number",phoneNumber);

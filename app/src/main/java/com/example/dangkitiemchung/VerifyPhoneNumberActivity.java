@@ -57,7 +57,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             String strPhoneNumber = txt_phone.getText().toString().trim();
+                String strPhoneNumber = txt_phone.getText().toString().trim();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
                 databaseReference.orderByChild("UserName").equalTo(strPhoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -117,6 +117,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
+
     public void goToRegisterPersonalProfileActivity(String phoneNumber){
         Intent intent = new Intent(VerifyPhoneNumberActivity.this, RegisterPersonalProfileActivity.class);
         intent.putExtra("phone_number",phoneNumber);
@@ -128,8 +129,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         intent.putExtra("verification_id",verificationId);
         startActivity(intent);
     }
-
-
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -152,9 +151,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                     }
                 });
     }
-
-
-
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")

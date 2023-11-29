@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -58,6 +61,12 @@ public class MenuMainActivity extends AppCompatActivity {
         lst.add(new News(R.drawable.img_cream,"CÁC LOẠI VẮC XIN CHO NGƯỜI LỚN","07/11/2022","22:04"));
         return lst;
     }
+    public static Bitmap decodeSampledBitmapFromResource(Context context, int resId, int inSampleSize) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = inSampleSize; // Đặt giảm độ phân giải
+
+        return BitmapFactory.decodeResource(context.getResources(), resId, options);
+    }
     public void addControl(){
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
@@ -89,10 +98,8 @@ public class MenuMainActivity extends AppCompatActivity {
                         TaiKhoan taiKhoan = snapshot.getValue(TaiKhoan.class);
 
                         if (taiKhoan != null) {
-                            // Sử dụng thông tin tài khoản ở đây
                             Log.d("Firebase", "HoTen: " + taiKhoan.getHoTen());
                             txt_welcome.setText(taiKhoan.getHoTen());
-                            // Các thông tin khác
                         }
                     }
                 } else {

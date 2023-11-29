@@ -8,9 +8,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
@@ -43,13 +41,13 @@
             android:name=".SetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Mai_LichTiemChung"
+            android:name=".VerifyPhoneNumberActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
