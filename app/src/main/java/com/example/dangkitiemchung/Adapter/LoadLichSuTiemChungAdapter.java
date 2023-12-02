@@ -42,6 +42,11 @@ public class LoadLichSuTiemChungAdapter extends RecyclerView.Adapter<LoadLichSuT
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietLichSuTiemChung.class);
+                intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
+                intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
+                intent.putExtra("noitiem", ""+l.getNoiTiem());
                 view.getContext().startActivity(intent);
             }
         });
@@ -50,7 +55,11 @@ public class LoadLichSuTiemChungAdapter extends RecyclerView.Adapter<LoadLichSuT
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietLichSuTiemChung.class);
-//                intent.putExtra("id", ""+taiLieu.getID());
+                intent.putExtra("id", ""+l.getId());
+                intent.putExtra("key", ""+l.getKey());
+                intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
+                intent.putExtra("noitiem", ""+l.getNoiTiem());
                 view.getContext().startActivity(intent);
             }
         });

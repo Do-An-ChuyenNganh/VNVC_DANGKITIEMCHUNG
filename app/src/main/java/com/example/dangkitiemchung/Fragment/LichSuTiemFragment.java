@@ -98,15 +98,15 @@ public class LichSuTiemFragment extends Fragment {
                 }
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
-
-                    Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    Integer muiSo = dataSnapshot.child("MuiSo").getValue(Integer.class);
-                    String userName = dataSnapshot.child("UserName").getValue(String.class);
-                    String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
-                    String phongBenh = dataSnapshot.child("PhongBenh").getValue(String.class);
-                    String ngayTiem = dataSnapshot.child("NgayTiem").getValue(String.class);
-                    String noiTiem = dataSnapshot.child("NoiTiem").getValue(String.class);
-                    LichSuTiemChung tl = new LichSuTiemChung( id, userName, tenVX, muiSo, ngayTiem, phongBenh, noiTiem);
+                    String key = dataSnapshot.getKey();
+                    Integer id = dataSnapshot.child("id").getValue(Integer.class);
+                    Integer muiSo = dataSnapshot.child("muiSo").getValue(Integer.class);
+                    String userName = dataSnapshot.child("userName").getValue(String.class);
+                    String tenVX = dataSnapshot.child("tenVX").getValue(String.class);
+                    String phongBenh = dataSnapshot.child("phongBenh").getValue(String.class);
+                    String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
+                    String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
+                    LichSuTiemChung tl = new LichSuTiemChung(key, id, userName, tenVX, muiSo, ngayTiem, phongBenh, noiTiem);
                     newArrayList.add(tl);
 
                 }
