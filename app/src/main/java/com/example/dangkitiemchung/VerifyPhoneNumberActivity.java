@@ -165,7 +165,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
             public void run() {
                 dismissAlertDialog();
             }
-        }, 2000);
+        }, 2500);
     }
     private void dismissAlertDialog() {
         if (alertDialog != null && alertDialog.isShowing()) {
