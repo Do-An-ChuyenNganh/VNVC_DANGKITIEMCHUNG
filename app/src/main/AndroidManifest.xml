@@ -8,38 +8,23 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Mai_LichTiemChung"
-            android:exported="false"
-            android:label="Lịch hẹn tiêm chủng"
-            android:parentActivityName=".MenuMainActivity"/>
-        <activity
             android:name=".ChiTietDaHuy"
-            android:exported="false"
-            android:label="Lịch đã hủy"
-            android:parentActivityName=".Mai_LichTiemChung" />
+            android:exported="false" />
         <activity
             android:name=".ChiTietMuiTiepTheo"
-            android:exported="false"
-            android:label="Mũi tiêm tiếp theo"
-            android:parentActivityName=".Mai_LichSuTiemChung" />
+            android:exported="false" />
         <activity
             android:name=".ChiTietLichSuTiemChung"
-            android:exported="false"
-            android:label="Lịch sử tiêm chủng"
-            android:parentActivityName=".Mai_LichSuTiemChung" />
+            android:exported="false" />
         <activity
             android:name=".ChiTietLichHen"
-            android:exported="false"
-            android:label="Đã lên lịch"
-            android:parentActivityName=".Mai_LichTiemChung" />
+            android:exported="false" />
         <activity
             android:name=".EnterOTPActivity"
             android:exported="false" />
@@ -56,15 +41,13 @@
             android:name=".SetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".Mai_LichTiemChung"
             android:exported="false" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Mai_LichSuTiemChung"
-            android:label="Lịch sử tiêm chủng"
-            android:parentActivityName=".MenuMainActivity"
+            android:name=".VerifyPhoneNumberActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
