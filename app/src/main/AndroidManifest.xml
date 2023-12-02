@@ -15,16 +15,24 @@
         tools:targetApi="31">
         <activity
             android:name=".ChiTietDaHuy"
-            android:exported="false" />
+            android:label="Chi tiết lịch hủy"
+            android:exported="false"
+            android:parentActivityName=".Mai_LichTiemChung" />
         <activity
             android:name=".ChiTietMuiTiepTheo"
-            android:exported="false" />
+            android:label="Chi tiết mũi tiếp theo"
+            android:exported="false"
+            android:parentActivityName=".Mai_LichSuTiemChung" />
         <activity
             android:name=".ChiTietLichSuTiemChung"
-            android:exported="false" />
+            android:label="Chi tiết lịch sử tiêm"
+            android:exported="false"
+            android:parentActivityName=".Mai_LichSuTiemChung" />
         <activity
             android:name=".ChiTietLichHen"
-            android:exported="false" />
+            android:label="Chi tiết lịch hẹn"
+            android:exported="false"
+            android:parentActivityName=".Mai_LichTiemChung" />
         <activity
             android:name=".EnterOTPActivity"
             android:exported="false" />
@@ -41,14 +49,24 @@
             android:name=".SetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".Mai_LichTiemChung"
-            android:exported="false" />
+            android:name=".VerifyPhoneNumberActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Mai_LichSuTiemChung"
+            android:exported="false"
+            android:label="Lịch sử tiêm chủng"
+
+            android:parentActivityName=".MenuMainActivity"/>
+
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
-            android:exported="true">
+
+            android:name=".Mai_LichTiemChung"
+            android:label="Lịch hẹn tiêm chủng"
+            android:exported="true"
+            android:parentActivityName=".MenuMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
