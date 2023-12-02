@@ -4,53 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1DFDF"
+
     tools:context=".ChiTietLichSuTiemChung">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-
-
-        <Button
-            android:id="@+id/btnhuy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:backgroundTint="#FFCCCC"
-            android:text="HỦY"
-            android:layout_marginRight="5dp"
-            android:textColor="#F33131"
-            app:layout_constraintRight_toLeftOf="@id/btndatiem"
-            tools:ignore="5dp"
-            tools:layout_editor_absoluteY="dp" />
-
-        <Button
-            android:id="@+id/btndatiem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintRight_toRightOf="parent"
-            android:backgroundTint="@color/teal_700"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/white"
-            android:text="Đã tiêm"
-            tools:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
+
             >
 
 
@@ -67,7 +29,7 @@
                     android:id="@+id/hoten"
                     android:layout_marginTop="5dp"
                     android:textSize="16dp"
-                    android:textColor="#202020"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -77,6 +39,7 @@
                     android:layout_marginLeft="10dp"/>
                 <TextView
                     android:id="@+id/ngaysinh"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:text="15/08/2002 - Bản thân"
                     android:fontFamily="sans-serif-light"
@@ -130,6 +93,7 @@
                             android:layout_marginLeft="10dp"
 
                             android:fontFamily="sans-serif-light"
+                            android:textColor="@color/black"
                             android:text="Phòng bệnh" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -150,6 +114,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:gravity ="right|center"
                                 android:text="sùi mào gàaaaaaaaaaa"
+                                android:textStyle="bold"
                                 android:textColor="@color/black"
 
                                 app:layout_constraintRight_toRightOf="parent"
@@ -172,8 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-
-
+                            android:textColor="@color/black"
                             android:fontFamily="sans-serif-light"
                             android:text="Giá" />
 
@@ -189,7 +153,9 @@
                                 android:layout_marginTop="10dp"
                                 android:fontFamily="sans-serif-light"
                                 android:text="1790000 VNĐ"
+                                android:textStyle="bold"
                                 android:textColor="@color/black"
+
                                 app:layout_constraintRight_toRightOf="parent"
                                 tools:layout_editor_absoluteY="10dp" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -210,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-light"
                         android:text="Ngày mong muốn tiêm" />
 
@@ -243,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
+                        android:textColor="@color/black"
 
                         android:fontFamily="sans-serif-light"
                         android:text="Ngày đặt" />
@@ -279,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
 
-
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-light"
                         android:text="Địa điểm tiêm" />
 
@@ -304,6 +270,42 @@
 
 
             </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                tools:ignore="MissingConstraints">
+
+
+
+                <Button
+                    android:id="@+id/btnhuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:backgroundTint="#575C63"
+                    android:text="HỦY"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintRight_toLeftOf="@id/btndatiem"
+                    tools:ignore="5dp"
+                    tools:layout_editor_absoluteY="dp" />
+
+                <Button
+                    android:id="@+id/btndatiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:backgroundTint="#0863DE"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:text="Đã tiêm"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
 

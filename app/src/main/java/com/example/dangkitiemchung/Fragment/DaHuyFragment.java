@@ -37,8 +37,13 @@ public class DaHuyFragment extends Fragment {
     private LoadDaHuyAdapter adapter;
     private LinearLayoutManager layout;
 
+    public DaHuyFragment(String userName) {
+        // Required empty public constructor
+        this.UserName = userName;
+    }
     public DaHuyFragment() {
         // Required empty public constructor
+
     }
 
     /**

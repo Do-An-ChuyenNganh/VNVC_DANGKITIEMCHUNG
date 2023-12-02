@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dangkitiemchung.Adapter.NewsAdapter;
@@ -25,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +37,7 @@ public class MenuMainActivity extends AppCompatActivity {
     NewsAdapter newsAdapter ;
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
+    ImageView imgLichHen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,7 @@ public class MenuMainActivity extends AppCompatActivity {
         addControl();
         getPhone();
         getWelcome();
+        chuyenLichHen();
 
 
 
@@ -70,6 +76,22 @@ public class MenuMainActivity extends AppCompatActivity {
     public void addControl(){
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
+        imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
+    }
+    public void chuyenLichHen()
+    {
+        imgLichHen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPhoneNumber = getIntent().getStringExtra("phone_number");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), Mai_LichTiemChung.class);
+                intent.putExtra("sdt", ""+mPhoneNumber);
+                startActivity(intent);
+
+
+            }
+        });
     }
     public String getPhone(){
 

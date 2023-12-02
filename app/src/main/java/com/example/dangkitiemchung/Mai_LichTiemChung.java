@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,18 +33,17 @@ public class Mai_LichTiemChung extends AppCompatActivity {
         setContentView(R.layout.activity_mai_lich_tiem_chung);
         tabLayout = (TabLayout) findViewById(R.id.tab_lichtiem);
         replaceFrag(new DaLenLichFragment());
-//        Intent intent = getIntent();
-//        madg = intent.getStringExtra("madg");
-////        System.out.println("t mún đi ngủ"+madg);
+        Intent intent = getIntent();
+        user = intent.getStringExtra("sdt");
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(@NonNull TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        replaceFrag(new DaLenLichFragment());
+                        replaceFrag(new DaLenLichFragment(user));
                         break;
                     case 1:
-                        replaceFrag(new DaHuyFragment());
+                        replaceFrag(new DaHuyFragment(user));
                         break;
 
 

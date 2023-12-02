@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="5dp"
@@ -16,7 +16,7 @@
     <androidx.cardview.widget.CardView
         app:cardElevation="10dp"
         android:layout_width="match_parent"
-        android:layout_height="94dp">
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -27,8 +27,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#FFCCCC"
                 android:orientation="vertical"
+                android:background="#EBF0F4"
                 android:paddingLeft="5dp">
 
                 <TextView
@@ -50,7 +50,7 @@
                     android:layout_width="100dp"
                     android:layout_height="30dp"
                     android:text="04/10/2023"
-                    android:textColor="#FF0000"
+                    android:textColor="@color/black"
 
                     android:textSize="13sp"
 
@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
+
                 android:paddingLeft="5dp">
 
                 <TextView
@@ -70,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="Địa điểm tiêm"
                     android:textSize="11sp"
+                    android:layout_marginTop="5dp"
                     android:textColor="#322E2E"
 
                     tools:ignore="DuplicateIds" />
@@ -94,7 +96,7 @@
                     android:text="Phòng bệnh"
                     android:textSize="11sp"
                     android:textColor="#322E2E"
-
+                    android:layout_marginBottom="5dp"
                     tools:ignore="DuplicateIds" />
 
 
@@ -114,13 +116,5 @@
 
 
     </androidx.cardview.widget.CardView>
-    <TextView
-        android:id="@+id/ngancach"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:background="#8F8A8A" />
 
 </LinearLayout>
