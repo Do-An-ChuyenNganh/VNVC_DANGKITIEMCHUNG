@@ -1,6 +1,7 @@
 package com.example.dangkitiemchung;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -12,28 +13,32 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dangkitiemchung.Models.LichTiem;
-import com.example.dangkitiemchung.Models.MuiTiepTheo;
-import com.example.dangkitiemchung.Models.Vaccine;
+import com.example.dangkitiemchung.Models.LichSuTiemChung;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ChiTietLichHen extends AppCompatActivity {
 
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
-    String id, strNgaydat, strNgaytiem, strNoiTiem;
-    String strUser;
+    String id, strNgaydat, strNgaytiem, strNoiTiem, strTenVX;
+    String strUser, strMui2, strMui3;
     private String key, keyLS;
     Button btnHuy, btnDaTiem;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     DatabaseReference myRefLichSuTC = firebaseDatabase.getReference("LichSuTiem");
+    DatabaseReference myRefMuiTiepTheo = firebaseDatabase.getReference("MuiTiepTheo");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,10 @@ public class ChiTietLichHen extends AppCompatActivity {
         diadiemtiem.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
+        strUser ="0366850669";
         huyLichTiem();
+
+        daTiem();
 
 
     }
@@ -100,44 +108,99 @@ public class ChiTietLichHen extends AppCompatActivity {
             }
         });
     }
-    public void huyLichTiem()
-    {
-        keyLS = myRefLichSuTC.push().getKey();
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muôn hủy lịch?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        myRefLichSuTC.child(String.valueOf(keyLS)).child("TinhTrang").setValue("Đã hủy");
-                        Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+    public void huyLichTiem(){
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar c = Calendar.getInstance();
+        System.out.println("thời giannnn"+sdf.format(c.getTime()));
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick (View view) {
+                    if (!ngaytiem.getText().toString().equals(""+sdf.format(c.getTime()))) {
+                        new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muôn hủy lịch?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                myRefLichSuDat.child(String.valueOf(key)).child("TinhTrang").setValue("Đã hủy");
+                                Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent();
+                                intent.setClass(getApplicationContext(), Mai_LichTiemChung.class);
+                                startActivity(intent);
+
+                            }
+                        }).setNegativeButton("Cancel", null).show();
+                    } else {
+
+                        new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Đã tới ngày tiêm không thể hủy").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                System.out.println("...");
+                            }
+
+                        }).show();
                     }
-                }).setNegativeButton("Cancel",null).show();
-                    }
+                }
+
 
 
         });
+
+
 
     }
     public void daTiem()
     {
+        keyLS = myRefLichSuTC.push().getKey();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date dateobj = new Date();
+        Calendar c = Calendar.getInstance();
+        System.out.println("thời giannnn"+df.format(c.getTime()));
         btnDaTiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Xác nhận đã tiêm chủng?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                if (ngaytiem.getText().toString().equals(""+df.format(c.getTime()))) {
+                    new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Xác nhận đã tiêm chủng?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            System.out.println("Xuất id coi thử key: " + key);
+                            LichSuTiemChung ls = new LichSuTiemChung(Integer.parseInt(id), strUser, tenvx.getText().toString(), 1, ngaytiem.getText().toString(), phongbenh.getText().toString(), strNoiTiem);
+                            myRefLichSuTC.child(keyLS).setValue(ls, new DatabaseReference.CompletionListener() {
+
+                                @Override
+                                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                    System.out.println("...");
+                                }
+                            });
+
+                            myRefLichSuDat.child(String.valueOf(key)).removeValue(new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                    Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            Intent intent = new Intent();
+                            intent.setClass(getApplicationContext(), Mai_LichSuTiemChung.class);
+                            startActivity(intent);
+                        }
+                    }).setNegativeButton("Cancel", null).show();
+                }
+                else {
+
+                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Chưa tới ngày tiêm chủng").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        System.out.println("Xuất id coi thử key: " + key);
-                        myRefLichSuDat.child(String.valueOf(key)).child("TinhTrang").setValue("Đã hủy");
-                        Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-
+                        System.out.println("...");
                     }
-                }).setNegativeButton("Cancel",null).show();
+
+                }).show();
+                }
             }
 
 
+
         });
+
 
     }
 

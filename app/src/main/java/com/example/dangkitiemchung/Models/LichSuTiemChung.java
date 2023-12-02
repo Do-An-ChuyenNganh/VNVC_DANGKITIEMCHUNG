@@ -1,6 +1,15 @@
 package com.example.dangkitiemchung.Models;
 
 public class LichSuTiemChung {
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
     private int id;
     private String UserName;
     private String TenVX;
@@ -9,14 +18,24 @@ public class LichSuTiemChung {
     private String PhongBenh;
     private String NoiTiem;
 
-    public LichSuTiemChung(int id, String userName, String tenVX, int muiSo, String ngayTiem, String phongBenh, String noiTiem) {
-        this.id = id;
-        UserName = userName;
-        TenVX = tenVX;
-        MuiSo = muiSo;
-        NgayTiem = ngayTiem;
-        PhongBenh = phongBenh;
-        NoiTiem = noiTiem;
+    public LichSuTiemChung(String Key, int Id_VX, String UserName, String TenVX, int MuiSo, String NgayTiem, String PhongBenh, String NoiTiem) {
+        this.id = Id_VX;
+        this.UserName = UserName;
+        this.TenVX = TenVX;
+        this.MuiSo = MuiSo;
+        this.NgayTiem = NgayTiem;
+        this.PhongBenh = PhongBenh;
+        this.NoiTiem = NoiTiem;
+        this.key = Key;
+    }
+    public LichSuTiemChung( int Id_VX, String UserName, String TenVX, int MuiSo, String NgayTiem, String PhongBenh, String NoiTiem) {
+        this.id = Id_VX;
+        this.UserName = UserName;
+        this.TenVX = TenVX;
+        this.MuiSo = MuiSo;
+        this.NgayTiem = NgayTiem;
+        this.PhongBenh = PhongBenh;
+        this.NoiTiem = NoiTiem;
     }
 
     public int getId() {
