@@ -78,16 +78,16 @@
                     </LinearLayout>
                 </LinearLayout>
                 <ViewFlipper
+                    android:id="@+id/viewFlipperBannerFirst"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:flipInterval="3000"
+                    android:flipInterval="4000"
                     android:autoStart="true"
                     android:inAnimation="@android:anim/slide_in_left"
                     android:outAnimation="@android:anim/slide_out_right"
                     >
-
                     <ImageView
-                       android:layout_margin="12dp"
+                        android:layout_margin="12dp"
                         android:scaleType="centerCrop"
                         android:background="@drawable/custom_borderimg"
                         android:layout_width="wrap_content"
@@ -113,6 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/banner_11" />
+
                 </ViewFlipper>
                 <GridLayout
                     android:layout_width="342dp"
@@ -322,15 +323,15 @@
                 </GridLayout>
 
            <ViewFlipper
+               android:id="@+id/viewSplierbanner2"
                android:layout_width="match_parent"
                android:layout_height="130dp"
-               android:flipInterval="2000"
+               android:flipInterval="3000"
                android:autoStart="true"
                android:inAnimation="@android:anim/slide_in_left"
                android:outAnimation="@android:anim/slide_out_right"
 
                >
-
                <ImageView
                    android:id="@+id/imageView6"
                    android:layout_width="wrap_content"
@@ -354,6 +355,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    app:srcCompat="@drawable/banner3" />
+
            </ViewFlipper>
 
                 <GridLayout

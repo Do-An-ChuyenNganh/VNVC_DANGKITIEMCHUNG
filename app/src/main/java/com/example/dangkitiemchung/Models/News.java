@@ -1,7 +1,9 @@
 package com.example.dangkitiemchung.Models;
 
+import android.graphics.Bitmap;
+
 public class News {
-int resourceId;
+    int resourceId;
 String title, date, hours;
 
     public int getResourceId() {

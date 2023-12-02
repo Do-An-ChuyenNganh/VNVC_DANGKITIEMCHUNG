@@ -38,7 +38,8 @@ public class Enter_Password extends AppCompatActivity {
 
         txt_password = (TextView) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.btn_login);
-     btn_login.setOnClickListener(new View.OnClickListener() {
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
              Intent intent = getIntent();
@@ -57,10 +58,9 @@ public class Enter_Password extends AppCompatActivity {
 
 
     private void checkPassword(String phoneNumber, String enteredPassword1) {
-
-
         System.out.println("mat khau :" + enteredPassword1);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
+
         databaseReference.orderByChild("UserName").equalTo(phoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             boolean kt = true;
             @Override
@@ -77,8 +77,6 @@ public class Enter_Password extends AppCompatActivity {
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(mainIntent);
                             finish();
-
-
 
 
                         }
