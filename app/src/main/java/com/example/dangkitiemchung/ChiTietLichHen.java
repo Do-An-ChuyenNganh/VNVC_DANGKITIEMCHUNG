@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dangkitiemchung.Models.LichSuTiemChung;
+import com.example.dangkitiemchung.Models.MuiTiepTheo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -31,7 +34,9 @@ public class ChiTietLichHen extends AppCompatActivity {
 
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem, strTenVX;
-    String strUser, strMui2, strMui3;
+    String strUser;
+    private int strMui2=0;
+    private int strMui3=0;
     private String key, keyLS;
     Button btnHuy, btnDaTiem;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -92,11 +97,28 @@ public class ChiTietLichHen extends AppCompatActivity {
                     Integer giaVX = dataSnapshot.child("Gia").getValue(Integer.class);
                     String ten = dataSnapshot.child("TenVX").getValue(String.class);
                     String phongbenhVX = dataSnapshot.child("PhongBenh").getValue(String.class);
+                    long phacdo =  dataSnapshot.child("PhacDoTiem").getChildrenCount();
+                    int Mui2 =0;
+                    int Mui3 =0;
+
                     if (idVX == Integer.parseInt(id)) {
                         {
+                            if(phacdo ==2)
+                            {
+                                Mui2 = dataSnapshot.child("PhacDoTiem").child("Mui 2").getValue(Integer.class);
+
+                            }
+                            if(phacdo ==3)
+                            {
+                                Mui2 = dataSnapshot.child("PhacDoTiem").child("Mui 2").getValue(Integer.class);
+                                Mui3 = dataSnapshot.child("PhacDoTiem").child("Mui 3").getValue(Integer.class);
+                            }
                             tenvx.setText(ten);
                             phongbenh.setText(phongbenhVX);
                             gia.setText(String.valueOf(giaVX));
+                            strMui2 = Mui2;
+                            strMui3 = Mui3;
+                            System.out.println(strMui2);
                         }
                     }
                 }
@@ -144,13 +166,12 @@ public class ChiTietLichHen extends AppCompatActivity {
 
 
         });
-
-
-
     }
     public void daTiem()
     {
         keyLS = myRefLichSuTC.push().getKey();
+        String KeyMui2 = myRefMuiTiepTheo.push().getKey();
+        String KeyMui3 = myRefMuiTiepTheo.push().getKey();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         Date dateobj = new Date();
@@ -172,6 +193,71 @@ public class ChiTietLichHen extends AppCompatActivity {
                                     System.out.println("...");
                                 }
                             });
+                            if(strMui2 !=0) {
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                                String ngayBanDau = ngaytiem.getText().toString();
+                                String KetQua = "";
+                                try {
+
+                                    // Chuyển đổi chuỗi ngày thành đối tượng Date
+                                    Date date = sdf.parse(ngayBanDau);
+
+                                    // Sử dụng Calendar để cộng thêm số tháng
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.setTime(date);
+                                    calendar.add(Calendar.MONTH, strMui2);
+
+                                    // Lấy ngày sau khi cộng thêm số tháng
+                                    Date ngaySauKhiCong = calendar.getTime();
+
+                                    // Chuyển đổi ngày sau khi cộng thành chuỗi
+                                    KetQua = sdf.format(ngaySauKhiCong);
+
+                                    System.out.println("Ngày sau khi cộng " + strMui2 + " tháng là: " + KetQua);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                MuiTiepTheo mtt = new MuiTiepTheo(Integer.parseInt(id), strUser, tenvx.getText().toString(), 2, KetQua, phongbenh.getText().toString());
+                                myRefMuiTiepTheo.child(KeyMui2).setValue(mtt, new DatabaseReference.CompletionListener() {
+
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                        System.out.println("...");
+                                    }
+                                });
+                                if (strMui3 != 0) {
+                                    try {
+
+                                        // Chuyển đổi chuỗi ngày thành đối tượng Date
+                                        Date date = sdf.parse(ngayBanDau);
+
+                                        // Sử dụng Calendar để cộng thêm số tháng
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.setTime(date);
+                                        calendar.add(Calendar.MONTH, strMui3);
+
+                                        // Lấy ngày sau khi cộng thêm số tháng
+                                        Date ngaySauKhiCong = calendar.getTime();
+
+                                        // Chuyển đổi ngày sau khi cộng thành chuỗi
+                                        KetQua = sdf.format(ngaySauKhiCong);
+
+                                        System.out.println("Ngày sau khi cộng " + strMui3 + " tháng là: " + KetQua);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    MuiTiepTheo mtt3 = new MuiTiepTheo(Integer.parseInt(id), strUser, tenvx.getText().toString(), 3, KetQua, phongbenh.getText().toString());
+                                    myRefMuiTiepTheo.child(KeyMui3).setValue(mtt3, new DatabaseReference.CompletionListener() {
+
+                                        @Override
+                                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                            System.out.println("...");
+                                        }
+                                    });
+                                }
+                            }
 
                             myRefLichSuDat.child(String.valueOf(key)).removeValue(new DatabaseReference.CompletionListener() {
                                 @Override
@@ -196,9 +282,6 @@ public class ChiTietLichHen extends AppCompatActivity {
                 }).show();
                 }
             }
-
-
-
         });
 
 

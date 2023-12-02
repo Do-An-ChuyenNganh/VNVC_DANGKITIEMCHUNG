@@ -97,12 +97,12 @@ public class MuiTiepTheoFragment extends Fragment {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
 
-                    Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    Integer muiSo = dataSnapshot.child("MuiSo").getValue(Integer.class);
-                    String userName = dataSnapshot.child("UserName").getValue(String.class);
-                    String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
-                    String phongBenh = dataSnapshot.child("PhongBenh").getValue(String.class);
-                    String ngayTiem = dataSnapshot.child("NgayTiemDuTinh").getValue(String.class);
+                    Integer id = dataSnapshot.child("id").getValue(Integer.class);
+                    Integer muiSo = dataSnapshot.child("muiSo").getValue(Integer.class);
+                    String userName = dataSnapshot.child("userName").getValue(String.class);
+                    String tenVX = dataSnapshot.child("tenVX").getValue(String.class);
+                    String phongBenh = dataSnapshot.child("phongBenh").getValue(String.class);
+                    String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     MuiTiepTheo tl = new MuiTiepTheo( id, userName, tenVX, muiSo, ngayTiem, phongBenh);
                     newArrayList.add(tl);
 
