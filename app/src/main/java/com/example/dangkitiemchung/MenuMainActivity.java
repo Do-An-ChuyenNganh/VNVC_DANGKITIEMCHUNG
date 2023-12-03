@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.dangkitiemchung.Adapter.NewsAdapter;
@@ -33,6 +36,8 @@ public class MenuMainActivity extends AppCompatActivity {
     NewsAdapter newsAdapter ;
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
+    ImageButton icons_personal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,18 @@ public class MenuMainActivity extends AppCompatActivity {
         recyclerView_news.setLayoutManager(linearLayoutManager);
         newsAdapter =new NewsAdapter(getListNews());
         recyclerView_news.setAdapter(newsAdapter);
+
+
+        icons_personal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
+                mainIntent.putExtra("phone_number",mPhoneNumber);
+                startActivity(mainIntent);
+                finish();
+
+            }
+        });
     }
     public List<News> getListNews(){
         List<News> lst = new ArrayList<>();
@@ -70,6 +87,7 @@ public class MenuMainActivity extends AppCompatActivity {
     public void addControl(){
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
+        icons_personal= (ImageButton) findViewById(R.id.icons_personal); //
     }
     public String getPhone(){
 
@@ -86,9 +104,9 @@ public class MenuMainActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference taiKhoanRef = database.getReference("TaiKhoan");
 
-// Điều này giả sử "userName" là giá trị bạn muốn tìm
+        // Điều này giả sử "userName" là giá trị bạn muốn tìm
         String userNameToFind = mPhoneNumber;
-// Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
+        // Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
         Query query = taiKhoanRef.orderByChild("UserName").equalTo(userNameToFind).limitToFirst(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

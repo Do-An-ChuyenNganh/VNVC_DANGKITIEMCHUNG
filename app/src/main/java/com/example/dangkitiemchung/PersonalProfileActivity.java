@@ -1,5 +1,8 @@
 package com.example.dangkitiemchung;
 
+import static java.lang.System.in;
+import static java.lang.System.setOut;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,12 +46,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,6 +85,10 @@ public class PersonalProfileActivity extends AppCompatActivity {
 
     List<String> districtsInfoList = new ArrayList<>();
     List<String> wardInfoList = new ArrayList<>();
+    String PROVINCE ="";
+    String DISTRICTS="";
+    String WARD="";
+    int IDp=-1;
 
 
 
@@ -86,27 +96,29 @@ public class PersonalProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_profile);
-        // Ẩn thanh trạng thái (status bar)
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         addControl();
-
-        loadSpinerNation();
-        loadSpinerNationality();
         String numberPhone=getPhone();
+
+
+            loadCity();
+            loadSpinerNation();
+            loadSpinerNationality();
+
         // Gọi trang kế tiếp
-//        btn_update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String numberPhone=getPhone();
-//                loadSpinerNation();
-//                showInfomation(numberPhone);
-//                register(numberPhone.trim());
-//
-//
-//            }
-//        });
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numberPhone=getPhone();
+                updateInfomation(numberPhone);
+                Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+               // loadSpinerNation();
+               // showInfomation(numberPhone);
+               // register(numberPhone.trim());
+            }
+        });
 
         edt_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,11 +171,10 @@ public class PersonalProfileActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 spinner_district.setEnabled(true);
                 String selectedValue = parentView.getItemAtPosition(position).toString();
-                System.out.println( "index trung ========================================"+ selectedValue );
+                //System.out.println( "index trung ========================================"+ selectedValue );
                 String[] parts = selectedValue.split(",");
                 int _id=Integer.parseInt(parts[1].trim().toString());
                 ID_PROVINCE=_id;
-
                 // Gọi API quận huyện
                 Call<List<District>> districtCall = apiService.getDistrict();
                 districtCall.enqueue(new Callback<List<District>>() {
@@ -175,8 +186,9 @@ public class PersonalProfileActivity extends AppCompatActivity {
                             List<String> districtsInfoList = new ArrayList<>();
                             String name="";
                             String common="";
-                            int district_code=1, province_code=1 ;
 
+                            int district_code=1, province_code=1 ;
+                            int itemCount=0;
                             for (District district : districts) {
                                 name = district.getName();
                                 district_code = district.getCode();
@@ -190,9 +202,24 @@ public class PersonalProfileActivity extends AppCompatActivity {
                             }
 
                             spinnerDistrictAdapter = new SpinnerDistrictAdapter(PersonalProfileActivity.this, android.R.layout.simple_spinner_dropdown_item, districtsInfoList);
-                            //  ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(RegisterPersonalProfile.this, android.R.layout.simple_spinner_dropdown_item, districtsInfoList);
                             spinnerDistrictAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner_district.setAdapter(spinnerDistrictAdapter);
+
+                            int id=-1;
+                            ArrayAdapter<String> dictricsAdapter = (ArrayAdapter<String>) spinner_district.getAdapter();
+                            for (int i = 0; i< dictricsAdapter.getCount();i++)
+                            {
+                                System.out.println("DISTRICTSDISTRICTS" + DISTRICTS);
+                                String _province = dictricsAdapter.getItem(i);
+                                String[] partProvince = _province.split(",");
+                                String str= partProvince[0].trim();
+                                if(DISTRICTS.equals(str)){
+                                    id=i;
+                                }
+                            }
+                            if(id!=-1){
+                                spinner_district.setSelection(id);
+                            }
 
                         } else {
                             System.out.println("Không có dữ liệu");
@@ -226,21 +253,41 @@ public class PersonalProfileActivity extends AppCompatActivity {
                 wardtCall.enqueue(new Callback<List<Ward>>() {
                     @Override
                     public void onResponse(Call<List<Ward>> call, Response<List<Ward>> response) {
+                        int itemCount=-1;
                         if (response != null && response.body() != null) {
                             List<Ward> wards = response.body();
                             List<String> wardInfoList = new ArrayList<>();
                             String name="";
                             int district_code ;
                             for (Ward ward : wards) {
+                                itemCount++;
                                 district_code = ward.getDistrict_code();
                                 if (ID_DISTRICT == district_code) {
                                     name = ward.getName();
                                     wardInfoList.add(name);
                                 }
                             }
+                            System.out.println("teen huyeenj : " + name);
                             spinnerWardAdapter = new SpinnerWardAdapter(PersonalProfileActivity.this, android.R.layout.simple_spinner_dropdown_item, wardInfoList);
                             spinnerWardAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner_ward.setAdapter(spinnerWardAdapter);
+
+                            int id=-1;
+                            ArrayAdapter<String> dictricsAdapter = (ArrayAdapter<String>) spinner_ward.getAdapter();
+                            for (int i = 0; i< dictricsAdapter.getCount();i++)
+                            {
+                                String _province = dictricsAdapter.getItem(i);
+//                                String[] partProvince = _province.split(",");
+//                                String str= partProvince[0].trim();
+                                if(WARD.equals(_province)){
+                                    id=i;
+                                }
+                            }
+                            if(id!=-1){
+                                spinner_ward.setSelection(id);
+                            }
+                            spinner_ward.setSelection(id);
+
                         } else {
                             System.out.println("Không có dữ liệu");
                         }
@@ -257,8 +304,9 @@ public class PersonalProfileActivity extends AppCompatActivity {
                 // Xử lý khi không có mục nào được chọn (nếu cần).
             }
         });
+        showInfomation(mPhoneNumber);
 
-      //  showInfomation(numberPhone);
+
     }
     public void  addControl(){
         btn_update= (Button) findViewById(R.id.btn_update);
@@ -298,7 +346,6 @@ public class PersonalProfileActivity extends AppCompatActivity {
         colorCharacters.colorRed("Họ tên *",txt_name);
         colorCharacters.colorRed("Giới tính *",txt_sex);
         colorCharacters.colorRed("Ngày sinh *",txt_birthday);
-
     }
     public  void set_value_initial(){
         spinner_district.setEnabled(false);
@@ -359,10 +406,6 @@ public class PersonalProfileActivity extends AppCompatActivity {
                 intent.putExtra("phone_number",mPhoneNumber);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
-
-
-
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -434,7 +477,48 @@ public class PersonalProfileActivity extends AppCompatActivity {
             }
         });
     }
+    public void loadCity()
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://provinces.open-api.vn/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiService = retrofit.create(ApiService.class);
+        // Gọi API để lấy danh sách tỉnh thành
+        Call<List<Province>> provinceCall = apiService.getProvinces();
+        provinceCall.enqueue(new Callback<List<Province>>() {
+            @Override
+            public void onResponse(Call<List<Province>> call, Response<List<Province>> response) {
+                if (response != null && response.body() != null) {
+                    List<Province> provinces = response.body();
+                    List<String> provinceInfoList = new ArrayList<>();
+                    int indexItemProvince = -1;
+                    for (Province province : provinces) {
+                        String name = province.getName();
+                        int code = province.getCode();
+                        String strcode= String.valueOf(code);
+                        String common= name+","+strcode;
+                        provinceInfoList.add(common);
 
+
+
+                    }
+                    spinnerProvinceAdapter = new SpinnerProvinceAdapter(PersonalProfileActivity.this, android.R.layout.simple_spinner_dropdown_item, provinceInfoList);
+                    spinnerProvinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner_city.setAdapter(spinnerProvinceAdapter);
+
+
+                } else {
+                    System.out.println("Không có dữ liệu");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Province>> call, Throwable t) {
+                // Xử lý lỗi khi gọi API
+            }
+        });
+
+    }
     public void updateInfomation(String numberPhone){
         DatabaseReference taiKhoanRef = FirebaseDatabase.getInstance().getReference().child("TaiKhoan");
         Query query = taiKhoanRef.orderByChild("UserName").equalTo(numberPhone);
@@ -444,9 +528,35 @@ public class PersonalProfileActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String taiKhoanId = snapshot.getKey();
                     if (taiKhoanId != null) {
-                        taiKhoanRef.child(taiKhoanId).child("DanToc").setValue("Kinh");
-                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue("Tân Bình");
+                        String nation= spinner_nation.getSelectedItem().toString(); // dan toc
+                        String nationality= spinner_nationality.getSelectedItem().toString();
+                        String city= spinner_city.getSelectedItem().toString();
+                        String district= spinner_district.getSelectedItem().toString();
+                        String[] parts1 = city.split(",");
+                        String resultCity= parts1[0].trim();
+                        String[] parts2 = district.split(",");
+                        String resultDistrict= parts2[0].trim();
+                        String ward= spinner_ward.getSelectedItem().toString();
+                        String address= edt_address.getText().toString().trim();
+                        String name= edt_name.getText().toString();
+                        String birthday= edt_birthday.getText().toString().trim();
+                        String sex="";
+                        if(rad_male.isChecked())
+                            sex=rad_male.getText().toString().trim();
+                        else
+                            sex=rad_female.getText().toString().trim();
+                        taiKhoanRef.child(taiKhoanId).child("DanToc").setValue(nation);
+                        taiKhoanRef.child(taiKhoanId).child("QuocTich").setValue(nationality);
+                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Tinh").setValue(resultCity);
+                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue(resultDistrict);
+                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Xa").setValue(ward);
+                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("SoNha").setValue(address);
+                        taiKhoanRef.child(taiKhoanId).child("HoTen").setValue(name);
+                        taiKhoanRef.child(taiKhoanId).child("GioiTinh").setValue(sex);
+                        taiKhoanRef.child(taiKhoanId).child("NgaySinh").setValue(birthday);
+
                     }
+
                 }
             }
 
@@ -457,22 +567,17 @@ public class PersonalProfileActivity extends AppCompatActivity {
         });
 
     }
-
-
-    public void showInfomation(String phoneNumberToQuery) {
+    public String showInfomation(String phoneNumberToQuery) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
-        // Thực hiện truy vấn
         databaseReference.orderByChild("UserName").equalTo(phoneNumberToQuery).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Lấy thông tin của tài khoản từ dataSnapshot
                     TaiKhoan taiKhoan = snapshot.getValue(TaiKhoan.class);
-                    // In thông tin tài khoản ra Logcat (hoặc xử lý theo nhu cầu của bạn)
-                    Log.d("FirebaseQuery", "HoTen: " + taiKhoan.getHoTen());
+
                     String name= taiKhoan.getHoTen();
                     edt_name.setText(name);
-                    Log.d("FirebaseQuery", "Dan toc: " + taiKhoan.getDanToc());
+
                     String nation = taiKhoan.getDanToc(); // Dân tộc
                     String nationally= taiKhoan.getQuocTich(); // Quốc tịch
                     // Dân tộc
@@ -488,6 +593,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
                     if (viTri != -1) {
                         spinner_nation.setSelection(viTri);
                     }
+
                     // Quốc tịch
                     String[] itemsToAddNationality = {"Việt Nam","Thái Lan","Campuchia","Malaysia","Hồng Kông"};
                     int viTri2 = -1;
@@ -497,11 +603,10 @@ public class PersonalProfileActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    // Nếu tìm thấy chuỗi, chọn nó trên Spinner
                     if (viTri2 != -1) {
                         spinner_nationality.setSelection(viTri2);
                     }
-                    Log.d("FirebaseQuery", "Email: " + taiKhoan.getGioiTinh());
+
                     String sex=taiKhoan.getGioiTinh();
                     if(sex.equals("Nam"))
                     {
@@ -511,89 +616,39 @@ public class PersonalProfileActivity extends AppCompatActivity {
                         rad_female.setChecked(true);
                     }
 
-                    Log.d("FirebaseQuery", "Email: " + taiKhoan.getNgaySinh());
                     String birthday= taiKhoan.getNgaySinh();
                     edt_birthday.setText(birthday);
-                    Log.d("FirebaseQuery", "Email: " + taiKhoan.getPassWord());
-                    Log.d("FirebaseQuery", "Email: " + taiKhoan.getUserName());
-
-                    //+++++++++++++++++++++++++++++++++++++++++++++ lấy tỉnh/ thành phố
-
-                    String province= taiKhoan.getDiaChi().getTinh();
-                    int vitri4 = -1;
-                    for (int i = 0; i < provinceInfoList.size(); i++) {
-                        String _province = provinceInfoList.get(i);
-                        String[] partProvince = _province.split(",");
-                        String resultpPovince= partProvince[0].trim();
-                        if (resultpPovince.equals(province)) {
-                            vitri4 = i;
-                            break;
-                        }
-                    }
-                    if (vitri4 != -1) {
-                        spinner_city.setSelection(vitri4);
-                    }
-
-
-                    ArrayAdapter<String> districtsAdapter = (ArrayAdapter<String>) spinner_district.getAdapter();
-                    spinner_district.setAdapter(null);
-                    List<String> lstDistricts =  new ArrayList<>( districtsAdapter.getCount());
-                    for (int i = 0; i < districtsAdapter.getCount(); i++) {
-                        lstDistricts.add(districtsAdapter.getItem(i));
-                    }
-                    spinnerDistrictAdapter = new SpinnerDistrictAdapter(PersonalProfileActivity.this, android.R.layout.simple_spinner_dropdown_item, lstDistricts);
-                    spinnerDistrictAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner_district.setAdapter(spinnerDistrictAdapter);
-                    //++++++++++++++++++++++++++++++++++++++++++++++ lấy huyện
-
-                    ArrayAdapter<String> districtsAdapter1 = (ArrayAdapter<String>) spinner_district.getAdapter();
-                    List<String> lstDistricts1 =  new ArrayList<>( districtsAdapter1.getCount());
-                    for (int i = 0; i < districtsAdapter1.getCount(); i++) {
-                        String _district = districtsAdapter1.getItem(i);
-                        String[] partDistrict = _district.split(",");
-                        String str= partDistrict[0].trim();
-                        lstDistricts1.add(str);
-                    }
-                    for (String danToc : lstDistricts1) {
-                        System.out.println("Huyện: " + danToc);
-                    }
-                    //
-                    String _districts= taiKhoan.getDiaChi().getHuyen();
-                    System.out.println("Huyện ở cơ sở dữ liệu: " + _districts);
-                    int vitri3 = -1;
-                    for (int i = 0; i < lstDistricts1.size(); i++) {
-                        if (lstDistricts1.get(i).equals(_districts)) {
-                            vitri3 = i;
-                            break;
-                        }
-                    }
-                    if (vitri3 != -1) {
-                        spinner_district.setSelection(vitri3);
-                    }
-                    //+++++++++++++++++++++++++++++++++++++++++++++++
-                    // Nếu tìm thấy chuỗi, chọn nó trên Spinner
-
-                    //+++++++++++++++++++++++++++++++++++++++++++++ lấy xã
-                    Log.d("FirebaseQuery", "Xã: " + taiKhoan.getDiaChi().getXa());
-                    String ward= taiKhoan.getDiaChi().getXa();
-                    int vitri5 = -1;
-                    System.out.println(wardInfoList);
-                    for (int i = 0; i < wardInfoList.size(); i++) {
-                        if (wardInfoList.get(i).equals(ward)) {
-                            vitri5 = i;
-                            break;
-                        }
-                    }
-
-                    // Nếu tìm thấy chuỗi, chọn nó trên Spinner
-                    if (vitri5 != -1) {
-                        spinner_ward.setSelection(vitri5);
-                    }
-
-                    Log.d("FirebaseQuery", "Email: " + taiKhoan.getDiaChi().getSoNha());
 
                     String address= taiKhoan.getDiaChi().getSoNha();
                     edt_address.setText(address);
+
+                    // Log.d("FirebaseQuery", "Email: " + taiKhoan.getPassWord());
+                    //+++++++++++++++++++++++++++++++++++++++++++++ lấy tỉnh/ thành phố
+
+                    String province= taiKhoan.getDiaChi().getTinh();
+                    PROVINCE = province;
+                    ArrayAdapter<String> provinceAdapter = (ArrayAdapter<String>) spinner_city.getAdapter();
+                    int indexItemProvince = -1;
+                    for (int i = 0; i < provinceAdapter.getCount(); i++) {
+                        String _province = provinceAdapter.getItem(i);
+                        String[] partProvince = _province.split(",");
+                        String str= partProvince[0].trim();
+                        if(str.equals(province) ){
+                            indexItemProvince=i;
+                            break;
+                        }
+                    }
+                    if(indexItemProvince!=-1)
+                    {
+                        spinner_city.setSelection(indexItemProvince);
+                    }
+                    //++++++++++++++++++++++++++++++++++++++++++++ lấy huyện
+
+                    String dictrics= taiKhoan.getDiaChi().getHuyen();
+                    DISTRICTS = dictrics;
+                    String ward= taiKhoan.getDiaChi().getXa();
+                    WARD = ward;
+
                 }
             }
             @Override
@@ -601,5 +656,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
                 Log.e("FirebaseQuery", "Lỗi truy vấn Firebase: " + databaseError.getMessage());
             }
         });
+
+   return PROVINCE;
     }
 }

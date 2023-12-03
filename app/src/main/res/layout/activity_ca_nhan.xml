@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonalProfileActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0863DE"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+
+                android:background="#0863DE"
+
+                android:scaleType="centerCrop"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="248dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Hồ sơ cá nhân"
+                android:textColor="@color/white"
+
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="98dp"
+            android:layout_height="102dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_info_profile"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/icons_egistration" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="449dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imageButton10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/edit" />
+
+                    <TextView
+                        android:id="@+id/textView43"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Chỉnh sửa hồ sơ"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imageButton11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imageButton12"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/shield" />
+
+                    <TextView
+                        android:id="@+id/textView433"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Quản lý hồ sơ tiêm chủng"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imageButtosn111"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imageButton120"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/gift" />
+
+                    <TextView
+                        android:id="@+id/textView423"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Ưu đãi của tôi"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imageButton111"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imaegeButton10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/search" />
+
+                    <TextView
+                        android:id="@+id/teextView43"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Tra cứu điểm thưởng"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imdageButton11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imagfeButton10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/lock" />
+
+                    <TextView
+                        android:id="@+id/textdfView43"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Đổi mật khẩu"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imagfdeButton11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_dangxuat"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imagfgdeButton10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/logout" />
+
+                    <TextView
+                        android:id="@+id/textVidfgew43"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Đăng xuất"
+                        android:textColor="@color/black" />
+
+
+                    <ImageButton
+                        android:id="@+id/imageBudgdtton11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/arrowblue" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Thông tin liên hệ"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/layoutt"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imagfgdaeButton10"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/hospital" />
+
+                    <TextView
+                        android:id="@+id/textVidfge123w43"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Tâm Anh TP.HCM"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textVidfge123w"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+
+                        android:text="0287 102 6879"
+                        android:textColor="#0863DE" />
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/hospital" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Tâm Anh Hà Nội"
+                        android:textColor="@color/black" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+
+                        android:text="024 3872 3872"
+                        android:textColor="#0863DE" />
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/hospital" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="VNVC"
+                        android:textColor="@color/black" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+
+                        android:text="028 7102 6595"
+                        android:textColor="#0863DE" />
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/hospital" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Nutrihome"
+                        android:textColor="@color/black" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+
+                        android:text="1900 622 599"
+                        android:textColor="#0863DE" />
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="#FAFAFA"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/hospital" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:text="Eco Pharma"
+                        android:textColor="@color/black" />
+
+                    <TextView
+
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+
+                        android:text="1800 556 889"
+                        android:textColor="#0863DE" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
