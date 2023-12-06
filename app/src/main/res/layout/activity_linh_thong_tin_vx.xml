@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Linh_ThongTinVX_">
+
+    <LinearLayout
+        android:id="@+id/khung_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/linh_toolbar_ttvx" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="611dp"
+        android:layout_below="@+id/khung_1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/khung_1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_VX"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/banner1" />
+
+                <TextView
+                    android:id="@+id/tv_TenVX"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vắc xin phòng ung thư cổ tử cung và sùi mào gà GARDASIL 9"
+                    android:textAllCaps="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_nguon_goc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Nguồn gốc: MSD (Mỹ)"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_phong_benh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Phòng bệnh: Ung thư cổ tử cung và sùi mào gà"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_duong_tiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Cách sử dụng: tiêm bắp"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_gia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="2950000 VNĐ"
+                    android:textColor="@color/blue"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_ttvx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Thông tin vắc xin Gardasil 9"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_moTa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Vắc xin thế hệ mới Gardasil 9 được xem là vắc xin bình đẳng giới vì mở rộng cả đối tượng và phạm vi phòng bệnh rộng hơn ở nam và nữ giới, bảo vệ khỏi 9 tuýp virus HPV phổ biến 6, 11, 16, 18, 31, 33, 45, 52 và 58 gây bệnh ung thư cổ tử cung, ung thư âm hộ, ung thư âm đạo, ung thư hậu môn, ung thư hầu họng, mụn cóc sinh dục, các tổn thương tiền ung thư hoặc loạn sản…, với hiệu quả bảo vệ lên đến trên 94%."
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Phát đồ tiêm"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_phacdotiem_m1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=" + Mũi 1: lần tiêm đầu tiên trong độ tuổi"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                <TextView
+                    android:id="@+id/tv_phacdotiem_m2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=" + Mũi 2: cách mũi 1 ít nhất 2 tháng"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                <TextView
+                    android:id="@+id/tv_phacdotiem_m3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=" + Mũi 3: cách mũi 2 ít nhất 4 tháng"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Chống chỉ định"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_chongchidinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Người quá mẫn với các hoạt chất hoặc với bất kỳ tá dược nào của vắc xin được liệt kê trong phần “Thành phần”. Những người bị quá mẫn sau khi tiêm Gardasil 9 hoặc Gardasil trước đây không nên tiêm Gardasil 9."
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Tác dụng không mong muốn"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_tacdungkhmm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:text="Phản ứng tại chỗ tiêm: Đau, sưng, nổi ban đỏ, chai cứng, ngứa, bầm tím, tăng nhạy cảm tại chỗ tiêm. Các phản ứng toàn thân khác: Sốt, nhức đầu, mệt mỏi, chóng mặt, buồn nôn."
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Bảo quản"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                <TextView
+                    android:id="@+id/tv_baoquan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:text="Vắc xin Gardasil 9 được bảo quản trong tủ lạnh (2°C – 8°C). Không để đông lạnh.  Giữ ống tiêm chứa sẵn vắc xin trong hộp carton ngoài để tránh ánh sáng. Nên sử dụng Gardasil 9 càng sớm càng tốt sau khi được lấy ra khỏi tủ lạnh."
+                    tools:ignore="TextSizeCheck" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -77,12 +77,25 @@
             android:exported="true"
             android:label="Trung tâm tiêm chủng"
             android:parentActivityName=".MenuMainActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:exported="true"
+            android:name=".Linh_Activity_DanhMucVacXin">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity android:name=".Linh_ThongTinVX_"
+            android:exported="false"/>
     </application>
 
 </manifest>
