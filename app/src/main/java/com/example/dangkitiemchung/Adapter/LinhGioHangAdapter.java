@@ -17,6 +17,11 @@ import com.example.dangkitiemchung.Models.VacXin;
 import com.example.dangkitiemchung.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -73,7 +78,51 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
                 v.getContext().startActivity(intent);
             }
         });
+        holder.img_xoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItemFromGioHang(item.getId_vx());
+            }
+        });
     }
+    private void deleteItemFromGioHang(int id_vx) {
+        DatabaseReference gioHangRef;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        gioHangRef = database.getReference().child("GioHang");
+        gioHangRef.orderByChild("idvx").equalTo(id_vx).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    snapshot.getRef().removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    // Xóa thành công
+                                    //Toast.makeText(YourActivity.this, "Đã xóa mục khỏi giỏ hàng", Toast.LENGTH_SHORT).show();
+                                    System.out.println("xóa thành công");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Xóa thất bại
+                                    //Toast.makeText(YourActivity.this, "Xóa mục khỏi giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                                    System.out.println("Xóa thất bại");
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi
+                //Toast.makeText(YourActivity.this, "Đã xảy ra lỗi", Toast.LENGTH_SHORT).show();
+                System.out.println("Lỗi database");
+            }
+        });
+
+    }
+
 
     @Override
     public int getItemCount() {
@@ -83,7 +132,7 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView tenVX, phongbenh, gia;
-        ImageView img_anh;
+        ImageView img_anh, img_xoa;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +140,7 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
             phongbenh = itemView.findViewById(R.id.tv_phongbenh);
             gia = itemView.findViewById(R.id.tv_gia);
             img_anh = itemView.findViewById(R.id.img_VX);
+            img_xoa = itemView.findViewById(R.id.img_xoavx);
         }
     }
 }
