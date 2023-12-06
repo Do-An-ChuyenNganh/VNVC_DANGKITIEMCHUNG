@@ -95,7 +95,6 @@ public class SetPasswordActivity extends AppCompatActivity {
             }
         });
 
-
     }
     public String getPhone(){
         mPhoneNumber=getIntent().getStringExtra("phone_number");
