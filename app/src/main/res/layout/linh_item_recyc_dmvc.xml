@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+    <androidx.cardview.widget.CardView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
+            <LinearLayout
+                android:id="@+id/khung_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_VX"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="0"
+                    tools:srcCompat="@drawable/banner1" />
+
+                <TextView
+                    android:id="@+id/tv_TenVX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:text="VẮC XIN PHÒNG UNG THƯ CỔ TỬ CUNG GARDASIL"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_phongbenh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phòng bệnh: Ung thư cổ tử cung, các tổn thương tiền ung thư và loạn sản, mụn cóc sinh dục và bệnh lý do nhiễm virus HPV"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:id="@+id/tv_gia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2,950,000 VNĐ"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:padding="5dp"
+                />
+            <LinearLayout
+                android:id="@+id/layout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_themgiohang"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button_themgh"
+                    android:drawableLeft="@drawable/baseline_shopping_cart_24"
+                    android:gravity="center"
+                    android:text="Thêm giỏ hàng"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_muangay"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/blue"
+                    android:text="Mua ngay"
+                    android:background="@drawable/shape_button"
+
+                    >
+                </androidx.appcompat.widget.AppCompatButton>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
