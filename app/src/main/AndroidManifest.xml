@@ -13,25 +13,33 @@
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".LayDiaChi"-->
+<!--            android:exported="false" />-->
+         <activity
+         android:name=".DatLichTiemChung"
+         android:exported="true"
+         android:label="Đặt lịch tiêm chủng"
+         android:parentActivityName=".MenuMainActivity"/>
         <activity
             android:name=".ChiTietDaHuy"
-            android:label="Chi tiết lịch hủy"
             android:exported="false"
+            android:label="Chi tiết lịch hủy"
             android:parentActivityName=".Mai_LichTiemChung" />
         <activity
             android:name=".ChiTietMuiTiepTheo"
-            android:label="Chi tiết mũi tiếp theo"
             android:exported="false"
+            android:label="Chi tiết mũi tiếp theo"
             android:parentActivityName=".Mai_LichSuTiemChung" />
         <activity
             android:name=".ChiTietLichSuTiemChung"
-            android:label="Chi tiết lịch sử tiêm"
             android:exported="false"
+            android:label="Chi tiết lịch sử tiêm"
             android:parentActivityName=".Mai_LichSuTiemChung" />
         <activity
             android:name=".ChiTietLichHen"
-            android:label="Chi tiết lịch hẹn"
             android:exported="false"
+            android:label="Chi tiết lịch hẹn"
             android:parentActivityName=".Mai_LichTiemChung" />
         <activity
             android:name=".EnterOTPActivity"
@@ -50,22 +58,24 @@
             android:exported="false" />
         <activity
             android:name=".VerifyPhoneNumberActivity"
-            android:exported="false"/>
-<!--        <activity-->
-<!--            android:name=".Mai_LichSuTiemChung"-->
-<!--            android:exported="false"-->
-<!--            android:label="Lịch sử tiêm chủng"-->
-
-<!--            android:parentActivityName=".MenuMainActivity"/>-->
-
+            android:exported="false" />
+        <activity
+            android:name=".Mai_LichSuTiemChung"
+            android:exported="false"
+            android:label="Lịch sử tiêm chủng"
+            android:parentActivityName=".MenuMainActivity" />
+        <activity
+            android:name=".Mai_LichTiemChung"
+            android:exported="false"
+            android:label="Lịch hẹn tiêm chủng"
+            android:parentActivityName=".MenuMainActivity" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
         <activity
-
-            android:name=".Mai_LichSuTiemChung"
-            android:label="Lịch hẹn tiêm chủng"
+            android:name=".LayDiaChi"
             android:exported="true"
+            android:label="Trung tâm tiêm chủng"
             android:parentActivityName=".MenuMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

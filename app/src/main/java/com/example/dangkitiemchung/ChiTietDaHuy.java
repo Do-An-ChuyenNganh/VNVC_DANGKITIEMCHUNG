@@ -18,10 +18,14 @@ public class ChiTietDaHuy extends AppCompatActivity {
 
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem;
-    String strUser;
+    String strUser = "0366850669";
     private String key, keyLS;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
+    DatabaseReference myRefTaiKhoan = firebaseDatabase.getReference("TaiKhoan");
+
+    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiem");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,7 @@ public class ChiTietDaHuy extends AppCompatActivity {
         diadiemtiem.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
+        DataTaiKhoan();
     }
     public void truyenDuLieu()
     {
@@ -62,6 +67,33 @@ public class ChiTietDaHuy extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Integer idVX = dataSnapshot.child("id_VX").getValue(Integer.class);
+                    System.out.println("Xuất id coi thử"+ idVX +"này id truyền "+ id);
+                    Integer giaVX = dataSnapshot.child("Gia").getValue(Integer.class);
+                    String ten = dataSnapshot.child("TenVX").getValue(String.class);
+                    String phongbenhVX = dataSnapshot.child("PhongBenh").getValue(String.class);
+                    if (idVX == Integer.parseInt(id)) {
+                        {
+                            tenvx.setText(ten);
+                            phongbenh.setText(phongbenhVX);
+                            gia.setText(String.valueOf(giaVX));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void DataTaiKhoan() {
+        myRefTaiKhoan.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     Integer idVX = dataSnapshot.child("id_VX").getValue(Integer.class);
                     System.out.println("Xuất id coi thử"+ idVX +"này id truyền "+ id);
                     Integer giaVX = dataSnapshot.child("Gia").getValue(Integer.class);
