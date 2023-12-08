@@ -113,7 +113,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String numberPhone=getPhone();
                 updateInfomation(numberPhone);
-                Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                // loadSpinerNation();
                // showInfomation(numberPhone);
                // register(numberPhone.trim());
@@ -209,7 +209,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
                             ArrayAdapter<String> dictricsAdapter = (ArrayAdapter<String>) spinner_district.getAdapter();
                             for (int i = 0; i< dictricsAdapter.getCount();i++)
                             {
-                                System.out.println("DISTRICTSDISTRICTS" + DISTRICTS);
+                               // System.out.println("DISTRICTSDISTRICTS" + DISTRICTS);
                                 String _province = dictricsAdapter.getItem(i);
                                 String[] partProvince = _province.split(",");
                                 String str= partProvince[0].trim();
@@ -419,7 +419,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
     }
     public String getPhone(){
       //  mPhoneNumber= getIntent().getStringExtra("phone_number");
-        mPhoneNumber= "0342621113";
+        mPhoneNumber= "0366850669";
         mVerificationId=getIntent().getStringExtra("verification_id");
         System.out.println("sdt: ***************" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {
@@ -545,15 +545,28 @@ public class PersonalProfileActivity extends AppCompatActivity {
                             sex=rad_male.getText().toString().trim();
                         else
                             sex=rad_female.getText().toString().trim();
-                        taiKhoanRef.child(taiKhoanId).child("DanToc").setValue(nation);
-                        taiKhoanRef.child(taiKhoanId).child("QuocTich").setValue(nationality);
-                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Tinh").setValue(resultCity);
-                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue(resultDistrict);
-                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Xa").setValue(ward);
-                        taiKhoanRef.child(taiKhoanId).child("DiaChi").child("SoNha").setValue(address);
-                        taiKhoanRef.child(taiKhoanId).child("HoTen").setValue(name);
-                        taiKhoanRef.child(taiKhoanId).child("GioiTinh").setValue(sex);
-                        taiKhoanRef.child(taiKhoanId).child("NgaySinh").setValue(birthday);
+
+                        if(edt_address.getText().toString().equals("")   || edt_name.getText().toString().equals("")
+                                ||  edt_birthday.getText().toString().equals("")
+                        )
+                        {
+                            Toast.makeText(PersonalProfileActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            taiKhoanRef.child(taiKhoanId).child("DanToc").setValue(nation);
+                            taiKhoanRef.child(taiKhoanId).child("QuocTich").setValue(nationality);
+                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Tinh").setValue(resultCity);
+                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue(resultDistrict);
+                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Xa").setValue(ward);
+                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("SoNha").setValue(address);
+                            taiKhoanRef.child(taiKhoanId).child("HoTen").setValue(name);
+                            taiKhoanRef.child(taiKhoanId).child("GioiTinh").setValue(sex);
+                            taiKhoanRef.child(taiKhoanId).child("NgaySinh").setValue(birthday);
+
+                            Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công ", Toast.LENGTH_SHORT).show();
+                        }
+
+
 
                     }
 

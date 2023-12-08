@@ -18,9 +18,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -67,11 +69,9 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             String strPhoneNumber = txt_phone.getText().toString().trim();
                             Intent intent = new Intent(VerifyPhoneNumberActivity.this, Enter_Password.class);
                             intent.putExtra("phone_number",strPhoneNumber);
-
                             startActivity(intent);
-                        } else {
+                        } else { // Số điện thoại mới
                             String strPhoneNumber = txt_phone.getText().toString().trim();
-                            // Số điện thoại không tồn tại, xử lý tại đây
                             if (strPhoneNumber.startsWith("0")) {
                                 strPhoneNumber = "+84" + strPhoneNumber.substring(1);
                             }
@@ -105,15 +105,28 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             }
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",
-                                Toast.LENGTH_SHORT).show();
+                                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Yêu cầu không hợp lệ",
+                                            Toast.LENGTH_SHORT).show();
+                                } else if (e instanceof FirebaseTooManyRequestsException) {
+                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Số lần xác thực vượt quá yêu cầu",
+                                            Toast.LENGTH_SHORT).show();
+                                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
+                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Mã Captcha không hợp lệ",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
                             }
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verificationId, forceResendingToken);
                                 goToEnterOTPActivity(strPhoneNumber,verificationId);
                             }
-                        })          // OnVerificationStateChangedCallbacks
+                        })           // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
@@ -144,9 +157,15 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                                Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneNumberActivity.this,"Mã xác minh không hợp lệ",Toast.LENGTH_SHORT).show();
                             }
+//                            // Sign in failed, display a message and update the UI
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+//                                // The verification code entered was invalid
+//                                Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
+//                            }
+
                         }
                     }
                 });

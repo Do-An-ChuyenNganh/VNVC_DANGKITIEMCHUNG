@@ -298,6 +298,7 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
 
 
     public void register(String pPhone){
+
         String phone=pPhone;
         String nation= spinner_nation.getSelectedItem().toString(); // dan toc
         String nationality= spinner_nationality.getSelectedItem().toString();
@@ -309,7 +310,6 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
         String resultCity= parts1[0].trim();
         String[] parts2 = district.split(",");
         String resultDistrict= parts2[0].trim();
-
 
         String birthday= edt_birthday.getText().toString().trim();
         String sex="";
@@ -337,35 +337,39 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
         taiKhoan.setQuocTich(nationality);
         taiKhoan.setUserName(phone);
 
-        // Thêm dữ liệu vào Firebase
-       //myRef.child("1").setValue(taiKhoan);
-        Task<Void> task = myRef.push().setValue(taiKhoan);
-
-        // Đăng ký lắng nghe sự kiện thành công hoặc thất bại của Task
-        task.addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                // Thêm dữ liệu thành công
-
-                Toast.makeText(RegisterPersonalProfileActivity.this, "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();
-                // Nếu thành công
-                Intent intent = new Intent(RegisterPersonalProfileActivity.this, PolicyAndPrivacyActivity.class);
-                intent.putExtra("phone_number",mPhoneNumber);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
 
 
+        if(edt_address.getText().toString().equals("")   || edt_name.getText().toString().equals("")
+        || rad_male.isChecked()==false || rad_male.isChecked()==false|| edt_birthday.getText().toString().equals("")
+        )
+        {
+            Toast.makeText(RegisterPersonalProfileActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            // Thêm dữ liệu vào Firebase
+            //myRef.child("1").setValue(taiKhoan);
+            Task<Void> task = myRef.push().setValue(taiKhoan);
 
+            // Đăng ký lắng nghe sự kiện thành công hoặc thất bại của Task
+            task.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // Thêm dữ liệu thành công
+                    Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                    // Nếu thành công
+                    Intent intent = new Intent(RegisterPersonalProfileActivity.this, PolicyAndPrivacyActivity.class);
+                    intent.putExtra("phone_number",mPhoneNumber);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thật bại " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                // Thêm dữ liệu thất bại
-                Toast.makeText(RegisterPersonalProfileActivity.this, "Thêm dữ liệu thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
     public String getPhone(){

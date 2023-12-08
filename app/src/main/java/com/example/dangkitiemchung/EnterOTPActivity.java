@@ -53,14 +53,12 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         inputOTP();
 
         mAuth = FirebaseAuth.getInstance();
-
-
         txt_sendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String str =  getTextOTP();
                 onClickSenOTP(str);
-              //  showAlertDialog();
+               // showAlertDialog();
             }
         });
 
@@ -213,10 +211,9 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     private  void getDataIntent(){
-
             mPhoneNumber=getIntent().getStringExtra("phone_number");
             mVerificationId=getIntent().getStringExtra("verification_id");
-//        System.out.println( "verification_Id" + mVerificationId);
+//          System.out.println( "verification_Id" + mVerificationId);
     }
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
