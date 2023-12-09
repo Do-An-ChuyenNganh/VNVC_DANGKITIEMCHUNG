@@ -53,9 +53,7 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         btn_continue= (Button) findViewById(R.id.btn_continue);
         txt_phone=(TextView) findViewById(R.id.txt_phone);
         mAuth=FirebaseAuth.getInstance();
-
         ///
-
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +87,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
 
             }
         });
-
     }
     public void onClickVerityPhoneNumber(String strPhoneNumber) {
         PhoneAuthOptions options =
@@ -130,7 +127,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-
     public void goToRegisterPersonalProfileActivity(String phoneNumber){
         Intent intent = new Intent(VerifyPhoneNumberActivity.this, RegisterPersonalProfileActivity.class);
         intent.putExtra("phone_number",phoneNumber);

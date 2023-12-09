@@ -152,6 +152,7 @@
                     android:textStyle="bold"
                     android:textColor="#1057CD"
                     android:text="Gửi OTP"
+                    android:background="@drawable/layout_click_effect"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,6 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="13dp"
+                    android:background="@drawable/layout_click_effect"
                     android:text="Bạn không nhận được OTP ?" />
 
                 <LinearLayout
