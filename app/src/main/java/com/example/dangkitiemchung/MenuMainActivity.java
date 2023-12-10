@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dangkitiemchung.Adapter.NewsAdapter;
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.News;
 import com.example.dangkitiemchung.Models.TaiKhoan;
 import com.example.dangkitiemchung.R;
@@ -96,6 +97,7 @@ public class MenuMainActivity extends AppCompatActivity {
     public String getPhone(){
 
         mPhoneNumber=getIntent().getStringExtra("phone_number");
+        LaySDT.setUser(mPhoneNumber);
         System.out.println("sdt: menu main  ***************" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {
             mPhoneNumber = "0" + mPhoneNumber.substring(3);

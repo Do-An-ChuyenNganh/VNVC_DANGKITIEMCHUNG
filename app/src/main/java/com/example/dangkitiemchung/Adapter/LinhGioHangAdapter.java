@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dangkitiemchung.Linh_ThongTinVX_;
+import com.example.dangkitiemchung.Models.LichTiem;
+import com.example.dangkitiemchung.Models.MangDatLich;
 import com.example.dangkitiemchung.Models.VacXin;
 import com.example.dangkitiemchung.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -66,9 +70,6 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
 
             }
         });
-
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +83,26 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
             @Override
             public void onClick(View v) {
                 deleteItemFromGioHang(item.getId_vx());
+            }
+        });
+        //Cua mai mai
+        holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    MangDatLich.mangmuon.add(item);
+                }
+                else
+                {
+                    for(int i=0; i< MangDatLich.mangmuon.size();i++)
+                    {
+                        if( MangDatLich.mangmuon.get(i).getId_vx() == item.getId_vx())
+                        {
+                            MangDatLich.mangmuon.remove(i);
+                        }
+                    }
+                }
             }
         });
     }
@@ -133,6 +154,7 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
 
         TextView tenVX, phongbenh, gia;
         ImageView img_anh, img_xoa;
+        CheckBox chk;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -141,6 +163,7 @@ public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.
             gia = itemView.findViewById(R.id.tv_gia);
             img_anh = itemView.findViewById(R.id.img_VX);
             img_xoa = itemView.findViewById(R.id.img_xoavx);
+            chk = itemView.findViewById(R.id.chk);
         }
     }
 }

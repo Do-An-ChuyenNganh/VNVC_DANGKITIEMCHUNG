@@ -19,6 +19,13 @@ public class VacXin {
         this.phongbenh = phongbenh;
         this.tenvx = tenvx;
     }
+    public VacXin(int id_vx, String hinh, int gia, String phongbenh, String tenvx) {
+        this.id_vx = id_vx;
+        this.hinh = hinh;
+        this.gia = gia;
+        this.phongbenh = phongbenh;
+        this.tenvx = tenvx;
+    }
 
     public int getId_vx() {
         return id_vx;

@@ -87,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="13dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
 
@@ -127,11 +127,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="13dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
 
-                        android:text="01/01/2023" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/iconlich"
@@ -154,6 +154,7 @@
                     android:textColor="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_vaccine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

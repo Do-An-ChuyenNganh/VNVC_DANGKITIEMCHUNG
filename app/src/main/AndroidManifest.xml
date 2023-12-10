@@ -64,11 +64,11 @@
             android:exported="false"
             android:label="Lịch sử tiêm chủng"
             android:parentActivityName=".MenuMainActivity" />
-        <activity
-            android:name=".Mai_LichTiemChung"
-            android:exported="false"
-            android:label="Lịch hẹn tiêm chủng"
-            android:parentActivityName=".MenuMainActivity" />
+<!--        <activity-->
+<!--            android:name=".Mai_LichTiemChung"-->
+<!--            android:exported="false"-->
+<!--            android:label="Lịch hẹn tiêm chủng"-->
+<!--            android:parentActivityName=".MenuMainActivity" />-->
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
@@ -77,6 +77,7 @@
             android:exported="true"
             android:label="Trung tâm tiêm chủng"
             android:parentActivityName=".MenuMainActivity">
+
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -84,9 +85,12 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:exported="true"
-            android:name=".Linh_Activity_DanhMucVacXin">
+                    android:name=".Linh_Activity_DanhMucVacXin">
+<!--        android:name=".Mai_LichTiemChung"-->
+<!--        android:label="Lịch hẹn tiêm chủng"-->
+<!--        android:parentActivityName=".MenuMainActivity">-->
 
-            <intent-filter>
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

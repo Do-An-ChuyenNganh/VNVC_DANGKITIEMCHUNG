@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,9 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ChiTietDaHuy extends AppCompatActivity {
 
-    TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
+    TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, trungtam, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem;
-    String strUser = "0366850669";
+    String strUser = LaySDT.getUser();
     private String key, keyLS;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
@@ -32,11 +33,10 @@ public class ChiTietDaHuy extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_da_huy);
         addControls();
         truyenDuLieu();
-        ngaydat.setText(strNgaydat);
         diadiemtiem.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
-        DataTaiKhoan();
+//        DataTaiKhoan();
     }
     public void truyenDuLieu()
     {
@@ -53,12 +53,12 @@ public class ChiTietDaHuy extends AppCompatActivity {
     {
         hten = (TextView)findViewById(R.id.hoten);
         ngaysinh = (TextView)findViewById(R.id.ngaysinh);
-        ngaytiem = (TextView)findViewById(R.id.ngaymongmuontiem);
+        ngaytiem = (TextView)findViewById(R.id.tiemngay);
         tenvx = (TextView)findViewById(R.id.tenvx);
         phongbenh = (TextView)findViewById(R.id.phongbenh);
-        ngaydat = (TextView)findViewById(R.id.ngaydat);
         gia = (TextView)findViewById(R.id.gia);
-        diadiemtiem = (TextView)findViewById(R.id.diadiemtiem);
+        diadiemtiem = (TextView)findViewById(R.id.diachi);
+        trungtam = (TextView)findViewById(R.id.trungtamtiem);
 
 
     }
@@ -73,11 +73,11 @@ public class ChiTietDaHuy extends AppCompatActivity {
                     String ten = dataSnapshot.child("TenVX").getValue(String.class);
                     String phongbenhVX = dataSnapshot.child("PhongBenh").getValue(String.class);
                     if (idVX == Integer.parseInt(id)) {
-                        {
+
                             tenvx.setText(ten);
                             phongbenh.setText(phongbenhVX);
                             gia.setText(String.valueOf(giaVX));
-                        }
+
                     }
                 }
             }
@@ -99,13 +99,13 @@ public class ChiTietDaHuy extends AppCompatActivity {
                     Integer giaVX = dataSnapshot.child("Gia").getValue(Integer.class);
                     String ten = dataSnapshot.child("TenVX").getValue(String.class);
                     String phongbenhVX = dataSnapshot.child("PhongBenh").getValue(String.class);
-                    if (idVX == Integer.parseInt(id)) {
+                    if (1 == Integer.parseInt(id))
                         {
                             tenvx.setText(ten);
                             phongbenh.setText(phongbenhVX);
                             gia.setText(String.valueOf(giaVX));
                         }
-                    }
+
                 }
             }
 

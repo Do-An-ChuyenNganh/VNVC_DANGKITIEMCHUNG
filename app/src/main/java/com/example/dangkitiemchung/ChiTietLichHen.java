@@ -32,7 +32,7 @@ import java.util.Locale;
 
 public class ChiTietLichHen extends AppCompatActivity {
 
-    TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, ngaydat, diadiemtiem;
+    TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, trungtam, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem, strTenVX;
     String strUser;
     private int strMui2=0;
@@ -41,6 +41,7 @@ public class ChiTietLichHen extends AppCompatActivity {
     Button btnHuy, btnDaTiem;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
+
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     DatabaseReference myRefLichSuTC = firebaseDatabase.getReference("LichSuTiem");
     DatabaseReference myRefMuiTiepTheo = firebaseDatabase.getReference("MuiTiepTheo");
@@ -50,8 +51,7 @@ public class ChiTietLichHen extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_lich_hen);
         addControls();
         truyenDuLieu();
-        ngaydat.setText(strNgaydat);
-        diadiemtiem.setText(strNoiTiem);
+        trungtam.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
         strUser ="0366850669";
@@ -76,12 +76,12 @@ public class ChiTietLichHen extends AppCompatActivity {
     {
         hten = (TextView)findViewById(R.id.hoten);
         ngaysinh = (TextView)findViewById(R.id.ngaysinh);
-        ngaytiem = (TextView)findViewById(R.id.ngaymongmuontiem);
+        ngaytiem = (TextView)findViewById(R.id.tiemngay);
         tenvx = (TextView)findViewById(R.id.tenvx);
         phongbenh = (TextView)findViewById(R.id.phongbenh);
-        ngaydat = (TextView)findViewById(R.id.ngaydat);
         gia = (TextView)findViewById(R.id.gia);
-        diadiemtiem = (TextView)findViewById(R.id.diadiemtiem);
+        diadiemtiem = (TextView)findViewById(R.id.diachi);
+        trungtam = (TextView)findViewById(R.id.trungtamtiem);
         btnHuy = (Button) findViewById(R.id.btnhuy);
         btnDaTiem = (Button) findViewById(R.id.btndatiem);
 

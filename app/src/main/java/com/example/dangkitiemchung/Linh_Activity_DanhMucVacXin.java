@@ -1,6 +1,8 @@
 package com.example.dangkitiemchung;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dangkitiemchung.Adapter.LinhDMVXAdapter;
 import com.example.dangkitiemchung.Adapter.LinhGioHangAdapter;
 import com.example.dangkitiemchung.Models.GioHang;
+import com.example.dangkitiemchung.Models.LichTiem;
+import com.example.dangkitiemchung.Models.MangDatLich;
 import com.example.dangkitiemchung.Models.VacXin;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -40,6 +46,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     private Button btn_them, btn_mua, btn_loc, btn_loc_dl;
     private CheckBox cbx_cum;
+    AppCompatButton btnDK;
 
     private ImageView btn_dong, btn_dong_loc;
     private RecyclerView rec_vxdc;
@@ -336,6 +343,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
         btn_dong = v_gh.findViewById(R.id.imgv_dong);
         rec_vxdc = v_gh.findViewById(R.id.rec_dmvx_dachon);
+        btnDK = v_gh.findViewById(R.id.btn_dangkymt);
 
         rec_vxdc.setHasFixedSize(true);
         rec_vxdc.setLayoutManager(new LinearLayoutManager(this));
@@ -350,8 +358,37 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        // Cua mai mai
+        btnDK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn đặt những Vaccine trên?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(MangDatLich.mangmuon.size()<=3) {
+
+                            Intent intent = new Intent(Linh_Activity_DanhMucVacXin.this, DatLichTiemChung.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Không được tiêm cùng lúc trên 3 vaccine").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            }).show();
+                        }
+
+                    }
+                }).setNegativeButton("Cancel",null).show();
+
+            }
+        });
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) v_gh.getParent());
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+
 
 
     }
@@ -362,6 +399,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         btn_loc = findViewById(R.id.btn_loc);
         giohang = findViewById(R.id.right_ic_dm);
         back = findViewById(R.id.left_ic_dm);
+
 
     }
     public void showDialogSuccess()
