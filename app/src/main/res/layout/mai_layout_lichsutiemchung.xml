@@ -7,16 +7,17 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginBottom="5dp"
     android:layout_marginRight="10dp"
     android:paddingTop="10dp"
+
     android:paddingBottom="10dp">
 
 
     <androidx.cardview.widget.CardView
         app:cardElevation="10dp"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="70dp">
 
 
         <LinearLayout
@@ -25,36 +26,28 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
                 android:orientation="vertical"
-                android:background="#EBF0F4"
+                android:background="#0277BD"
                 android:paddingLeft="5dp">
 
                 <TextView
                     android:id="@+id/muiso"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:fontFamily="sans-serif-light"
-                    android:layout_height="25dp"
                     android:text="MŨI 1"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"
 
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="bold"
 
-                    tools:ignore="DuplicateIds" />
+                    />
 
-                <TextView
-                    android:id="@+id/ngaytiem"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:text="04/10/2023"
-                    android:textColor="@color/black"
-
-                    android:textSize="13sp"
-
-                    tools:ignore="DuplicateIds" />
             </LinearLayout>
 
             <LinearLayout
@@ -64,17 +57,19 @@
                 android:orientation="vertical"
 
                 android:paddingLeft="5dp">
-
                 <TextView
                     android:id="@+id/diadiemtiem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Địa điểm tiêm"
-                    android:textSize="11sp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#322E2E"
+                    android:text="VNVC"
+                    android:textColor="@color/black"
+
+                    android:textSize="13sp"
+
+
 
                     tools:ignore="DuplicateIds" />
+
                 <TextView
                     android:id="@+id/tenvx"
                     android:layout_width="match_parent"
@@ -88,16 +83,20 @@
 
 
                     tools:ignore="DuplicateIds" />
-
                 <TextView
-                    android:id="@+id/phongbenh"
+                    android:id="@+id/ngaytiem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phòng bệnh"
-                    android:textSize="11sp"
-                    android:textColor="#322E2E"
-                    android:layout_marginBottom="5dp"
+                    android:text="04/10/2023"
+                    android:textColor="@color/black"
+
+                    android:textSize="13sp"
+
+
+
                     tools:ignore="DuplicateIds" />
+
+
 
 
             </LinearLayout>

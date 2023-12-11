@@ -52,6 +52,7 @@ public class DatLichTiemChung extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,6 @@ public class DatLichTiemChung extends AppCompatActivity {
         recycler_view = findViewById(R.id.rec_vaccine);
         layoutRecyclerView();
         adapter.notifyDataSetChanged();
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,11 +74,10 @@ public class DatLichTiemChung extends AppCompatActivity {
                     String mota = dataSnapshot.child("MoTa").getValue(String.class);
                     String nguongoc = dataSnapshot.child("NguonGoc").getValue(String.class);
                     String phongBenh = dataSnapshot.child("PhongBenh").getValue(String.class);
-                    Integer slton = dataSnapshot.child("SLTon").getValue(Integer.class);
                     String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
                     String hinh = "1";
                     int id_VX = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    VacXin tl = new VacXin(id_VX, hinh,gia , slton, baoquan, chongcd, mota, nguongoc, phongBenh, tenVX);
+                    VacXin tl = new VacXin(id_VX, hinh,gia , 1, baoquan, chongcd, mota, nguongoc, phongBenh, tenVX);
                     for(VacXin v : MangDatLich.mangmuon)
                     {
                         if(id_VX == v.getId_vx()) {
@@ -104,7 +103,17 @@ public class DatLichTiemChung extends AppCompatActivity {
                 showDatePickerDialog(view);
             }
         });
+        btnDChi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DatLichTiemChung.this, LayDiaChi.class);
+                startActivity(intent);
+
+
+            }
+        });
         truyenDuLieu();
+
         datLichTiem();
 
 
@@ -112,6 +121,7 @@ public class DatLichTiemChung extends AppCompatActivity {
     public void addControls()
     {
         btn_DatLich = (Button)findViewById(R.id.button2);
+        btnDChi = (TextView) findViewById(R.id.icondiadiem);
         DiaChi = (TextView)findViewById(R.id.trungtam);
         NgayTiem= (TextView)findViewById(R.id.ngaytiem);
         btnLich = (TextView)findViewById(R.id.iconlich);
@@ -120,31 +130,35 @@ public class DatLichTiemChung extends AppCompatActivity {
     {
         strUserName = LaySDT.user;
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = sdf.format(c.getTime());
         btn_DatLich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn mượn sách?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn đặt lịch?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(MangDatLich.mangmuon.size()<=3) {
+                        if(!NgayTiem.getText().equals("") && !DiaChi.getText().equals("")) {
 
                             for (VacXin g : MangDatLich.mangmuon) {
                                 String Key = myRefLichSuDat.push().getKey();
-                                LichTiem l = new LichTiem(Key, g.getId_vx(), strUserName, g.getTenvx(), "Đã lên lịch", strDate, NgayTiem.getText().toString(), strTenDD);
+                                LichTiem l = new LichTiem(g.getId_vx(), strUserName, g.getTenvx(), "Đã lên lịch", strDate, NgayTiem.getText().toString(), strTenDD);
                                 myRefLichSuDat.child(Key).setValue(l, new DatabaseReference.CompletionListener() {
 
                                     @Override
                                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                            System.out.println("Thành công");
 
                                     }
                                 });
+
                             }
+                            Intent intent = new Intent(DatLichTiemChung.this, Mai_LichTiemChung.class);
+                            startActivity(intent);
                         }
                         else
                         {
-                            new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Không được tiêm cùng lúc trên 3 vaccine").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Không được bỏ trống địa điểm tiêm hoặc ngày tiêm mong muốn").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -154,10 +168,6 @@ public class DatLichTiemChung extends AppCompatActivity {
 
                     }
                 }).setNegativeButton("Cancel",null).show();
-
-
-
-
             }
         });
     }
@@ -203,8 +213,6 @@ public class DatLichTiemChung extends AppCompatActivity {
                 },
                 currentYear, currentMonth, currentDay);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
-
-
         // Hiển thị DatePickerDialog
         datePickerDialog.show();
     }

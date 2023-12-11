@@ -143,7 +143,7 @@ public class ChiTietLichHen extends AppCompatActivity {
                         new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muôn hủy lịch?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                myRefLichSuDat.child(String.valueOf(key)).child("TinhTrang").setValue("Đã hủy");
+                                myRefLichSuDat.child(String.valueOf(key)).child("tinhTrang").setValue("Đã hủy");
                                 Toast.makeText(ChiTietLichHen.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent();
                                 intent.setClass(getApplicationContext(), Mai_LichTiemChung.class);

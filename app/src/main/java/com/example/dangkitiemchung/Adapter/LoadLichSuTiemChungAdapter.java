@@ -35,7 +35,6 @@ public class LoadLichSuTiemChungAdapter extends RecyclerView.Adapter<LoadLichSuT
         holder.tenvx.setText(""+l.getTenVX());
         holder.noitiem.setText(""+l.getNoiTiem());
         holder.ngaytiem.setText(""+l.getNgayTiem());
-        holder.phongbenh.setText("Phòng bệnh: "+ l.getPhongBenh());
 
         holder.tenvx.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +80,6 @@ public class LoadLichSuTiemChungAdapter extends RecyclerView.Adapter<LoadLichSuT
             tenvx = itemView.findViewById(R.id.tenvx);
             noitiem = itemView.findViewById(R.id.diadiemtiem);
             ngaytiem = itemView.findViewById(R.id.ngaytiem);
-            phongbenh = itemView.findViewById(R.id.phongbenh);
             chitiet = itemView.findViewById(R.id.imageView4);
 
         }

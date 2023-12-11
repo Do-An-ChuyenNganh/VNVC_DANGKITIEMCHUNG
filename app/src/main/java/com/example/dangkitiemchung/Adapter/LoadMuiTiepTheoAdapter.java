@@ -34,8 +34,7 @@ public class LoadMuiTiepTheoAdapter extends RecyclerView.Adapter<LoadMuiTiepTheo
         MuiTiepTheo l = newLSTC.get(position);
         holder.muiso.setText("MŨI "+l.getMuiSo());
         holder.tenvx.setText(""+l.getTenVX());
-        holder.ngaytiem.setText(""+l.getNgayTiem());
-        holder.phongbenh.setText("Phòng bệnh: "+ l.getPhongBenh());
+        holder.ngaytiem.setText("Ngày tiêm dự tính: "+l.getNgayTiem());
 
         holder.tenvx.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +77,6 @@ public class LoadMuiTiepTheoAdapter extends RecyclerView.Adapter<LoadMuiTiepTheo
             muiso = itemView.findViewById(R.id.muiso);
             tenvx = itemView.findViewById(R.id.tenvx);
             ngaytiem = itemView.findViewById(R.id.ngaytiem);
-            phongbenh = itemView.findViewById(R.id.phongbenh);
             chitiet = itemView.findViewById(R.id.imageView4);
 
         }
