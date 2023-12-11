@@ -37,7 +37,7 @@ public class MenuMainActivity extends AppCompatActivity {
     NewsAdapter newsAdapter ;
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
-    ImageView imgLichHen;
+    ImageView imgLichHen, imgDMVX;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +50,7 @@ public class MenuMainActivity extends AppCompatActivity {
         getPhone();
         getWelcome();
         chuyenLichHen();
+        chuyenDMVX();
 
 
 
@@ -77,6 +78,7 @@ public class MenuMainActivity extends AppCompatActivity {
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
         imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
+        imgDMVX = findViewById(R.id.imgDMVX);
     }
     public void chuyenLichHen()
     {
@@ -90,6 +92,20 @@ public class MenuMainActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
+    }
+
+    public void chuyenDMVX()
+    {
+        imgDMVX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhoneNumber = getIntent().getStringExtra("phone_number");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), Linh_Activity_DanhMucVacXin.class);
+                intent.putExtra("sdt", ""+mPhoneNumber);
+                startActivity(intent);
             }
         });
     }

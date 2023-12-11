@@ -1,6 +1,7 @@
 package com.example.dangkitiemchung;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +87,14 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showBottomGioHang();
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), MenuMainActivity.class);
+                startActivity(intent);
             }
         });
 
