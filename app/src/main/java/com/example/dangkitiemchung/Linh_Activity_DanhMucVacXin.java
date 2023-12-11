@@ -1,7 +1,10 @@
 package com.example.dangkitiemchung;
 
 import android.app.AlertDialog;
+//<<<<<<< Updated upstream
 import android.content.DialogInterface;
+//=======
+///>>>>>>> Stashed changes
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -347,6 +350,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
         rec_vxdc.setHasFixedSize(true);
         rec_vxdc.setLayoutManager(new LinearLayoutManager(this));
+        //btn_dkvx = v_gh.findViewById(R.id.btn_dangkymt);
         adapter_giohang = new LinhGioHangAdapter(newArrayList);
         adapter_giohang.notifyDataSetChanged();
         //LayDT_GioHang();
@@ -358,6 +362,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         // Cua mai mai
         btnDK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -384,12 +389,10 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 }).setNegativeButton("Cancel",null).show();
 
             }
+
         });
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) v_gh.getParent());
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-
-
 
     }
 
