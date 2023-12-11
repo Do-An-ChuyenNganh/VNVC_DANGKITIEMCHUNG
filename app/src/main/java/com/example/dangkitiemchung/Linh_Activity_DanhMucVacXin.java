@@ -114,9 +114,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             public void onClick(View v) {
 
                 clickCount++;
-
-                // Xác định nội dung mới dựa trên giá trị của biến đếm
-                String newText;
+                
                 switch (clickCount) {
                     case 1:
                         img_gia.setImageResource(R.drawable.gia_up);
@@ -130,7 +128,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                         clickCount = 0;
                         break;
                     default:
-                        newText = "Default Text";
+                        img_gia.setImageResource(R.drawable.gia_up);
                         break;
                 }
 
