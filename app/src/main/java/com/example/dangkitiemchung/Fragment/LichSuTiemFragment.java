@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.example.dangkitiemchung.Adapter.LoadLichSuTiemChungAdapter;
 import com.example.dangkitiemchung.Adapter.LoadLichTiemAdapter;
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.LichSuTiemChung;
 import com.example.dangkitiemchung.Models.LichTiem;
+import com.example.dangkitiemchung.Models.MangDatLich;
 import com.example.dangkitiemchung.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -107,7 +109,9 @@ public class LichSuTiemFragment extends Fragment {
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
                     LichSuTiemChung tl = new LichSuTiemChung(key, id, userName, tenVX, muiSo, ngayTiem, phongBenh, noiTiem);
-                    newArrayList.add(tl);
+                    if(LaySDT.user.equals(userName)) {
+                        newArrayList.add(tl);
+                    }
 
                 }
                 recycleView.setAdapter(adapter);

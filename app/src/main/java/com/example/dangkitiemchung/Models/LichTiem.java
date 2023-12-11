@@ -2,7 +2,6 @@ package com.example.dangkitiemchung.Models;
 
 public class LichTiem {
     private int id;
-    private int GiaBan;
     private String UserName;
 
     public String getKey() {
@@ -31,6 +30,15 @@ public class LichTiem {
         this.NoiTiem = noiTiem;
         this.key = key;
     }
+    public LichTiem(int id, String userName, String tenVX, String tinhTrang, String ngayDat, String ngayTiem, String noiTiem) {
+        this.id = id;
+        this.UserName = userName;
+        this.TenVX = tenVX;
+        this.TinhTrang = tinhTrang;
+        this.NgayDat = ngayDat;
+        this.NgayTiem = ngayTiem;
+        this.NoiTiem = noiTiem;
+    }
 
 
     public int getId() {
@@ -39,14 +47,6 @@ public class LichTiem {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getGiaBan() {
-        return GiaBan;
-    }
-
-    public void setGiaBan(int giaBan) {
-        GiaBan = giaBan;
     }
 
     public String getUserName() {

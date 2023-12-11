@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.dangkitiemchung.Adapter.LoadLichSuTiemChungAdapter;
 import com.example.dangkitiemchung.Adapter.LoadMuiTiepTheoAdapter;
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.LichSuTiemChung;
 import com.example.dangkitiemchung.Models.MuiTiepTheo;
 import com.example.dangkitiemchung.R;
@@ -104,7 +105,9 @@ public class MuiTiepTheoFragment extends Fragment {
                     String phongBenh = dataSnapshot.child("phongBenh").getValue(String.class);
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     MuiTiepTheo tl = new MuiTiepTheo( id, userName, tenVX, muiSo, ngayTiem, phongBenh);
-                    newArrayList.add(tl);
+                    if(LaySDT.user.equals(userName)) {
+                        newArrayList.add(tl);
+                    }
 
                 }
                 recycleView.setAdapter(adapter);

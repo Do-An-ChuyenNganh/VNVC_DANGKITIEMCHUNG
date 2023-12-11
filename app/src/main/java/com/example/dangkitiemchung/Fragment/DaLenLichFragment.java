@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dangkitiemchung.Adapter.LoadLichTiemAdapter;
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.LichTiem;
 import com.example.dangkitiemchung.R;
 import com.google.firebase.database.DataSnapshot;
@@ -101,15 +102,15 @@ public class DaLenLichFragment extends Fragment {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
                     String key = dataSnapshot.getKey();
-                    String tinhTrang = dataSnapshot.child("TinhTrang").getValue(String.class);
-                    Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    String userName = dataSnapshot.child("UserName").getValue(String.class);
-                    String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
-                    String ngayDat = dataSnapshot.child("NgayDat").getValue(String.class);
-                    String ngayTiem = dataSnapshot.child("NgayTiem").getValue(String.class);
-                    String noiTiem = dataSnapshot.child("NoiTiem").getValue(String.class);
+                    String tinhTrang = dataSnapshot.child("tinhTrang").getValue(String.class);
+                    Integer id = dataSnapshot.child("id").getValue(Integer.class);
+                    String userName = dataSnapshot.child("userName").getValue(String.class);
+                    String tenVX = dataSnapshot.child("tenVX").getValue(String.class);
+                    String ngayDat = dataSnapshot.child("ngayDat").getValue(String.class);
+                    String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
+                    String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
                     System.out.println("Key of the child with userId "  + key);
-                    if(tinhTrang.equals("Đã lên lịch")) {
+                    if(tinhTrang.equals("Đã lên lịch")&& LaySDT.user.equals(userName)) {
                         LichTiem tl = new LichTiem( key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }

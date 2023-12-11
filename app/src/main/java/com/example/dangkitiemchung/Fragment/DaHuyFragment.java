@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.dangkitiemchung.Adapter.LoadDaHuyAdapter;
 import com.example.dangkitiemchung.Adapter.LoadLichTiemAdapter;
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.LichTiem;
 import com.example.dangkitiemchung.R;
 import com.google.firebase.database.DataSnapshot;
@@ -101,17 +102,14 @@ public class DaHuyFragment extends Fragment {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
                     String key = dataSnapshot.getKey();
-                    String tinhTrang = dataSnapshot.child("TinhTrang").getValue(String.class);
-                    Integer id = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    String userName = dataSnapshot.child("UserName").getValue(String.class);
-                    String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
-                    String ngayDat = dataSnapshot.child("NgayDat").getValue(String.class);
-                    String ngayTiem = dataSnapshot.child("NgayTiem").getValue(String.class);
-                    String noiTiem = dataSnapshot.child("NoiTiem").getValue(String.class);
-//                    String tenHinh = dataSnapshot.child("Hinh").getValue(String.class);
-//                    Integer hinh = getResources().getIdentifier(tenHinh,"drawable", getActivity().getPackageName());
-//                    String ha = ""+hinh;
-                    if(tinhTrang.equals("Đã hủy")) {
+                    String tinhTrang = dataSnapshot.child("tinhTrang").getValue(String.class);
+                    Integer id = dataSnapshot.child("id").getValue(Integer.class);
+                    String userName = dataSnapshot.child("userName").getValue(String.class);
+                    String tenVX = dataSnapshot.child("tenVX").getValue(String.class);
+                    String ngayDat = dataSnapshot.child("ngayDat").getValue(String.class);
+                    String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
+                    String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
+                    if(tinhTrang.equals("Đã hủy") && LaySDT.user.equals(userName)) {
                         LichTiem tl = new LichTiem(key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }

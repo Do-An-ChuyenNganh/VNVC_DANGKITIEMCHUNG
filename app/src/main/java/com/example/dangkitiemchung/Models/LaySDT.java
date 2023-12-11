@@ -9,5 +9,5 @@ public class LaySDT {
         LaySDT.user = user;
     }
 
-    public static String user ="";
+    public static String user ="0366850669";
 }
