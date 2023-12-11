@@ -41,6 +41,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
     private SearchView searchView;
@@ -109,22 +111,28 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             }
         });
 
+
         tv_gia.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                 clickCount++;
+
                 
                 switch (clickCount) {
                     case 1:
                         img_gia.setImageResource(R.drawable.gia_up);
+                        layDL_giatang();
                         break;
                     case 2:
                         img_gia.setImageResource(R.drawable.gia_down);
+                        layDL_giagiam();
                         break;
                     case 3:
                         img_gia.setImageResource(R.drawable.gia);
                         // Reset biến đếm khi đạt đến lần nhấn thứ ba
+                        LayDL();
                         clickCount = 0;
                         break;
                     default:
@@ -162,7 +170,92 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         }
     }
 
+    public void layDL_giatang()
+    {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("VacXin");
 
+        // Lấy dữ liệu vaccine từ Firebase
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<VacXin> vaccineList = new ArrayList<>();
+
+                // Duyệt qua các mục trong "VacXin"
+                for (DataSnapshot snapshot : dataSnapshot.child("VacXin").getChildren()) {
+                    VacXin vaccine = snapshot.getValue(VacXin.class);
+                    vaccineList.add(vaccine);
+                }
+
+                // Sắp xếp danh sách vaccine theo giá
+                Collections.sort(vaccineList, new Comparator<VacXin>() {
+                    @Override
+                    public int compare(VacXin vaccine1, VacXin vaccine2) {
+                        return Long.compare(vaccine1.getGia(), vaccine2.getGia());
+                    }
+                });
+
+                // Hiển thị danh sách vaccine theo giá tăng dần
+                for (VacXin vx : vaccineList) {
+                    // Xử lý hiển thị thông tin vaccine
+                    VacXin tl = new VacXin(vx.getId_vx(), vx.getHinh(),vx.getGia() , vx.getSlton(), vx.getBaoquan(), vx.getChongchidinh(), vx.getMota(), vx.getNguongoc(), vx.getPhongbenh(), vx.getTenvx());
+                    newArrayList.add(tl);
+                    // Ví dụ: Log.d("Vaccine", "Tên: " + vaccine.tenVX + ", Giá: " + vaccine.gia);
+                }
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        });
+
+    }
+
+    public void layDL_giagiam()
+    {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("VacXin");
+
+        // Lấy dữ liệu vaccine từ Firebase
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<VacXin> vaccineList = new ArrayList<>();
+
+                // Duyệt qua các mục trong "VacXin"
+                for (DataSnapshot snapshot : dataSnapshot.child("VacXin").getChildren()) {
+                    VacXin vaccine = snapshot.getValue(VacXin.class);
+                    vaccineList.add(vaccine);
+                }
+
+                // Sắp xếp danh sách vaccine theo giá
+                Collections.sort(vaccineList, new Comparator<VacXin>() {
+
+                    @Override
+                    public int compare(VacXin vaccine1, VacXin vaccine2) {
+                        return Long.compare(vaccine2.getGia(), vaccine1.getGia());
+                    }
+                });
+
+                // Hiển thị danh sách vaccine theo giá tăng dần
+                for (VacXin vx : vaccineList) {
+                    // Xử lý hiển thị thông tin vaccine
+                    VacXin tl = new VacXin(vx.getId_vx(), vx.getHinh(),vx.getGia() , vx.getSlton(), vx.getBaoquan(), vx.getChongchidinh(), vx.getMota(), vx.getNguongoc(), vx.getPhongbenh(), vx.getTenvx());
+                    newArrayList.add(tl);
+                    // Ví dụ: Log.d("Vaccine", "Tên: " + vaccine.tenVX + ", Giá: " + vaccine.gia);
+                }
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        });
+
+    }
     private void LayDL() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("VacXin");
@@ -470,8 +563,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
 
 
-
-
     private void showBottomGioHang()
     {
         View v_gh = getLayoutInflater().inflate(R.layout.bottom_sheet_giohang, null);
@@ -540,7 +631,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
     }
-
 
 
 
