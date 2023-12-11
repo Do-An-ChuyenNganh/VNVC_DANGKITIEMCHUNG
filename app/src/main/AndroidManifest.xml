@@ -52,7 +52,9 @@
             android:exported="false" />
         <activity
             android:name=".MenuMainActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".SetPasswordActivity"
             android:exported="false" />
@@ -89,12 +91,13 @@
 <!--        android:name=".Mai_LichTiemChung"-->
 <!--        android:label="Lịch hẹn tiêm chủng"-->
 <!--        android:parentActivityName=".MenuMainActivity">-->
-
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
 
         </activity>
 
