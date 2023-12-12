@@ -4,16 +4,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class CaNhan extends AppCompatActivity {
 
 
-    LinearLayout layout_dangxuat;
+    LinearLayout layout_dangxuat,layout_edit;
+    ImageButton icon_back;
+    String  mPhoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +26,21 @@ public class CaNhan extends AppCompatActivity {
         // Ẩn thanh trạng thái (status bar)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+        getPhone();
 
         layout_dangxuat =(LinearLayout) findViewById(R.id.layout_dangxuat);
+        icon_back= (ImageButton)findViewById(R.id.icon_back);
+        layout_edit =(LinearLayout) findViewById(R.id.layout_edit);
+
+        layout_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(CaNhan.this, PersonalProfileActivity.class);
+                mainIntent.putExtra("phone_number",mPhoneNumber);
+                startActivity(mainIntent);
+            }
+        });
+
         layout_dangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +49,23 @@ public class CaNhan extends AppCompatActivity {
 
             }
         });
+        icon_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("có click");
+                finish();
+            }
+        });
+
+    }
+    public void  getPhone(){
+        mPhoneNumber= getIntent().getStringExtra("phone_number");
+        //mPhoneNumber= "0366850669";
+        System.out.println("sdt: ***************" + mPhoneNumber);
+        if (mPhoneNumber.startsWith("+84")) {
+            mPhoneNumber = "0" + mPhoneNumber.substring(3);
+            System.out.println("sdt: ***************" + mPhoneNumber);
+        }
 
     }
     private void showExitConfirmationDialog() {

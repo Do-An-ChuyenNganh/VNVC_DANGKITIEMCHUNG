@@ -40,6 +40,7 @@ public class MenuMainActivity extends AppCompatActivity {
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
     ImageView imgLichHen, imgLichSu, imgDMVX;
+    ImageButton icons_personal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,25 +57,28 @@ public class MenuMainActivity extends AppCompatActivity {
         chuyenDMVX();
 
 
+        //
+        chuyenCapNhatThongTin();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView_news.setLayoutManager(linearLayoutManager);
         newsAdapter =new NewsAdapter(getListNews());
         recyclerView_news.setAdapter(newsAdapter);
 
-        icons_personal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
-                mainIntent.putExtra("phone_number",mPhoneNumber);
-                startActivity(mainIntent);
-                finish();
 
-            }
-        });
     }
 
-
+    public void chuyenCapNhatThongTin(){
+            icons_personal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
+                    mainIntent.putExtra("phone_number",mPhoneNumber);
+                    startActivity(mainIntent);
+                   // finish();
+                }
+            });
+        }
 
     public List<News> getListNews(){
         List<News> lst = new ArrayList<>();

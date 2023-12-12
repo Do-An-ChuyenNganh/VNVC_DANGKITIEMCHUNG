@@ -123,7 +123,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             }
         });
 
-
         tv_gia.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -589,8 +588,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         });
     }
 
-
-
     private void showBottomGioHang()
     {
         View v_gh = getLayoutInflater().inflate(R.layout.bottom_sheet_giohang, null);
@@ -623,10 +620,12 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                intent.putExtra("phone_number",user);
-                startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setClass(getApplicationContext(), MenuMainActivity.class);
+//                intent.putExtra("phone_number",user);
+//                startActivity(intent);
+                finish();
+
             }
         });
 
@@ -662,8 +661,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
     }
-
-
 
     public void addControls() {
         recyclerView = findViewById(R.id.rec_dmvx);

@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -78,7 +79,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
     private SpinnerProvinceAdapter spinnerProvinceAdapter;
     private SpinnerDistrictAdapter spinnerDistrictAdapter;
     private SpinnerWardAdapter spinnerWardAdapter;
-    String  mPhoneNumber,mVerificationId;
+    String  mPhoneNumber;
 
     List<String> provinceInfoList = new ArrayList<>();
     List<String> provinceInfoListName = new ArrayList<>();
@@ -89,6 +90,8 @@ public class PersonalProfileActivity extends AppCompatActivity {
     String DISTRICTS="";
     String WARD="";
     int IDp=-1;
+    ImageButton icon_back2;
+
 
 
 
@@ -100,8 +103,8 @@ public class PersonalProfileActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         addControl();
-        String numberPhone=getPhone();
 
+        String numberPhone=getPhone();
 
             loadCity();
             loadSpinerNation();
@@ -113,12 +116,21 @@ public class PersonalProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String numberPhone=getPhone();
                 updateInfomation(numberPhone);
+
              //   Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                // loadSpinerNation();
                // showInfomation(numberPhone);
                // register(numberPhone.trim());
             }
         });
+        icon_back2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
 
         edt_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,6 +344,8 @@ public class PersonalProfileActivity extends AppCompatActivity {
         rad_male= (RadioButton) findViewById(R.id.rad_male);
         rad_female= (RadioButton) findViewById(R.id.rad_female);
         radioGroup= (RadioGroup) findViewById(R.id.radioGroup);
+        icon_back2= (ImageButton) findViewById(R.id.icon_back2);
+
 
 
     }
@@ -418,9 +432,8 @@ public class PersonalProfileActivity extends AppCompatActivity {
 
     }
     public String getPhone(){
-      //  mPhoneNumber= getIntent().getStringExtra("phone_number");
-        mPhoneNumber= "0366850669";
-        mVerificationId=getIntent().getStringExtra("verification_id");
+        mPhoneNumber= getIntent().getStringExtra("phone_number");
+        //mPhoneNumber= "0366850669";
         System.out.println("sdt: ***************" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {
             mPhoneNumber = "0" + mPhoneNumber.substring(3);
