@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -93,6 +94,7 @@ public class MenuMainActivity extends AppCompatActivity {
     public void addControl(){
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
+        icons_personal= (ImageButton) findViewById(R.id.icons_personal);
         imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
         imgLichSu = (ImageView) findViewById(R.id.imageButton8);
         imgDMVX = findViewById(R.id.imageButton7);
