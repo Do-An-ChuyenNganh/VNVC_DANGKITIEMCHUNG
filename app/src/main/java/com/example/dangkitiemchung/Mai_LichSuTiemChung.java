@@ -29,9 +29,11 @@ public class Mai_LichSuTiemChung extends AppCompatActivity {
         setContentView(R.layout.activity_mai_lich_su_tiem_chung);
         tabLayout = (TabLayout) findViewById(R.id.tab_lichtiem);
         replaceFrag(new LichSuTiemFragment());
+
 //        Intent intent = getIntent();
 //        madg = intent.getStringExtra("madg");
 ////        System.out.println("t mún đi ngủ"+madg);
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(@NonNull TabLayout.Tab tab) {
@@ -54,7 +56,6 @@ public class Mai_LichSuTiemChung extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-
 
         });
     }

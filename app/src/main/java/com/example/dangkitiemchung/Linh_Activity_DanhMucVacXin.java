@@ -70,8 +70,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
     private String user = "0343080814";
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +112,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             public void onClick(View view)
             {
                 //showBottomGioHang();
-
                 showBottomLoc();
             }
         });
@@ -625,8 +622,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //intent.setClass(getApplicationContext(), MenuMainActivity.class);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), MenuMainActivity.class);

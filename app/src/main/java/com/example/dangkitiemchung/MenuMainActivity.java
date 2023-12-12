@@ -43,10 +43,10 @@ public class MenuMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_main);
-        // Ẩn thanh trạng thái (status bar)
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
         addControl();
         getPhone();
         getWelcome();
@@ -70,10 +70,10 @@ public class MenuMainActivity extends AppCompatActivity {
         lst.add(new News(R.drawable.img_cream,"CÁC LOẠI VẮC XIN CHO NGƯỜI LỚN","07/11/2022","22:04"));
         return lst;
     }
+
     public static Bitmap decodeSampledBitmapFromResource(Context context, int resId, int inSampleSize) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = inSampleSize; // Đặt giảm độ phân giải
-
         return BitmapFactory.decodeResource(context.getResources(), resId, options);
     }
     public void addControl(){
@@ -93,8 +93,6 @@ public class MenuMainActivity extends AppCompatActivity {
                 intent.setClass(getApplicationContext(), Mai_LichTiemChung.class);
                 intent.putExtra("sdt", ""+mPhoneNumber);
                 startActivity(intent);
-
-
             }
         });
     }
@@ -106,15 +104,12 @@ public class MenuMainActivity extends AppCompatActivity {
                 mPhoneNumber = getIntent().getStringExtra("phone_number");
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Mai_LichSuTiemChung.class);
-                intent.putExtra("sdt", ""+mPhoneNumber);
+                intent.putExtra("sdt", "" + mPhoneNumber);
                 startActivity(intent);
-
-
             }
         });
     }
     public String getPhone(){
-
         mPhoneNumber=getIntent().getStringExtra("phone_number");
         LaySDT.setUser(mPhoneNumber);
             System.out.println("sdt: menu main  ***************" + mPhoneNumber);
@@ -122,16 +117,13 @@ public class MenuMainActivity extends AppCompatActivity {
                 mPhoneNumber = "0" + mPhoneNumber.substring(3);
                 System.out.println("sdt: ***************" + mPhoneNumber);
             }
-
         return mPhoneNumber;
     }
 
     public void getWelcome(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference taiKhoanRef = database.getReference("TaiKhoan");
-        // Điều này giả sử "userName" là giá trị bạn muốn tìm
         String userNameToFind = mPhoneNumber;
-        // Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
         Query query = taiKhoanRef.orderByChild("UserName").equalTo(userNameToFind).limitToFirst(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -170,4 +162,8 @@ public class MenuMainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+    
 }

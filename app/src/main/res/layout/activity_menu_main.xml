@@ -317,7 +317,7 @@
                         android:layout_column="3"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Vắc xin \n    cho bạn"
+                        android:text="    Tin tức \n    vắc xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
