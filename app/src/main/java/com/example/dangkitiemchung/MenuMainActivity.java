@@ -129,10 +129,9 @@ public class MenuMainActivity extends AppCompatActivity {
     public void getWelcome(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference taiKhoanRef = database.getReference("TaiKhoan");
-
-// Điều này giả sử "userName" là giá trị bạn muốn tìm
+        // Điều này giả sử "userName" là giá trị bạn muốn tìm
         String userNameToFind = mPhoneNumber;
-// Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
+        // Thực hiện truy vấn để lấy thông tin HoTen từ Firebase dựa trên UserName
         Query query = taiKhoanRef.orderByChild("UserName").equalTo(userNameToFind).limitToFirst(1);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
