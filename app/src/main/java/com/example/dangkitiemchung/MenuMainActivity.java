@@ -52,6 +52,7 @@ public class MenuMainActivity extends AppCompatActivity {
         getWelcome();
         chuyenLichHen();
         chuyenLichSu();
+        chuyenDMVX();
 
 
 
