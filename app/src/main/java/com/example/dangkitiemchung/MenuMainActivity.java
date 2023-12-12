@@ -80,6 +80,7 @@ public class MenuMainActivity extends AppCompatActivity {
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
         imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
         imgLichSu = (ImageView) findViewById(R.id.imageButton8);
+        imgDMVX = findViewById(R.id.imageButton7);
     }
     public void chuyenLichHen()
     {
