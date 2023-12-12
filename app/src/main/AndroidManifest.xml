@@ -13,9 +13,16 @@
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
 <!--        <activity-->
 <!--            android:name=".LayDiaChi"-->
 <!--            android:exported="false" />-->
+        <activity
+            android:name=".testhieuung"
+            android:exported="false" />
+        <activity
+            android:name=".CaNhan"
+            android:exported="false" />
          <activity
          android:name=".DatLichTiemChung"
          android:exported="true"
@@ -72,6 +79,8 @@
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
+        <activity android:name=".Linh_ThongTinVX_"
+            android:exported="false"/>
         <activity
             android:name=".LayDiaChi"
             android:exported="true"
@@ -80,25 +89,17 @@
 
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
-
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
                 <!--                    android:name=".Linh_Activity_DanhMucVacXin">-->
         </activity>
         <activity android:exported="true"
-
             android:name=".VerifyPhoneNumberActivity">
-
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name=".Linh_ThongTinVX_"
-            android:exported="false"/>
     </application>
 
 </manifest>
