@@ -80,8 +80,12 @@
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
+        <activity android:exported="true"
+         android:name=".Linh_Activity_DanhMucVacXin"/>
+
         <activity android:name=".Linh_ThongTinVX_"
             android:exported="false"/>
+
         <activity
             android:name=".LayDiaChi"
             android:exported="true"
