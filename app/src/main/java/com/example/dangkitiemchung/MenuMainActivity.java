@@ -165,7 +165,7 @@ public class MenuMainActivity extends AppCompatActivity {
                 mPhoneNumber = getIntent().getStringExtra("phone_number");
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Linh_Activity_DanhMucVacXin.class);
-                intent.putExtra("sdt", ""+mPhoneNumber);
+                intent.putExtra("sdt", "" + mPhoneNumber);
                 startActivity(intent);
             }
         });

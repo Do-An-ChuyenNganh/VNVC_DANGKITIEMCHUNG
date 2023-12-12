@@ -60,6 +60,7 @@
         <activity
             android:name=".MenuMainActivity"
             android:exported="false" />
+            
         <activity
             android:name=".SetPasswordActivity"
             android:exported="false" />
