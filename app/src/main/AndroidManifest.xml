@@ -60,7 +60,15 @@
             android:exported="false" />
         <activity
             android:name=".VerifyPhoneNumberActivity"
-            android:exported="false" />
+            android:exported="true"
+            >
+                <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+
+        </activity>
         <activity
             android:name=".Mai_LichSuTiemChung"
             android:exported="false"
@@ -91,11 +99,6 @@
 <!--        android:name=".Mai_LichTiemChung"-->
 <!--        android:label="Lịch hẹn tiêm chủng"-->
 <!--        android:parentActivityName=".MenuMainActivity">-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
 
 

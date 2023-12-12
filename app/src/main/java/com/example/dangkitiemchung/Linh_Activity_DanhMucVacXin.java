@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 //=======
 ///>>>>>>> Stashed changes
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,7 +67,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     private ImageView giohang, back;
     private int clickCount = 0;
-    private String user = "0366850669";
+    private String user = "0343080814";
+
+
 
 
     @Override
@@ -76,9 +80,18 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         addControls();
         Intent intent = getIntent();
         user = intent.getStringExtra("sdt");
+        System.out.println("USER NÈ: " + user);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new LinhDMVXAdapter(newArrayList);
+
+        //adapter = new LinhDMVXAdapter(newArrayList, user);
+        adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+            @Override
+            public void onButtonClick(String item) {
+                showMessageDialog(item);
+            }
+        });
         adapter.notifyDataSetChanged();
         LayDL();
 
@@ -101,6 +114,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             public void onClick(View view)
             {
                 //showBottomGioHang();
+
                 showBottomLoc();
             }
         });
@@ -108,6 +122,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showBottomGioHang();
+
             }
         });
 
@@ -145,6 +160,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -292,6 +308,11 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     private void DuyetGH(ArrayList<GioHang> list)
     {
+            Intent intent = getIntent();
+            String username = intent.getStringExtra("sdt");
+            System.out.println("USER trong duyetGH: " + username);
+            //LinhDMVXAdapter adapter_us = new LinhDMVXAdapter();
+            //adapter_us.setUser(username);
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("VacXin");
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -320,14 +341,15 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
                             if (id_VX == item.getIdvx())
                             {
-                                if (item.getUsername().trim().compareTo("0366850669") == 0)
+
+
+                                if (username.equalsIgnoreCase(item.getUsername()))
                                 {
                                     newArrayList.add(tl);
                                 }
 
                             }
                         }
-
                     }
 
                     rec_vxdc.setAdapter(adapter_giohang);
@@ -341,8 +363,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             });
 
         }
-
-
 
     private void LayDT_GioHang_2() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -360,7 +380,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                     String username = dataSnapshot.child("username").getValue(String.class);
                     GioHang gh = new GioHang(id_VX_gh, username);
                     newArrayList_GioHang.add(gh);
-
                     DuyetGH(newArrayList_GioHang);
 
                 }
@@ -382,6 +401,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
 
     private void processCheckBoxes()  {
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
         CheckBox[] checkBoxes_PB = new CheckBox[]{cbx_cum, cbx_lao, cbx_hoga, cbx_dai, cbx_bailiet, cbx_bachhau};
         CheckBox[]  checkBoxes_Xuatxu = new CheckBox[]{cbx_hanquoc, cbx_my, cbx_phap, cbx_ando, cbx_vietnam, cbx_canada};
         CheckBox[] checkBoxes_gia = new CheckBox[]{cbx_gia1, cbx_gia2,cbx_gia3,cbx_gia4};
@@ -391,7 +411,8 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         for (CheckBox checkBox : checkBoxes_PB) {
             // Kiểm tra nếu CheckBox có giá trị là true
             if (checkBox.isChecked()) {
-                // Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
+
+                 //Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
                     adapter = new LinhDMVXAdapter(newArrayList);
@@ -432,6 +453,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 }
             }
         }
+
         locDL_VX(listcheck_pb, listcheck_xx, listcheck_gia);
 
 
@@ -466,6 +488,16 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         /////////////
         btn_loc_dl = v_gh.findViewById(R.id.btn_loc);
 
+
+//        SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+
+        // Lưu trạng thái của CheckBox vào SharedPreferences
+//        editor.putBoolean("checkbox1", cbx_cum.isChecked());
+//        editor.putBoolean("checkbox2", cbx_bachhau.isChecked());
+//        editor.apply();
+
+
         btn_loc_dl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -479,6 +511,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                //adapter = new LinhDMVXAdapter(newArrayList, user);
+                adapter.notifyDataSetChanged();
+                LayDL();
             }
         });
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) v_gh.getParent());
@@ -574,7 +609,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         rec_vxdc.setHasFixedSize(true);
         rec_vxdc.setLayoutManager(new LinearLayoutManager(this));
         //btn_dkvx = v_gh.findViewById(R.id.btn_dangkymt);
-        adapter_giohang = new LinhGioHangAdapter(newArrayList);
+        adapter_giohang = new LinhGioHangAdapter(newArrayList, user);
         adapter_giohang.notifyDataSetChanged();
         //LayDT_GioHang();
         LayDT_GioHang_2();
@@ -583,14 +618,19 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                LayDL();
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                //intent.setClass(getApplicationContext(), MenuMainActivity.class);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), MenuMainActivity.class);
+                intent.putExtra("phone_number",user);
                 startActivity(intent);
             }
         });
@@ -640,21 +680,20 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         img_gia = findViewById(R.id.img_gia);
 
     }
-    public void showDialogSuccess()
-    {
-        View v = LayoutInflater.from(Linh_Activity_DanhMucVacXin.this).inflate(R.layout.alert_sucess, null);
-        Button btnSuccess = v.findViewById(R.id.successDone);
-        AlertDialog.Builder builder = new AlertDialog.Builder(Linh_Activity_DanhMucVacXin.this);
-        builder.setView(v);
-        final AlertDialog alertDialog= builder.create();
-        btnSuccess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialog.dismiss();
 
-            }
-        });
+    private void showMessageDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông báo")
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Handle OK button click if needed
+                    }
+                })
+                .show();
     }
+
 
 
 }

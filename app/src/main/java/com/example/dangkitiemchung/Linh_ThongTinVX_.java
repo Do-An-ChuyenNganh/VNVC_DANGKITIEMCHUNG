@@ -90,16 +90,19 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                             System.out.println("phac do tiem ne  "+ mui1 + " " + mui2 + " " + mui3);
                             // Kiểm tra xem có giá trị hay không và sử dụng giá trị nếu cần
                             if (mui1 != null) {
+                                if (mui1 == 0)
+                                {
+                                    tv_pdt_m1.setText(" + Mui 1: Lần đầu tiên tiêm trong độ tuổi ");
+                                }
 
-                                tv_pdt_m1.setText(" + Mui 1: " + mui1 +" tháng");
                             }
 
                             if (mui2 != null) {
-                                tv_pdt_m2.setText(" + Mui 2: " + mui2 +" tháng");
+                                tv_pdt_m2.setText(" + Mui 2: cách mũi 1 " + mui2 +" tháng");
                             }
 
                             if (mui3 != null) {
-                                tv_pdt_m3.setText(" + Mui 3: " + mui3 +" tháng");
+                                tv_pdt_m3.setText(" + Mui 3: cách mũi 2 " + mui3 +" tháng");
                             }
                         }
 
@@ -145,7 +148,7 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                         tv_phongBenh.setText("Phòng bệnh: "+phongBenh);
                         tv_gia.setText("Giá " + String.valueOf(gia));
                         tv_moTa.setText(mota);
-                        String formattedContent_chongcd = chongcd.replace(". ", "\n");
+                        String formattedContent_chongcd = chongcd.replace(".", "\n");
                         setBulletPoints(tv_chongcd, formattedContent_chongcd);
 
                         String formattedContent_baoquan = baoquan.replace(".", "\n");

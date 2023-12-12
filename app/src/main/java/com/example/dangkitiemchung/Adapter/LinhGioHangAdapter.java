@@ -33,11 +33,31 @@ import java.util.ArrayList;
 
 public class LinhGioHangAdapter extends RecyclerView.Adapter<LinhGioHangAdapter.MyViewHolder>{
     ArrayList<VacXin> newVacXin;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    String user;
 
     public LinhGioHangAdapter(ArrayList<VacXin> newVacXin) {
         this.newVacXin = newVacXin;
     }
 
+    public LinhGioHangAdapter(ArrayList<VacXin> newVacXin, String user_n) {
+        this.user = user_n;
+        this.newVacXin = newVacXin;
+    }
+
+    public LinhGioHangAdapter(String user) {
+        this.user = user;
+    }
+
+    public LinhGioHangAdapter() {
+    }
 
     @NonNull
     @Override
