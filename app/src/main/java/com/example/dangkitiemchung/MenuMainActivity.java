@@ -60,7 +60,21 @@ public class MenuMainActivity extends AppCompatActivity {
         recyclerView_news.setLayoutManager(linearLayoutManager);
         newsAdapter =new NewsAdapter(getListNews());
         recyclerView_news.setAdapter(newsAdapter);
+
+        icons_personal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
+                mainIntent.putExtra("phone_number",mPhoneNumber);
+                startActivity(mainIntent);
+                finish();
+
+            }
+        });
     }
+
+
+
     public List<News> getListNews(){
         List<News> lst = new ArrayList<>();
         lst.add(new News(R.drawable.img_vaccins,"CÁC LOẠI VẮC XIN CHO NGƯỜI LỚN","07/11/2022","22:04"));
