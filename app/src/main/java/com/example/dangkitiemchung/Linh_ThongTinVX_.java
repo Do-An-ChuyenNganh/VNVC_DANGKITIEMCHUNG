@@ -3,7 +3,13 @@ package com.example.dangkitiemchung;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dangkitiemchung.Adapter.LinhDMVXAdapter;
@@ -57,50 +64,7 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
 
     }
 
-    public void vd()
-    {
-        // Giả sử bạn có một tham chiếu Firebase trỏ đến nút "VacXin"
-        DatabaseReference vacXinRef = FirebaseDatabase.getInstance().getReference().child("VacXin");
 
-        // Bạn có thể sử dụng addListenerForSingleValueEvent để lấy dữ liệu một lần
-        vacXinRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Duyệt qua từng child của nút "VacXin"
-                    for (DataSnapshot vacXinSnapshot : dataSnapshot.getChildren()) {
-                        // Lấy giá trị của "PhacDoTiem" từ mỗi child
-                        DataSnapshot phacDoTiemSnapshot = vacXinSnapshot.child("PhacDoTiem");
-
-                        // Lấy giá trị của "Mui 1", "Mui 2", "Mui 3" từ "PhacDoTiem"
-                        Integer mui1 = phacDoTiemSnapshot.child("Mui 1").getValue(Integer.class);
-                        Integer mui2 = phacDoTiemSnapshot.child("Mui 2").getValue(Integer.class);
-                        Integer mui3 = phacDoTiemSnapshot.child("Mui 3").getValue(Integer.class);
-                        System.out.println("phac do tiem ne  "+ mui1 + " " + mui2 + " " + mui3);
-                        // Kiểm tra xem có giá trị hay không và sử dụng giá trị nếu cần
-                        if (mui1 != null) {
-                            Log.d("Firebase", "Mui 1: " + mui1);
-                        }
-
-                        if (mui2 != null) {
-                            Log.d("Firebase", "Mui 2: " + mui2);
-                        }
-
-                        if (mui3 != null) {
-                            Log.d("Firebase", "Mui 3: " + mui3);
-                        }
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Xử lý lỗi nếu có
-                Log.e("Firebase", "Error: " + databaseError.getMessage());
-            }
-        });
-    }
 
     public void layDT_PDT(int id_vx)
     {
@@ -126,16 +90,19 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                             System.out.println("phac do tiem ne  "+ mui1 + " " + mui2 + " " + mui3);
                             // Kiểm tra xem có giá trị hay không và sử dụng giá trị nếu cần
                             if (mui1 != null) {
+                                if (mui1 == 0)
+                                {
+                                    tv_pdt_m1.setText(" + Mui 1: Lần đầu tiên tiêm trong độ tuổi ");
+                                }
 
-                                tv_pdt_m1.setText(" + Mui 1: " + mui1 +" tháng");
                             }
 
                             if (mui2 != null) {
-                                tv_pdt_m2.setText(" + Mui 2: " + mui2 +" tháng");
+                                tv_pdt_m2.setText(" + Mui 2: cách mũi 1 " + mui2 +" tháng");
                             }
 
                             if (mui3 != null) {
-                                tv_pdt_m3.setText(" + Mui 3: " + mui3 +" tháng");
+                                tv_pdt_m3.setText(" + Mui 3: cách mũi 2 " + mui3 +" tháng");
                             }
                         }
 
@@ -158,6 +125,7 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
         DatabaseReference myRef_PDT = firebaseDatabase.getReference("VacXin").child("PhacDoTiem");
         myRef.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
@@ -178,10 +146,13 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                         tv_Tenvx.setText(tenVX);
                         tv_nguonGoc.setText("Nguồn gốc: "+nguongoc);
                         tv_phongBenh.setText("Phòng bệnh: "+phongBenh);
-                        tv_gia.setText("Giá" + String.valueOf(gia));
+                        tv_gia.setText("Giá " + String.valueOf(gia));
                         tv_moTa.setText(mota);
-                        tv_chongcd.setText(chongcd);
-                        tv_baoquan.setText(baoquan);
+                        String formattedContent_chongcd = chongcd.replace(".", "\n");
+                        setBulletPoints(tv_chongcd, formattedContent_chongcd);
+
+                        String formattedContent_baoquan = baoquan.replace(".", "\n");
+                        setBulletPoints(tv_baoquan, formattedContent_baoquan);
                         img_vx(id_VX);
                         layDT_PDT(id_VX);
 
@@ -204,6 +175,44 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
 
 
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    private void setBulletPoints(TextView textView, String content) {
+        // Tạo một SpannableStringBuilder để xử lý văn bản có định dạng
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+
+        // Tìm và thêm BulletSpan khi gặp dấu xuống dòng
+        int startIndex = 0;
+        int endIndex;
+        while ((endIndex = content.indexOf("\n", startIndex)) != -1) {
+            // Tạo BulletSpan với một kí tự đặc biệt
+            BulletSpan bulletSpan = new BulletSpan(5, Color.BLACK, 5);
+
+            // Áp dụng BulletSpan từ startIndex đến endIndex
+            builder.setSpan(bulletSpan, startIndex, endIndex, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+
+            startIndex = endIndex + 1;
+        }
+
+        // Hiển thị văn bản có định dạng trong TextView
+        textView.setText(builder);
+    }
+
+//    private SpannableStringBuilder formatBulletPoints(String content) {
+//        // Tạo một SpannableStringBuilder để xử lý văn bản có định dạng
+//        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+//
+//        // Tìm vị trí của dấu "."
+//        int dotIndex = content.indexOf(".");
+//
+//        // Thêm BulletSpan để tạo dấu chấm đầu dòng cho mỗi câu
+//        while (dotIndex != -1) {
+//            builder.setSpan(new BulletSpan(16), dotIndex, dotIndex + 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//            dotIndex = content.indexOf(".", dotIndex + 1);
+//        }
+//
+//        return builder;
+//    }
 
     public void img_vx(int id_vx)
     {

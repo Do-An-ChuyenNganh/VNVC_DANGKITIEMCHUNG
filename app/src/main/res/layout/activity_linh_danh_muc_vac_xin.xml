@@ -53,27 +53,22 @@
             android:background="@color/gray"
             android:orientation="horizontal">
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+            <TextView
+                android:id="@+id/tv_gia"
+                android:text="Giá"
+                android:textSize="20dp"
+                android:textColor="@color/blue"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbtn_giatang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Giá tăng" />
-
-                <RadioButton
-                    android:id="@+id/rbtn_giagiam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="Giá giảm" />
-            </RadioGroup>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/img_gia"
+                android:src="@drawable/gia"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_loc"
