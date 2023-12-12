@@ -38,7 +38,7 @@ public class MenuMainActivity extends AppCompatActivity {
     NewsAdapter newsAdapter ;
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
-    ImageView imgLichHen, imgLichSu;
+    ImageView imgLichHen, imgLichSu, imgDMVX;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
