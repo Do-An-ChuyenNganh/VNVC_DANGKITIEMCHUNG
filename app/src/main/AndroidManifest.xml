@@ -56,14 +56,14 @@
         <activity
             android:name=".SetPasswordActivity"
             android:exported="false" />
-        <activity
-            android:name=".VerifyPhoneNumberActivity"
-            android:exported="false" />
 <!--        <activity-->
-<!--            android:name=".Mai_LichSuTiemChung"-->
-<!--            android:exported="false"-->
-<!--            android:label="Lịch sử tiêm chủng"-->
-<!--            android:parentActivityName=".MenuMainActivity" />-->
+<!--            android:name=".VerifyPhoneNumberActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".Mai_LichSuTiemChung"
+            android:exported="false"
+            android:label="Lịch sử tiêm chủng"
+            android:parentActivityName=".MenuMainActivity" />
         <activity
             android:name=".Mai_LichTiemChung"
             android:exported="false"
@@ -87,9 +87,7 @@
         </activity>
         <activity android:exported="true"
 
-            android:name=".Mai_LichSuTiemChung"
-            android:label="Lịch sử tiêm chủng"
-            android:parentActivityName=".MenuMainActivity" >
+            android:name=".VerifyPhoneNumberActivity">
 
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

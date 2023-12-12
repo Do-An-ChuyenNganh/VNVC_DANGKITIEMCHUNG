@@ -38,7 +38,7 @@ public class MenuMainActivity extends AppCompatActivity {
     NewsAdapter newsAdapter ;
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
-    ImageView imgLichHen;
+    ImageView imgLichHen, imgLichSu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class MenuMainActivity extends AppCompatActivity {
         getPhone();
         getWelcome();
         chuyenLichHen();
+        chuyenLichSu();
 
 
 
@@ -78,6 +79,7 @@ public class MenuMainActivity extends AppCompatActivity {
         recyclerView_news=findViewById(R.id.recyclerView_news);
         txt_welcome=(TextView) findViewById(R.id.txt_welcome);
         imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
+        imgLichSu = (ImageView) findViewById(R.id.imageButton8);
     }
     public void chuyenLichHen()
     {
@@ -94,15 +96,31 @@ public class MenuMainActivity extends AppCompatActivity {
             }
         });
     }
+    public void chuyenLichSu()
+    {
+        imgLichSu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPhoneNumber = getIntent().getStringExtra("phone_number");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), Mai_LichSuTiemChung.class);
+                intent.putExtra("sdt", ""+mPhoneNumber);
+                startActivity(intent);
+
+
+            }
+        });
+    }
     public String getPhone(){
 
         mPhoneNumber=getIntent().getStringExtra("phone_number");
         LaySDT.setUser(mPhoneNumber);
-        System.out.println("sdt: menu main  ***************" + mPhoneNumber);
-        if (mPhoneNumber.startsWith("+84")) {
-            mPhoneNumber = "0" + mPhoneNumber.substring(3);
-            System.out.println("sdt: ***************" + mPhoneNumber);
-        }
+            System.out.println("sdt: menu main  ***************" + mPhoneNumber);
+            if (mPhoneNumber.startsWith("+84")) {
+                mPhoneNumber = "0" + mPhoneNumber.substring(3);
+                System.out.println("sdt: ***************" + mPhoneNumber);
+            }
+
         return mPhoneNumber;
     }
 

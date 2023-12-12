@@ -1,5 +1,7 @@
 package com.example.dangkitiemchung;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +10,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dangkitiemchung.Models.LaySDT;
 import com.example.dangkitiemchung.Models.LichSuTiemChung;
 import com.example.dangkitiemchung.Models.MuiTiepTheo;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +49,9 @@ public class ChiTietLichHen extends AppCompatActivity {
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     DatabaseReference myRefLichSuTC = firebaseDatabase.getReference("LichSuTiem");
     DatabaseReference myRefMuiTiepTheo = firebaseDatabase.getReference("MuiTiepTheo");
+    DatabaseReference myRefTaiKhoan = firebaseDatabase.getReference("TaiKhoan");
+
+    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiem");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +61,8 @@ public class ChiTietLichHen extends AppCompatActivity {
         trungtam.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
-        strUser ="0366850669";
+        DataTaiKhoan();
+        DataDiaChi();
         huyLichTiem();
 
         daTiem();
@@ -185,7 +193,7 @@ public class ChiTietLichHen extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             System.out.println("Xuất id coi thử key: " + key);
-                            LichSuTiemChung ls = new LichSuTiemChung(Integer.parseInt(id), strUser, tenvx.getText().toString(), 1, ngaytiem.getText().toString(), phongbenh.getText().toString(), strNoiTiem);
+                            LichSuTiemChung ls = new LichSuTiemChung(Integer.parseInt(id), LaySDT.getUser(), tenvx.getText().toString(), 1, ngaytiem.getText().toString(), phongbenh.getText().toString(), strNoiTiem);
                             myRefLichSuTC.child(keyLS).setValue(ls, new DatabaseReference.CompletionListener() {
 
                                 @Override
@@ -285,6 +293,56 @@ public class ChiTietLichHen extends AppCompatActivity {
         });
 
 
+    }
+    private void DataTaiKhoan() {
+        myRefTaiKhoan.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    String sdt = dataSnapshot.child("UserName").getValue(String.class);
+                    String ten = dataSnapshot.child("HoTen").getValue(String.class);
+                    String ngayS = dataSnapshot.child("NgaySinh").getValue(String.class);
+                    if (LaySDT.getUser().equals(sdt))
+                    {
+                        hten.setText(ten);
+                        ngaysinh.setText(ngayS);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public void DataDiaChi()
+    {
+        myRefDiaDiem.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String id = dataSnapshot.child("TenDD").getValue(String.class);
+                    String name = dataSnapshot.child("DiaChiCuThe").getValue(String.class);
+                    if(id.equals(strNoiTiem))
+                    {
+                        diadiemtiem.setText(name);
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i(TAG, "onCancelled: ");
+            }
+
+        });
     }
 
 

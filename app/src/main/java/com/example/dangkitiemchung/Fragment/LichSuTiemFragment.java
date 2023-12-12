@@ -109,7 +109,7 @@ public class LichSuTiemFragment extends Fragment {
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
                     LichSuTiemChung tl = new LichSuTiemChung(key, id, userName, tenVX, muiSo, ngayTiem, phongBenh, noiTiem);
-                    if(LaySDT.user.equals(userName)) {
+                    if(LaySDT.getUser().equals(userName)) {
                         newArrayList.add(tl);
                     }
 

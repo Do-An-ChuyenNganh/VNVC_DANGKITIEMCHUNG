@@ -109,7 +109,7 @@ public class DaHuyFragment extends Fragment {
                     String ngayDat = dataSnapshot.child("ngayDat").getValue(String.class);
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
-                    if(tinhTrang.equals("Đã hủy") && LaySDT.user.equals(userName)) {
+                    if(tinhTrang.equals("Đã hủy") && LaySDT.getUser().equals(userName)) {
                         LichTiem tl = new LichTiem(key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }

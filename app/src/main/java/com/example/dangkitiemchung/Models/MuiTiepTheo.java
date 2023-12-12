@@ -1,6 +1,7 @@
 package com.example.dangkitiemchung.Models;
 
 public class MuiTiepTheo {
+
     private int id;
     private String UserName;
     private String TenVX;

@@ -1,14 +1,18 @@
 package com.example.dangkitiemchung;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dangkitiemchung.Models.LaySDT;
+import com.example.dangkitiemchung.Models.TrungTamTiem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,10 +37,11 @@ public class ChiTietDaHuy extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_da_huy);
         addControls();
         truyenDuLieu();
-        diadiemtiem.setText(strNoiTiem);
+        trungtam.setText(strNoiTiem);
         ngaytiem.setText(strNgaytiem);
         Data();
-//        DataTaiKhoan();
+        DataTaiKhoan();
+        DataDiaChi();
     }
     public void truyenDuLieu()
     {
@@ -94,16 +99,14 @@ public class ChiTietDaHuy extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    Integer idVX = dataSnapshot.child("id_VX").getValue(Integer.class);
-                    System.out.println("Xuất id coi thử"+ idVX +"này id truyền "+ id);
-                    Integer giaVX = dataSnapshot.child("Gia").getValue(Integer.class);
-                    String ten = dataSnapshot.child("TenVX").getValue(String.class);
-                    String phongbenhVX = dataSnapshot.child("PhongBenh").getValue(String.class);
-                    if (1 == Integer.parseInt(id))
+                    String sdt = dataSnapshot.child("UserName").getValue(String.class);
+                    String ten = dataSnapshot.child("HoTen").getValue(String.class);
+                    String ngayS = dataSnapshot.child("NgaySinh").getValue(String.class);
+                    if (LaySDT.getUser().equals(sdt))
                         {
-                            tenvx.setText(ten);
-                            phongbenh.setText(phongbenhVX);
-                            gia.setText(String.valueOf(giaVX));
+                            hten.setText(ten);
+                            ngaysinh.setText(ngayS);
+
                         }
 
                 }
@@ -113,6 +116,31 @@ public class ChiTietDaHuy extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+    }
+    public void DataDiaChi()
+    {
+        myRefDiaDiem.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String id = dataSnapshot.child("TenDD").getValue(String.class);
+                    String name = dataSnapshot.child("DiaChiCuThe").getValue(String.class);
+                    if(id.equals(strNoiTiem))
+                    {
+                        diadiemtiem.setText(name);
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i(TAG, "onCancelled: ");
+            }
+
         });
     }
 }
