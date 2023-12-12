@@ -183,29 +183,6 @@
                     android:textSize="10dp"
                     tools:ignore="TextSizeCheck" />
 
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Tác dụng không mong muốn"
-                    android:textColor="@color/black"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    tools:ignore="TextSizeCheck,TextSizeCheck" />
-
-                <TextView
-                    android:id="@+id/tv_tacdungkhmm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
-                    android:text="Phản ứng tại chỗ tiêm: Đau, sưng, nổi ban đỏ, chai cứng, ngứa, bầm tím, tăng nhạy cảm tại chỗ tiêm. Các phản ứng toàn thân khác: Sốt, nhức đầu, mệt mỏi, chóng mặt, buồn nôn."
-                    android:textSize="10dp"
-                    tools:ignore="TextSizeCheck" />
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
