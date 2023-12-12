@@ -38,6 +38,7 @@ FirebaseAuth mAuth;
 private TextView[] editTexts;
 private boolean clearedLastEditText = false;
 private AlertDialog alertDialog;
+String  flag="0";
 private Handler handler = new Handler();
 private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     public static  final String TAG= EnterOTPActivity.class.getName();
@@ -53,14 +54,22 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         inputOTP();
 
         mAuth = FirebaseAuth.getInstance();
-
-
         txt_sendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String str =  getTextOTP();
-                onClickSenOTP(str);
-              //  showAlertDialog();
+                System.out.println("flag có null hay không" + flag);
+                if(flag != null) {
+                    if (mPhoneNumber.startsWith("+84")) {
+                        mPhoneNumber = "0" + mPhoneNumber.substring(3);
+                        System.out.println("sdt: ***************" + mPhoneNumber);
+                    }
+                    goToSetPassWord(mPhoneNumber);
+                }
+                else{
+                    onClickSenOTP(str);
+                }
+               // showAlertDialog();
             }
         });
 
@@ -69,7 +78,6 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
             public void onClick(View view) {
                 getTextOTP();
                 onClickSenOTPAgain();
-
             }
         });
 
@@ -216,7 +224,9 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
 
             mPhoneNumber=getIntent().getStringExtra("phone_number");
             mVerificationId=getIntent().getStringExtra("verification_id");
-//        System.out.println( "verification_Id" + mVerificationId);
+            flag= getIntent().getStringExtra("flag");
+
+//          System.out.println( "verification_Id" + mVerificationId);
     }
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
@@ -246,10 +256,15 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     public void goToRegisterPersonalProfileActivity(String phoneNumber){
         Intent intent = new Intent(EnterOTPActivity.this, RegisterPersonalProfileActivity.class);
         intent.putExtra("phone_number",phoneNumber);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-
+    public void goToSetPassWord(String phoneNumber){
+        Intent intent = new Intent(EnterOTPActivity.this, SetPasswordActivity.class);
+        intent.putExtra("phone_number",phoneNumber);
+        startActivity(intent);
+    }
 
     //--
 }
