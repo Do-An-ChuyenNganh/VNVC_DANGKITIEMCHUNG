@@ -41,10 +41,9 @@ public class LoadMuiTiepTheoAdapter extends RecyclerView.Adapter<LoadMuiTiepTheo
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietMuiTiepTheo.class);
-                intent.putExtra("ten", ""+l.getTenVX());
-                intent.putExtra("phongbenh", ""+l.getPhongBenh());
-                intent.putExtra("ngaytiem", ""+l.getNgayTiem());
+                intent.putExtra("id", ""+l.getId());
                 intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
                 view.getContext().startActivity(intent);
             }
         });
@@ -53,10 +52,9 @@ public class LoadMuiTiepTheoAdapter extends RecyclerView.Adapter<LoadMuiTiepTheo
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(), ChiTietMuiTiepTheo.class);
-                intent.putExtra("ten", ""+l.getTenVX());
-                intent.putExtra("phongbenh", ""+l.getPhongBenh());
-                intent.putExtra("ngaytiem", ""+l.getNgayTiem());
+                intent.putExtra("id", ""+l.getId());
                 intent.putExtra("user", ""+l.getUserName());
+                intent.putExtra("ngaytiem",""+l.getNgayTiem());
                 view.getContext().startActivity(intent);
             }
         });

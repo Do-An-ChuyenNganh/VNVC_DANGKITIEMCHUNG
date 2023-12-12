@@ -110,7 +110,7 @@ public class DaLenLichFragment extends Fragment {
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     String noiTiem = dataSnapshot.child("noiTiem").getValue(String.class);
                     System.out.println("Key of the child with userId "  + key);
-                    if(tinhTrang.equals("Đã lên lịch")&& LaySDT.user.equals(userName)) {
+                    if(tinhTrang.equals("Đã lên lịch")&& LaySDT.getUser().equals(userName)) {
                         LichTiem tl = new LichTiem( key,id, userName, tenVX, tinhTrang, ngayDat, ngayTiem, noiTiem);
                         newArrayList.add(tl);
                     }

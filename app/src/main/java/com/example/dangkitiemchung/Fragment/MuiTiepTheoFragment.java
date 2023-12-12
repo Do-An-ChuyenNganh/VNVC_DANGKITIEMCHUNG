@@ -105,7 +105,7 @@ public class MuiTiepTheoFragment extends Fragment {
                     String phongBenh = dataSnapshot.child("phongBenh").getValue(String.class);
                     String ngayTiem = dataSnapshot.child("ngayTiem").getValue(String.class);
                     MuiTiepTheo tl = new MuiTiepTheo( id, userName, tenVX, muiSo, ngayTiem, phongBenh);
-                    if(LaySDT.user.equals(userName)) {
+                    if(LaySDT.getUser().equals(userName)) {
                         newArrayList.add(tl);
                     }
 
