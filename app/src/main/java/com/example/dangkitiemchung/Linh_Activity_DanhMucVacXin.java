@@ -316,9 +316,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     private void DuyetGH(ArrayList<GioHang> list)
     {
-            Intent intent = getIntent();
-            String username = intent.getStringExtra("sdt");
-            System.out.println("USER trong duyetGH: " + username);
+//            Intent intent = getIntent();
+//            String username = intent.getStringExtra("sdt");
+            System.out.println("USER trong duyetGH: " + user);
             //LinhDMVXAdapter adapter_us = new LinhDMVXAdapter();
             //adapter_us.setUser(username);
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -351,7 +351,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                             {
 
 
-                                if (username.equalsIgnoreCase(item.getUsername()))
+                                if (user.equalsIgnoreCase(item.getUsername()))
                                 {
                                     newArrayList.add(tl);
                                 }
