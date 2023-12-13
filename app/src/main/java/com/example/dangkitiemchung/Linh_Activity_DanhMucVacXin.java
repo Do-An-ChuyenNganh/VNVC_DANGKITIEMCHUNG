@@ -68,6 +68,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
     private ImageView giohang, back;
     private int clickCount = 0;
     private String user = "0343080814";
+    private String user2 = "";
 
 
 
@@ -81,6 +82,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra("sdt");
         System.out.println("USER NÈ: " + user);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -161,7 +163,18 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                //intent.setClass(getApplicationContext(), MenuMainActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), MenuMainActivity.class);
+                intent.putExtra("phone_number",user);
+                startActivity(intent);
+            }
+        });
     }
 
     public void searchList(String text)
@@ -622,18 +635,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-                //intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                intent.putExtra("phone_number",user);
-                startActivity(intent);
-            }
-        });
 
         // Cua mai mai
         btnDK.setOnClickListener(new View.OnClickListener() {

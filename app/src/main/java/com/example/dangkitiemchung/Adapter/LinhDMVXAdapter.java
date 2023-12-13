@@ -153,6 +153,7 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("id", ""+item.getId_vx());
+                intent.putExtra("sdt", user);
                 intent.setClass(v.getContext(), Linh_ThongTinVX_.class);
                 v.getContext().startActivity(intent);
             }

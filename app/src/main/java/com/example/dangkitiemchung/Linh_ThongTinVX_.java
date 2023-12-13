@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class Linh_ThongTinVX_ extends AppCompatActivity {
     ImageView image_VX;
     TextView tv_Tenvx, tv_sl, tv_phongBenh, tv_nguonGoc, tv_moTa, tv_gia, tv_chongcd, tv_baoquan, tv_pdt_m1, tv_pdt_m2, tv_pdt_m3;
-    String id_vx;
+    String id_vx, user;
     ImageView left_ic;
 
     private ArrayList<VacXin> newArrayList = new ArrayList<>();
@@ -51,13 +51,14 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
         addControls();
         Intent intent = getIntent();
         id_vx = intent.getStringExtra("id");
-
+        user = intent.getStringExtra("sdt");
         getData();
         left_ic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(v.getContext(), Linh_Activity_DanhMucVacXin.class);
+                intent.putExtra("sdt", user);
                 v.getContext().startActivity(intent);
             }
         });
