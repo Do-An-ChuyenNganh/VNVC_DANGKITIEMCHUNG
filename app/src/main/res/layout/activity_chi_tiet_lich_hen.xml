@@ -312,103 +312,107 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white">
+                android:layout_height="280dp"
+                android:background="@color/white"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView39"
                     android:layout_width="match_parent"
-                    android:fontFamily="sans-serif-light"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
 
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="Tên vaccine" />
+
                 <TextView
                     android:id="@+id/tenvx"
-                    android:layout_marginTop="5dp"
-                    android:textSize="14dp"
-                    android:textColor="#223147"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-light"
+
                     android:text="VACCINE PHÒNG UNG THƯ CỔ TỬ CUNG VÀ SÙI MÀO GÀ GARDASIL 9"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"/>
+                    android:textColor="#223147"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/ngancach7"
                     android:layout_width="match_parent"
                     android:layout_height="0.70dp"
-                    android:background="#4D4A4A"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="13dp"
+                    android:background="#4D4A4A" />
 
                 <TextView
                     android:id="@+id/textView40"
                     android:layout_width="match_parent"
-                    android:fontFamily="sans-serif-light"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
 
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="Phòng bệnh"/>
+                    android:fontFamily="sans-serif-light"
+                    android:text="Phòng bệnh" />
+
                 <TextView
                     android:id="@+id/phongbenh"
-                    android:layout_marginTop="5dp"
-                    android:textSize="14dp"
-                    android:textColor="#223147"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-light"
+
                     android:text="Ung thư cổ tử cung, âm hộ, âm đạo, các tổn thương tiền ung thư và loạn sản, mụn cóc sinh dục và bệnh lý do nhiễm virus HPV"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"/>
+                    android:textColor="#223147"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/ngancach9"
                     android:layout_width="match_parent"
                     android:layout_height="0.70dp"
-                    android:background="#4D4A4A"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="13dp"
+                    android:background="#4D4A4A" />
+
                 <TextView
                     android:id="@+id/textView78"
                     android:layout_width="match_parent"
-                    android:fontFamily="sans-serif-light"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="Giá"/>
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Giá" />
+
                 <TextView
                     android:id="@+id/gia"
-                    android:layout_marginTop="5dp"
-                    android:textSize="14dp"
-                    android:textColor="#223147"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-light"
+
                     android:text="Ung thư cổ tử cung, âm hộ, âm đạo, các tổn thương tiền ung thư và loạn sản, mụn cóc sinh dục và bệnh lý do nhiễm virus HPV"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"/>
+                    android:textColor="#223147"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/ngancach12"
                     android:layout_width="match_parent"
                     android:layout_height="0.70dp"
-                    android:background="#4D4A4A"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="13dp"
+                    android:background="#4D4A4A" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -424,29 +428,35 @@
             android:layout_width="match_parent"
             android:background="#D6E3F6"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
             android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content">
+
 
                 <Button
                     android:id="@+id/btnhuy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginEnd="20dp"
                     android:backgroundTint="#575C63"
                     android:text="HỦY"
                     android:textColor="@color/white"
-                    app:layout_constraintEnd_toStartOf="@+id/btndatiem" />
-
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btndatiem"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btndatiem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-
+                    android:textSize="13dp"
                     android:backgroundTint="#0863DE"
+                    android:layout_marginEnd="10dp"
                     android:text="Đã tiêm"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent" />
