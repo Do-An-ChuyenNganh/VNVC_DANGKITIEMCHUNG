@@ -367,26 +367,30 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button_themgh"
                 android:drawableLeft="@drawable/round_filter_alt_24"
+                android:paddingLeft="170dp"
                 android:gravity="center"
-                android:paddingLeft="30dp"
                 android:textAllCaps="false"
-                android:text="Lọc"
-                android:textColor="@color/white" />
+                android:text="Lọc                                                "
+                android:textColor="@color/white">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_xoaloc"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/blue"
-                android:text="Xóa lọc"
-                android:textAllCaps="false"
-                android:background="@drawable/shape_button"
 
-                >
+
             </androidx.appcompat.widget.AppCompatButton>
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btn_xoaloc"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                android:textColor="@color/blue"-->
+<!--                android:text="Xóa lọc"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:background="@drawable/shape_button"-->
+
+<!--                >-->
+<!--            </androidx.appcompat.widget.AppCompatButton>-->
 
 
         </LinearLayout>

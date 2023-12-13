@@ -38,7 +38,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -56,9 +56,9 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:background="@color/white">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -66,8 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-
-            </LinearLayout>
+            </RelativeLayout>
 
 
 
@@ -77,11 +76,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginBottom="5dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:layout_below="@id/khung_gia"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -95,7 +97,6 @@
                 android:gravity="center"
                 android:text="Đăng ký mũi tiêm"
                 android:textColor="@color/white" />
-
 
 
         </LinearLayout>
