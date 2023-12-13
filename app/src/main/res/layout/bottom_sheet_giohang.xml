@@ -65,7 +65,6 @@
                     android:id="@+id/rec_dmvx_dachon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
             </RelativeLayout>
 
 
