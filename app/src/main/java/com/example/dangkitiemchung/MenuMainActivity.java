@@ -56,7 +56,6 @@ public class MenuMainActivity extends AppCompatActivity {
         chuyenLichSu();
         chuyenDMVX();
 
-
         //
         chuyenCapNhatThongTin();
 
@@ -75,7 +74,7 @@ public class MenuMainActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
                     mainIntent.putExtra("phone_number",mPhoneNumber);
                     startActivity(mainIntent);
-                   // finish();
+                    finish();
                 }
             });
         }

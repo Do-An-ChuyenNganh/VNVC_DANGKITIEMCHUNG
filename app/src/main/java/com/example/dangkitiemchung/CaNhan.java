@@ -62,6 +62,9 @@ public class CaNhan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("có click");
+                Intent mainIntent = new Intent(CaNhan.this, MenuMainActivity.class);
+                mainIntent.putExtra("phone_number",mPhoneNumber);
+                startActivity(mainIntent);
                 finish();
             }
         });
