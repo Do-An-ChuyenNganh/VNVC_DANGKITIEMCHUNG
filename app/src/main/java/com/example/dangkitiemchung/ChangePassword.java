@@ -46,15 +46,25 @@ public class ChangePassword extends AppCompatActivity {
       btn_PressContinue.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              changePassword(mPhoneNumber);
+              String newPassword="";
+              newPassword=edt_ReEnterPassword.getText().toString().trim();
+              String oldPassword="";
+              oldPassword=edt_enterPassword.getText().toString().trim();
+              System.out.println("Mat khau moi la: +" + edt_ReEnterPassword);
+
+
+                  changePassword(mPhoneNumber,newPassword, oldPassword );
+
+
           }
       });
 
 
 
     }
-    public void changePassword( String userNameToFind)
+    public void changePassword( String userNameToFind, String newPassword, String oldPassword)
     {
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -62,10 +72,25 @@ public class ChangePassword extends AppCompatActivity {
                 for (DataSnapshot taiKhoanSnapshot : dataSnapshot.child("TaiKhoan").getChildren()) {
                     String currentUserName = taiKhoanSnapshot.child("UserName").getValue(String.class);
                     if (userNameToFind.equals(currentUserName)) {
-                        String password = taiKhoanSnapshot.child("PassWord").getValue(String.class);
-                        taiKhoanSnapshot.child("PassWord").getRef().setValue("matkhaumoi");
-                        Toast.makeText(getApplicationContext(), "Đã cập nhật mật khẩu mới cho " + password, Toast.LENGTH_SHORT).show();
-                        break;
+                        String passwordKT = taiKhoanSnapshot.child("PassWord").getValue(String.class);
+                        if(!passwordKT.trim().equals(oldPassword))
+                        {
+                            Toast.makeText(getApplicationContext(), "Mật khẩu cũ không chính xác", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        else {
+                            if(newPassword.length()<6){
+                                Toast.makeText(getApplicationContext(), "Mật khẩu ít nhất 6 kí tự", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            else{
+                                taiKhoanSnapshot.child("PassWord").getRef().setValue(newPassword);
+                                Toast.makeText(getApplicationContext(), "Cập nhật mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                finish();
+                                break;
+                            }
+
+                        }
                     }
                 }
             }

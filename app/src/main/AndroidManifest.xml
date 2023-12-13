@@ -63,6 +63,9 @@
         <activity
             android:name=".PersonalProfileActivity"
             android:exported="false" />
+            <activity
+                android:name=".ChangePassword"
+                android:exported="false" />
             
         <activity
             android:name=".SetPasswordActivity"

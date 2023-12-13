@@ -648,26 +648,29 @@ public class PersonalProfileActivity extends AppCompatActivity {
                     String address= taiKhoan.getDiaChi().getSoNha();
                     edt_address.setText(address);
 
-                    // Log.d("FirebaseQuery", "Email: " + taiKhoan.getPassWord());
-                    //+++++++++++++++++++++++++++++++++++++++++++++ lấy tỉnh/ thành phố
 
                     String province= taiKhoan.getDiaChi().getTinh();
                     PROVINCE = province;
                     ArrayAdapter<String> provinceAdapter = (ArrayAdapter<String>) spinner_city.getAdapter();
                     int indexItemProvince = -1;
-                    for (int i = 0; i < provinceAdapter.getCount(); i++) {
-                        String _province = provinceAdapter.getItem(i);
-                        String[] partProvince = _province.split(",");
-                        String str= partProvince[0].trim();
-                        if(str.equals(province) ){
-                            indexItemProvince=i;
-                            break;
+                    if(provinceAdapter!=null)
+                    {
+                        for (int i = 0; i < provinceAdapter.getCount(); i++) {
+                            String _province = provinceAdapter.getItem(i);
+                            String[] partProvince = _province.split(",");
+                            String str= partProvince[0].trim();
+                            if(str.equals(province) ){
+                                indexItemProvince=i;
+                                break;
+                            }
                         }
                     }
+
                     if(indexItemProvince!=-1)
                     {
                         spinner_city.setSelection(indexItemProvince);
                     }
+
                     //++++++++++++++++++++++++++++++++++++++++++++ lấy huyện
 
                     String dictrics= taiKhoan.getDiaChi().getHuyen();
@@ -683,6 +686,6 @@ public class PersonalProfileActivity extends AppCompatActivity {
             }
         });
 
-   return PROVINCE;
+        return PROVINCE;
     }
 }

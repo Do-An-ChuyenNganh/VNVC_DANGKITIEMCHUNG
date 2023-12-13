@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 public class CaNhan extends AppCompatActivity {
 
 
-    LinearLayout layout_dangxuat,layout_edit;
+    LinearLayout layout_dangxuat,layout_edit, layout_doimatkhau;
     ImageButton icon_back;
     String  mPhoneNumber;
     @Override
@@ -31,11 +31,19 @@ public class CaNhan extends AppCompatActivity {
         layout_dangxuat =(LinearLayout) findViewById(R.id.layout_dangxuat);
         icon_back= (ImageButton)findViewById(R.id.icon_back);
         layout_edit =(LinearLayout) findViewById(R.id.layout_edit);
-
+        layout_doimatkhau =(LinearLayout) findViewById(R.id.layout_doimatkhau);
         layout_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mainIntent = new Intent(CaNhan.this, PersonalProfileActivity.class);
+                mainIntent.putExtra("phone_number",mPhoneNumber);
+                startActivity(mainIntent);
+            }
+        });
+        layout_doimatkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(CaNhan.this, ChangePassword.class);
                 mainIntent.putExtra("phone_number",mPhoneNumber);
                 startActivity(mainIntent);
             }
@@ -49,6 +57,7 @@ public class CaNhan extends AppCompatActivity {
 
             }
         });
+
         icon_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
