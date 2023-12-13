@@ -5,25 +5,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:layout_width="match_parent">
+
     <androidx.cardview.widget.CardView
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="10dp"
-        app:cardBackgroundColor="@color/gray"
-        android:layout_marginTop="10dp">
+        android:layout_height="283dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="15dp">
+            android:layout_margin="15dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/khung_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+
                 android:orientation="horizontal">
 
                 <ImageView
@@ -31,6 +40,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="0"
+                    android:background="@color/white"
                     tools:srcCompat="@drawable/banner1" />
 
                 <TextView
@@ -40,37 +50,38 @@
                     android:layout_weight="1"
                     android:paddingLeft="10dp"
                     android:text="VẮC XIN PHÒNG UNG THƯ CỔ TỬ CUNG GARDASIL"
-                    android:textSize="20dp"
+                    android:textColor="#223147"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_phongbenh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phòng bệnh: Ung thư cổ tử cung, các tổn thương tiền ung thư và loạn sản, mụn cóc sinh dục và bệnh lý do nhiễm virus HPV"
-                android:textSize="15dp"
-                android:textStyle="italic"
                 android:layout_marginTop="10dp"
-                />
+                android:text="Phòng bệnh: Ung thư cổ tử cung, các tổn thương tiền ung thư và loạn sản, mụn cóc sinh dục và bệnh lý do nhiễm virus HPV"
+                android:textSize="13dp" />
+
             <TextView
                 android:id="@+id/tv_gia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2,950,000 VNĐ"
                 android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="2,950,000 VNĐ"
                 android:textColor="@color/blue"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:padding="5dp"
-                />
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:id="@+id/layout_btn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:weightSum="2"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_themgiohang"
@@ -81,22 +92,28 @@
                     android:background="@drawable/shape_button_themgh"
                     android:drawableLeft="@drawable/baseline_shopping_cart_24"
                     android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="5dp"
                     android:text="Thêm giỏ hàng"
-                    android:textColor="@color/white" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_muangay"
-                    android:gravity="center"
-                    android:layout_weight="1"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/blue"
-                    android:text="Mua ngay"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/shape_button"
+                    android:gravity="center"
+                    android:text="Mua ngay"
+                    android:textColor="@color/blue"
+                    android:textSize="14dp"
+                    android:textAllCaps="false"
 
-                    >
-                </androidx.appcompat.widget.AppCompatButton>
+                    ></androidx.appcompat.widget.AppCompatButton>
 
 
             </LinearLayout>

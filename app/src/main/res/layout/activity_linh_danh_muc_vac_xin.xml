@@ -20,10 +20,12 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
             android:layout_margin="10dp"
             android:background="@drawable/shape_searchview"
             android:textColor="@color/white"
+
             app:iconifiedByDefault="false"
             app:queryHint="Tìm kiếm theo tên vắc xin..." />
     </LinearLayout>
@@ -50,25 +52,30 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:background="@color/gray"
+            android:background="#F7F8FD"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_gia"
                 android:text="Giá"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <ImageView
                 android:id="@+id/img_gia"
-                android:src="@drawable/gia"
-                android:layout_marginTop="10dp"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignBottom="@+id/tv_gia"
+                android:layout_marginStart="30dp"
                 android:layout_marginLeft="45dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_toEndOf="@+id/tv_gia"
+                android:src="@drawable/gia" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_loc"
@@ -80,21 +87,26 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/shape_loc"
                 android:drawableLeft="@drawable/ic_loc"
+                android:paddingLeft="10dp"
                 android:text="Lọc"
-
-                android:textColor="@color/black" />
+                android:textAllCaps="false"
+                android:textColor="#F2F7FF" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_height="match_parent"
             android:layout_below="@id/khung_gia"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_dmvx"
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="match_parent" />
         </LinearLayout>
 
