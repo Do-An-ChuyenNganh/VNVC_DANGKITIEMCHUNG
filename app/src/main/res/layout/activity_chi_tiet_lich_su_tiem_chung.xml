@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1DFDF"
+    android:background="#F7F8FD"
     tools:context=".ChiTietLichSuTiemChung">
 
     <ScrollView
@@ -30,8 +30,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textColor="#223147"
+            android:textSize="14dp"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -54,8 +54,8 @@
             <TextView
                 android:id="@+id/hoten"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -67,10 +67,12 @@
             <TextView
                 android:id="@+id/ngancach1"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
               />
 
             <TextView
@@ -85,8 +87,8 @@
             <TextView
                 android:id="@+id/sdt"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -98,10 +100,12 @@
             <TextView
                 android:id="@+id/ngancach2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
 
             <TextView
@@ -116,8 +120,8 @@
             <TextView
                 android:id="@+id/ngaysinh"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -129,10 +133,12 @@
             <TextView
                 android:id="@+id/ngancach3"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
         </LinearLayout>
 
@@ -144,8 +150,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textColor="#223147"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -166,8 +172,8 @@
             <TextView
                 android:id="@+id/trungtamtiem"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -179,10 +185,12 @@
             <TextView
                 android:id="@+id/ngancach4"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
 
 
@@ -199,8 +207,8 @@
             <TextView
                 android:id="@+id/diachi"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -212,10 +220,12 @@
             <TextView
                 android:id="@+id/ngancach5"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
 
 
@@ -234,8 +244,8 @@
             <TextView
                 android:id="@+id/tiemngay"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -246,10 +256,12 @@
             <TextView
                 android:id="@+id/ngancach6"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
         </LinearLayout>
 
@@ -261,8 +273,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textColor="#223147"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -283,8 +295,8 @@
             <TextView
                 android:id="@+id/tenvx"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -295,10 +307,12 @@
             <TextView
                 android:id="@+id/ngancach7"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
 
             <TextView
@@ -313,8 +327,8 @@
             <TextView
                 android:id="@+id/phongbenh"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp"
-                android:textColor="#202020"
+                android:textColor="#223147"
+                android:textSize="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -325,11 +339,12 @@
             <TextView
                 android:id="@+id/ngancach8"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#8F8A8A"
+                android:layout_height="0.70dp"
+                android:background="#4D4A4A"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="center"
                 />
         </LinearLayout>
     </LinearLayout>
