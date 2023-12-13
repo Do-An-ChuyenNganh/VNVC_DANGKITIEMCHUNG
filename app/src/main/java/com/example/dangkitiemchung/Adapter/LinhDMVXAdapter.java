@@ -175,7 +175,7 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
                  if (trangthai == false)
                  {
                      //show messagebox
-                     buttonClickListener.onButtonClick("Vaccine đã có trong giỏ hàng");
+                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
                      flag = 2;
                      trangthai = true;
                  }
