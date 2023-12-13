@@ -19,8 +19,9 @@
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="10dp"
                 android:text="Lọc Vaccine"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textColor="#223147"
+
+                android:textSize="17dp" />
 
             <ImageView
                 android:id="@+id/imgv_dong_loc"
@@ -46,14 +47,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray">
+                android:background="#F7F8FD"
+                android:textColor="#223147">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Phòng bệnh"
-                    android:textSize="20dp"
+                    android:textColor="#223147"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -112,14 +115,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray">
+                android:background="#F7F8FD"
+             >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Xuất xứ"
-                    android:textSize="20dp"
+                    android:textSize="14dp"
+                    android:textColor="#223147"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -212,16 +217,19 @@
 
 
             <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray">
+                android:background="#F7F8FD">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Loại vaccine"
-                    android:textSize="20dp"
+                    android:textColor="#223147"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -265,14 +273,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray">
+                android:background="#F7F8FD">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Giá"
-                    android:textSize="20dp"
+                    android:textSize="14dp"
+                    android:textColor="#223147"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -347,6 +356,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -358,6 +368,8 @@
                 android:background="@drawable/shape_button_themgh"
                 android:drawableLeft="@drawable/round_filter_alt_24"
                 android:gravity="center"
+                android:paddingLeft="30dp"
+                android:textAllCaps="false"
                 android:text="Lọc"
                 android:textColor="@color/white" />
 
@@ -370,6 +382,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/blue"
                 android:text="Xóa lọc"
+                android:textAllCaps="false"
                 android:background="@drawable/shape_button"
 
                 >
