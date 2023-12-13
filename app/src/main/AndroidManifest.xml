@@ -77,12 +77,12 @@
             android:name=".Mai_LichSuTiemChung"
             android:exported="false"
             android:label="Lịch sử tiêm chủng"
-            android:parentActivityName=".MenuMainActivity" />
+            android:parentActivityName=".Linh_Activity_DanhMucVacXin" />
         <activity
             android:name=".Mai_LichTiemChung"
             android:exported="false"
             android:label="Lịch hẹn tiêm chủng"
-            android:parentActivityName=".MenuMainActivity" />
+            android:parentActivityName=".Linh_Activity_DanhMucVacXin" />
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
