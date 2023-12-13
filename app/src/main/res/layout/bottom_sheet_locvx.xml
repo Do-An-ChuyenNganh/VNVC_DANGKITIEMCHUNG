@@ -368,9 +368,9 @@
                 android:background="@drawable/shape_button_themgh"
                 android:drawableLeft="@drawable/round_filter_alt_24"
                 android:gravity="center"
-                android:paddingLeft="30dp"
+                android:paddingLeft="50dp"
                 android:textAllCaps="false"
-                android:text="Lọc"
+                android:text="Lọc                      "
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
