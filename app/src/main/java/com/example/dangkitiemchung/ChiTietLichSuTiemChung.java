@@ -82,7 +82,6 @@ public class ChiTietLichSuTiemChung extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -104,7 +103,6 @@ public class ChiTietLichSuTiemChung extends AppCompatActivity {
                         ngaysinh.setText(ngayS);
 
                     }
-
                 }
             }
 

@@ -40,7 +40,8 @@ public class MenuMainActivity extends AppCompatActivity {
     String  mPhoneNumber,mVerificationId;
     TextView txt_welcome;
     ImageView imgLichHen, imgLichSu, imgDMVX;
-    ImageButton icons_personal;
+    ImageButton icons_personal, img_lichhentiemchung, imgVacxin,imgdatmuaVaccine,
+            imgTraCuu,imgNhatKy,VacXinChoBan,tinTucVacXin,imgHoSo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,8 @@ public class MenuMainActivity extends AppCompatActivity {
         chuyenLichHen();
         chuyenLichSu();
         chuyenDMVX();
+        lichhen();
+        chuyenVacXin();
 
         //
         chuyenCapNhatThongTin();
@@ -65,8 +68,71 @@ public class MenuMainActivity extends AppCompatActivity {
         recyclerView_news.setAdapter(newsAdapter);
 
 
+
+
+
+        imgdatmuaVaccine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
+        imgNhatKy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
+        imgTraCuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
+        VacXinChoBan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
+        tinTucVacXin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
+        imgHoSo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChuaThietKeChucNang.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    public  void chuyenVacXin(){
+        imgVacxin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPhoneNumber = getIntent().getStringExtra("phone_number");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), Linh_Activity_DanhMucVacXin.class);
+                intent.putExtra("sdt", "" + mPhoneNumber);
+                startActivity(intent);
+            }
+        });
+    }
     public void chuyenCapNhatThongTin(){
             icons_personal.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,7 +167,32 @@ public class MenuMainActivity extends AppCompatActivity {
         imgLichHen = (ImageView) findViewById(R.id.imgLichHen);
         imgLichSu = (ImageView) findViewById(R.id.imageButton8);
         imgDMVX = findViewById(R.id.imageButton7);
+        img_lichhentiemchung = (ImageButton) findViewById(R.id.img_lichhentiemchung);
+        imgVacxin= (ImageButton) findViewById(R.id.imgVacxin);
+        imgdatmuaVaccine= (ImageButton) findViewById(R.id.imgdatmuaVaccine);
+        imgTraCuu= (ImageButton) findViewById(R.id.imgTraCuu);
+        imgNhatKy= (ImageButton) findViewById(R.id.imgNhatKy);
+        VacXinChoBan= (ImageButton) findViewById(R.id.VacXinChoBan);
+        tinTucVacXin= (ImageButton) findViewById(R.id.tinTucVacXin);
+        imgHoSo= (ImageButton) findViewById(R.id.imgHoSo);
+
     }
+
+
+    public void lichhen()
+    {
+        img_lichhentiemchung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPhoneNumber = getIntent().getStringExtra("phone_number");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), Mai_LichTiemChung.class);
+                intent.putExtra("sdt", ""+mPhoneNumber);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void chuyenLichHen()
     {
         imgLichHen.setOnClickListener(new View.OnClickListener() {

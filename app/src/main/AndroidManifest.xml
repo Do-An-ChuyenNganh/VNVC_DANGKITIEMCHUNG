@@ -13,21 +13,23 @@
         android:theme="@style/Theme.DangKiTiemChung"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-<!--        <activity-->
-<!--            android:name=".LayDiaChi"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".ChuaThietKeChucNang"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".LayDiaChi" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".testhieuung"
             android:exported="false" />
         <activity
             android:name=".CaNhan"
             android:exported="false" />
-         <activity
-         android:name=".DatLichTiemChung"
-         android:exported="true"
-         android:label="Đặt lịch tiêm chủng"
-         android:parentActivityName=".MenuMainActivity"/>
+        <activity
+            android:name=".DatLichTiemChung"
+            android:exported="true"
+            android:label="Đặt lịch tiêm chủng"
+            android:parentActivityName=".MenuMainActivity" />
         <activity
             android:name=".ChiTietDaHuy"
             android:exported="false"
@@ -63,16 +65,14 @@
         <activity
             android:name=".PersonalProfileActivity"
             android:exported="false" />
-            <activity
-                android:name=".ChangePassword"
-                android:exported="false" />
-            
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
         <activity
             android:name=".SetPasswordActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".VerifyPhoneNumberActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".VerifyPhoneNumberActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Mai_LichSuTiemChung"
             android:exported="false"
@@ -86,28 +86,30 @@
         <activity
             android:name=".RegisterPersonalProfileActivity"
             android:exported="false" />
-        <activity android:exported="true"
-         android:name=".Linh_Activity_DanhMucVacXin"/>
-
-        <activity android:name=".Linh_ThongTinVX_"
-            android:exported="false"/>
-
+        <activity
+            android:name=".Linh_Activity_DanhMucVacXin"
+            android:exported="true" />
+        <activity
+            android:name=".Linh_ThongTinVX_"
+            android:exported="false" />
         <activity
             android:name=".LayDiaChi"
             android:exported="true"
             android:label="Trung tâm tiêm chủng"
             android:parentActivityName=".MenuMainActivity">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-                <!--                    android:name=".Linh_Activity_DanhMucVacXin">-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+            <!-- android:name=".Linh_Activity_DanhMucVacXin"> -->
         </activity>
-        <activity android:exported="true"
-            android:name=".VerifyPhoneNumberActivity">
-        <intent-filter>
+        <activity
+            android:name=".VerifyPhoneNumberActivity"
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
