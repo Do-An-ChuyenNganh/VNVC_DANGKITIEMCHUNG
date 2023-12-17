@@ -257,8 +257,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 return Integer.compare(vacXin1.getGia(), vacXin2.getGia());
             }
         });
-        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
-
+        //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+            @Override
+            public void onButtonClick(String item) {
+                showMessageDialog(item);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -270,8 +275,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 return Integer.compare(vacXin2.getGia(), vacXin1.getGia());
             }
         });
-        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
-
+        //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+            @Override
+            public void onButtonClick(String item) {
+                showMessageDialog(item);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -422,6 +432,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                  //Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
+
                     adapter = new LinhDMVXAdapter(newArrayList);
                     adapter.notifyDataSetChanged();
                     String checkBoxText = checkBox.getText().toString();
