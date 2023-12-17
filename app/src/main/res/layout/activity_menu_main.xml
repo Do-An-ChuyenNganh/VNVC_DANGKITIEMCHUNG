@@ -125,7 +125,7 @@
 
                     <ImageButton
 
-                        android:id="@+id/imageButton5"
+                        android:id="@+id/imgdatmuaVaccine"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_row="0"
@@ -184,7 +184,7 @@
                         android:layout_column="0"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Đặt mua \n vắc xin"
+                        android:text="Đặt mua \n Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -195,7 +195,7 @@
                         android:layout_column="1"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Danh mục \n   vắc xin"
+                        android:text="Danh mục \n   Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -217,7 +217,7 @@
                         android:layout_column="3"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="10dp"
-                        android:text="   Lịch sử \n đặt vắc xin"
+                        android:text="   Lịch sử \nđặt Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -227,7 +227,7 @@
                         android:layout_height="60dp"
                         android:layout_row="2"
                         android:layout_column="0"
-
+                        android:id="@+id/imgTraCuu"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/custom_button"
@@ -240,13 +240,14 @@
                         android:layout_height="wrap_content"
                         android:layout_row="3"
                         android:layout_column="0"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Tra cứu \n điểm thường"
+                        android:text="    Tra cứu\nđiểm thường"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
                     <ImageButton
+                        android:id="@+id/imgNhatKy"
 
                         android:layout_width="60dp"
                         android:layout_height="60dp"
@@ -272,7 +273,7 @@
                         android:textSize="12dp" />
 
                     <ImageButton
-
+                        android:id="@+id/VacXinChoBan"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_row="2"
@@ -292,12 +293,12 @@
                         android:layout_column="2"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Vắc xin \n    cho bạn"
+                        android:text="    Vắc-xin \n    cho bạn"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
                     <ImageButton
-
+                        android:id="@+id/tinTucVacXin"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_row="2"
@@ -317,7 +318,7 @@
                         android:layout_column="3"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Tin tức \n    vắc xin"
+                        android:text="    Tin tức \n    Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -555,6 +556,7 @@
                 app:layout_row="1" />
 
             <ImageButton
+                android:id="@+id/img_lichhentiemchung"
                      app:layout_gravity="center"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -581,6 +583,7 @@
                 app:layout_row="1" />
 
             <ImageButton
+                android:id="@+id/imgVacxin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@color/white"
@@ -602,10 +605,12 @@
                 android:text="VẮC XIN"
                 app:layout_column="2"
                 android:gravity="center"
+                android:layout_marginLeft="2dp"
                 android:layout_marginRight="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_row="1" />
             <ImageButton
+                android:id="@+id/imgHoSo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@color/white"

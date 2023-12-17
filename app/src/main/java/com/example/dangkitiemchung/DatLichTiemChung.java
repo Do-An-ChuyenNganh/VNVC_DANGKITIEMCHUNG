@@ -268,5 +268,12 @@ public class DatLichTiemChung extends AppCompatActivity {
         recycler_view.setLayoutManager(mLayoutManager);
         recycler_view.setItemAnimator(new DefaultItemAnimator());
     }
+    @Override
+    public void onBackPressed() {
+        // Xử lý sự kiện khi người dùng nhấn nút "Back"
+
+        // Gọi super để giữ nguyên chức năng mặc định của nút "Back" (ví dụ: thoát khỏi Activity)
+        super.onBackPressed();
+    }
 
 }

@@ -160,12 +160,12 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), MenuMainActivity.class);
-                intent.putExtra("phone_number",user);
-                startActivity(intent);
-                //finish();
+//                intent.setClass(getApplicationContext(), MenuMainActivity.class);
+//                Intent intent = new Intent();
+//                intent.setClass(getApplicationContext(), MenuMainActivity.class);
+//                intent.putExtra("phone_number",user);
+//                startActivity(intent);
+                finish();
 
             }
         });
