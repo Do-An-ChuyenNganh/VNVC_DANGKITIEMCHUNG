@@ -114,7 +114,6 @@ public class ChiTietLichHen extends AppCompatActivity {
                             if(phacdo ==2)
                             {
                                 Mui2 = dataSnapshot.child("PhacDoTiem").child("Mui 2").getValue(Integer.class);
-
                             }
                             if(phacdo ==3)
                             {

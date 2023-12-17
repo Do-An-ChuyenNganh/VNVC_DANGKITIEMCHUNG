@@ -68,59 +68,59 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
 
 
 
-    public void layDT_PDT(int id_vx)
-    {
-        DatabaseReference vacXinRef = FirebaseDatabase.getInstance().getReference().child("VacXin");
-
-        // Bạn có thể sử dụng addListenerForSingleValueEvent để lấy dữ liệu một lần
-        vacXinRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Duyệt qua từng child của nút "VacXin"
-                    for (DataSnapshot vacXinSnapshot : dataSnapshot.getChildren()) {
-                        // Lấy giá trị của "PhacDoTiem" từ mỗi child
-                        String key = vacXinSnapshot.getKey();
-                        if (id_vx == Integer.parseInt(key))
-                        {
-                            DataSnapshot phacDoTiemSnapshot = vacXinSnapshot.child("PhacDoTiem");
-
-                            // Lấy giá trị của "Mui 1", "Mui 2", "Mui 3" từ "PhacDoTiem"
-                            Integer mui1 = phacDoTiemSnapshot.child("Mui 1").getValue(Integer.class);
-                            Integer mui2 = phacDoTiemSnapshot.child("Mui 2").getValue(Integer.class);
-                            Integer mui3 = phacDoTiemSnapshot.child("Mui 3").getValue(Integer.class);
-                            System.out.println("phac do tiem ne  "+ mui1 + " " + mui2 + " " + mui3);
-                            // Kiểm tra xem có giá trị hay không và sử dụng giá trị nếu cần
-                            if (mui1 != null) {
-                                if (mui1 == 0)
-                                {
-                                    tv_pdt_m1.setText(" + Mui 1: Lần đầu tiên tiêm trong độ tuổi ");
-                                }
-
-                            }
-
-                            if (mui2 != null) {
-                                tv_pdt_m2.setText(" + Mui 2: cách mũi 1 " + mui2 +" tháng");
-                            }
-
-                            if (mui3 != null) {
-                                tv_pdt_m3.setText(" + Mui 3: cách mũi 2 " + mui3 +" tháng");
-                            }
-                        }
-
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Xử lý lỗi nếu có
-                Log.e("Firebase", "Error: " + databaseError.getMessage());
-            }
-        });
-
-    }
+//    public void layDT_PDT(int id_vx)
+//    {
+//        DatabaseReference vacXinRef = FirebaseDatabase.getInstance().getReference().child("VacXin");
+//
+//        // Bạn có thể sử dụng addListenerForSingleValueEvent để lấy dữ liệu một lần
+//        vacXinRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    // Duyệt qua từng child của nút "VacXin"
+//                    for (DataSnapshot vacXinSnapshot : dataSnapshot.getChildren()) {
+//                        // Lấy giá trị của "PhacDoTiem" từ mỗi child
+//                        String key = vacXinSnapshot.getKey();
+//                        if (id_vx == Integer.parseInt(key))
+//                        {
+//                            DataSnapshot phacDoTiemSnapshot = vacXinSnapshot.child("PhacDoTiem");
+//
+//                            // Lấy giá trị của "Mui 1", "Mui 2", "Mui 3" từ "PhacDoTiem"
+//                            Integer mui1 = phacDoTiemSnapshot.child("Mui 1").getValue(Integer.class);
+//                            Integer mui2 = phacDoTiemSnapshot.child("Mui 2").getValue(Integer.class);
+//                            Integer mui3 = phacDoTiemSnapshot.child("Mui 3").getValue(Integer.class);
+//                            System.out.println("phac do tiem ne  "+ mui1 + " " + mui2 + " " + mui3);
+//                            // Kiểm tra xem có giá trị hay không và sử dụng giá trị nếu cần
+//                            if (mui1 != null) {
+//                                if (mui1 == 0)
+//                                {
+//                                    tv_pdt_m1.setText(" + Mui 1: Lần đầu tiên tiêm trong độ tuổi ");
+//                                }
+//
+//                            }
+//
+//                            if (mui2 != null) {
+//                                tv_pdt_m2.setText(" + Mui 2: cách mũi 1 " + mui2 +" tháng");
+//                            }
+//
+//                            if (mui3 != null) {
+//                                tv_pdt_m3.setText(" + Mui 3: cách mũi 2 " + mui3 +" tháng");
+//                            }
+//                        }
+//
+//
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Xử lý lỗi nếu có
+//                Log.e("Firebase", "Error: " + databaseError.getMessage());
+//            }
+//        });
+//
+//    }
 
     private void getData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
