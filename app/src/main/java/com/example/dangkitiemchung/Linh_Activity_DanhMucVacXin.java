@@ -190,6 +190,12 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         }
         else
         {
+//            adapter = new LinhDMVXAdapter(searchVX, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+//                @Override
+//                public void onButtonClick(String item) {
+//                    showMessageDialog(item);
+//                }
+//            });
             adapter.setSearchList(searchVX);
         }
     }
@@ -257,7 +263,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 return Integer.compare(vacXin1.getGia(), vacXin2.getGia());
             }
         });
-        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+            @Override
+            public void onButtonClick(String item) {
+                showMessageDialog(item);
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -270,7 +282,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 return Integer.compare(vacXin2.getGia(), vacXin1.getGia());
             }
         });
-        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
+        LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+            @Override
+            public void onButtonClick(String item) {
+                showMessageDialog(item);
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -316,9 +334,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     private void DuyetGH(ArrayList<GioHang> list)
     {
-            Intent intent = getIntent();
-            String username = intent.getStringExtra("sdt");
-            System.out.println("USER trong duyetGH: " + username);
+//            Intent intent = getIntent();
+//            String username = intent.getStringExtra("sdt");
+            System.out.println("USER trong duyetGH: " + user);
             //LinhDMVXAdapter adapter_us = new LinhDMVXAdapter();
             //adapter_us.setUser(username);
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -350,7 +368,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                             {
 
 
-                                if (username.equalsIgnoreCase(item.getUsername()))
+                                if (user.equalsIgnoreCase(item.getUsername()))
                                 {
                                     newArrayList.add(tl);
                                 }
@@ -422,7 +440,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                  //Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
-                    adapter = new LinhDMVXAdapter(newArrayList);
+                    adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+                        @Override
+                        public void onButtonClick(String item) {
+                            showMessageDialog(item);
+
+                        }
+                    });
                     adapter.notifyDataSetChanged();
                     String checkBoxText = checkBox.getText().toString();
                     if (!listcheck_pb.contains(checkBoxText)) {
@@ -438,7 +462,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 // Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
-                adapter = new LinhDMVXAdapter(newArrayList);
+                adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+                    @Override
+                    public void onButtonClick(String item) {
+                        showMessageDialog(item);
+
+                    }
+                });
                 adapter.notifyDataSetChanged();
                 String checkBoxText = checkBox.getText().toString();
                 if (!listcheck_xx.contains(checkBoxText)) {
@@ -452,7 +482,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 // Lấy text của CheckBox và xử lý theo nhu cầu của bạn (ở đây, in ra Log)
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
-                adapter = new LinhDMVXAdapter(newArrayList);
+                adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
+                    @Override
+                    public void onButtonClick(String item) {
+                        showMessageDialog(item);
+
+                    }
+                });
                 adapter.notifyDataSetChanged();
                 String checkBoxText = checkBox.getText().toString();
                 if (!listcheck_gia.contains(checkBoxText)) {
@@ -519,6 +555,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             public void onClick(View view) {
                 dialog.dismiss();
                 //adapter = new LinhDMVXAdapter(newArrayList, user);
+
                 adapter.notifyDataSetChanged();
                 LayDL();
             }
@@ -588,6 +625,13 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                     }
 
                 }
+                adapter = new LinhDMVXAdapter(newArrayList, Linh_Activity_DanhMucVacXin.this, user, new LinhDMVXAdapter.ButtonClickListener() {
+                    @Override
+                    public void onButtonClick(String item) {
+                        showMessageDialog(item);
+
+                    }
+                });
                 recyclerView.setAdapter(adapter);
 
             }
