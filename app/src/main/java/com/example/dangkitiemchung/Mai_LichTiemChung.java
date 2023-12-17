@@ -70,4 +70,11 @@ public class Mai_LichTiemChung extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_container,fragment);
         fragmentTransaction.commit();
     }
+    @Override
+    public void onBackPressed() {
+        // Xử lý sự kiện khi người dùng nhấn nút "Back"
+
+        // Gọi super để giữ nguyên chức năng mặc định của nút "Back" (ví dụ: thoát khỏi Activity)
+        super.onBackPressed();
+    }
 }

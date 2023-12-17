@@ -151,7 +151,7 @@
                         app:srcCompat="@drawable/icons_menu" />
 
                     <ImageButton
-                        android:id="@+id/img_lichsutiemchung"
+                        android:id="@+id/imageButton8"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_row="0"
