@@ -36,9 +36,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.threeten.bp.LocalDate;
+
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class DatLichTiemChung extends AppCompatActivity {
 
@@ -194,20 +200,31 @@ public class DatLichTiemChung extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar selectedCalendar = Calendar.getInstance();
                         selectedCalendar.set(year, monthOfYear, dayOfMonth);
+                        LocalDate selectedDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth);
 
-                        // Kiểm tra xem ngày đã chọn có phải là ngày hiện tại không
-                        if (selectedCalendar.get(Calendar.YEAR) == currentYear
-                                && selectedCalendar.get(Calendar.MONTH) == currentMonth
-                                && selectedCalendar.get(Calendar.DAY_OF_MONTH) == currentDay) {
-                            // Hiển thị thông báo hoặc thực hiện các hành động khác
-                            Toast.makeText(DatLichTiemChung.this, "Không thể chọn ngày hiện tại", Toast.LENGTH_SHORT).show();
+                        // Lấy ngày hiện tại, thiết lập giờ, phút, giây thành 0
+                        LocalDate currentDate = LocalDate.now().withDayOfMonth(1); // Ngày hiện tại, đặt ngày là 1 để không ảnh hưởng đến tháng sau
+                        // Thêm 2 tháng vào ngày hiện tại
+                        LocalDate maxAllowedDate = currentDate.plusMonths(2);
+
+                        // Kiểm tra ngày đã chọn có nằm trong khoảng cho phép hay không
+                        if (selectedDate.isBefore(currentDate) || selectedDate.isAfter(maxAllowedDate)) {
+
+                            Toast.makeText(DatLichTiemChung.this, "Ngày không hợp lệ. Vui lòng chọn từ ngày hiện tại đến 2 tháng sau.", Toast.LENGTH_SHORT).show();
                         } else {
-                            String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                            NgayTiem.setText(selectedDate);
-
+                            System.out.println("Dô tới đây thì nói chuyện với tao");
+                            // Handle the case where the selected date is allowed
+                            if (selectedCalendar.get(Calendar.YEAR) == currentYear
+                                    && selectedCalendar.get(Calendar.MONTH) == currentMonth
+                                    && selectedCalendar.get(Calendar.DAY_OF_MONTH) == currentDay) {
+                                // Hiển thị thông báo hoặc thực hiện các hành động khác
+                                Toast.makeText(DatLichTiemChung.this, "Không thể chọn ngày hiện tại", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                String formattedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                                NgayTiem.setText(formattedDate);
+                            }
                         }
-
-
 
                     }
                 },

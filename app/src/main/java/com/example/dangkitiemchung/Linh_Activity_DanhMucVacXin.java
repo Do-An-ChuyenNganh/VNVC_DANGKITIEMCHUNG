@@ -342,7 +342,6 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                         Integer slton = dataSnapshot.child("SLTon").getValue(Integer.class);
                         String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
                         int id_VX = dataSnapshot.child("id_VX").getValue(Integer.class);
-
                         VacXin tl = new VacXin(id_VX, hinh,gia , slton, baoquan, chongcd, mota, nguongoc, phongBenh, tenVX);
                         for (GioHang item: list)
                         {
