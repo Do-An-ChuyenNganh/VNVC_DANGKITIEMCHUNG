@@ -53,17 +53,19 @@ public class DatLichTiemChung extends AppCompatActivity {
     RecyclerView recycler_view;
     String strTenDD, strDiaChiCuThe, strUserName;
     Button btn_DatLich;
-    TextView DiaChi, NgayTiem;
+    TextView DiaChi, NgayTiem, Ten;
     TextView btnDChi, btnLich;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRefLichSuDat = firebaseDatabase.getReference("LichSuDat");
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
+    DatabaseReference myRefTaiKhoan = firebaseDatabase.getReference("TaiKhoan");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dat_lich_tiem_chung);
         addControls();
+        DataTaiKhoan();
         recycler_view = findViewById(R.id.rec_vaccine);
         layoutRecyclerView();
         adapter.notifyDataSetChanged();
@@ -131,6 +133,31 @@ public class DatLichTiemChung extends AppCompatActivity {
         DiaChi = (TextView)findViewById(R.id.trungtam);
         NgayTiem= (TextView)findViewById(R.id.ngaytiem);
         btnLich = (TextView)findViewById(R.id.iconlich);
+        Ten = (TextView) findViewById(R.id.textView45);
+    }
+    private void DataTaiKhoan() {
+        myRefTaiKhoan.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    String sdt = dataSnapshot.child("UserName").getValue(String.class);
+                    String ten = dataSnapshot.child("HoTen").getValue(String.class);
+                    String ngayS = dataSnapshot.child("NgaySinh").getValue(String.class);
+                    if (LaySDT.getUser().equals(sdt))
+                    {
+                        Ten.setText(ten);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     public void datLichTiem()
     {
