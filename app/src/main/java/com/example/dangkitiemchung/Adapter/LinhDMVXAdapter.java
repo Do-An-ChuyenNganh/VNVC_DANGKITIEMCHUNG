@@ -158,31 +158,31 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
                 v.getContext().startActivity(intent);
             }
         });
-         holder.btn_themgh.setOnClickListener(new View.OnClickListener() {
+        holder.btn_themgh.setOnClickListener(new View.OnClickListener() {
 
-             @SuppressLint("SetTextI18n")
-             @Override
-             public void onClick(View view)
-             {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view)
+            {
 
-                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                 DatabaseReference databaseReference = firebaseDatabase.getReference().child("GioHang");
-                 Integer id_Vx = item.getId_vx();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference().child("GioHang");
+                Integer id_Vx = item.getId_vx();
 
-                 System.out.println("USER TRUYỀN QUA NE: " + user);
+                System.out.println("USER TRUYỀN QUA NE: " + user);
 
-                 KT_VXGH(id_Vx, user);
-                 if (trangthai == false)
-                 {
-                     //show messagebox
-                     buttonClickListener.onButtonClick("Vaccine đã thêm trong giỏ hàng");
-                     flag = 2;
-                     trangthai = true;
-                 }
-                 else
-                 {
-                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
-                 }
+                KT_VXGH(id_Vx, user);
+                if (trangthai == false)
+                {
+                    //show messagebox
+                    buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
+                    flag = 2;
+                    trangthai = true;
+                }
+                else
+                {
+                    buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
+                }
 //                 else if (flag == 2)
 //                 {
 //                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
@@ -194,8 +194,8 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
 //                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
 //                 }
 
-             }
-         });
+            }
+        });
 
     }
 
