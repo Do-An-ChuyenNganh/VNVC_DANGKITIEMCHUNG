@@ -142,7 +142,9 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                     String phongBenh = dataSnapshot.child("PhongBenh").getValue(String.class);
                     Integer slton = dataSnapshot.child("SLTon").getValue(Integer.class);
                     String tenVX = dataSnapshot.child("TenVX").getValue(String.class);
-
+                    long phacdo =  dataSnapshot.child("PhacDoTiem").getChildrenCount();
+                    int Mui2 =0;
+                    int Mui3 =0;
                     if (id_VX == Integer.parseInt(id_vx))
                     {
                         tv_Tenvx.setText(tenVX);
@@ -152,11 +154,33 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
                         tv_moTa.setText(mota);
                         String formattedContent_chongcd = chongcd.replace(".", "\n");
                         setBulletPoints(tv_chongcd, formattedContent_chongcd);
-
                         String formattedContent_baoquan = baoquan.replace(".", "\n");
                         setBulletPoints(tv_baoquan, formattedContent_baoquan);
                         img_vx(id_VX);
-                        layDT_PDT(id_VX);
+                        if (phacdo == 1)
+                        {
+                            tv_pdt_m1.setText(" + Mũi 1: Lần đầu tiên tiêm trong độ tuổi");
+                            tv_pdt_m2.setText(" + Mũi 2: Không có");
+                            tv_pdt_m3.setText(" + Mũi 3: Không có");
+                        }
+                        if(phacdo == 2)
+                        {
+                            tv_pdt_m1.setText(" + Mũi 1: Lần đầu tiên tiêm trong độ tuổi");
+                            Mui2 = dataSnapshot.child("PhacDoTiem").child("Mui 2").getValue(Integer.class);
+                            tv_pdt_m2.setText(" + Mũi 2: cách mũi 1 " + Mui2 + " tháng");
+                            tv_pdt_m3.setText(" + Mũi 3: Không có");
+                        }
+                        if(phacdo == 3)
+                        {
+                            tv_pdt_m1.setText(" + Mũi 1: Lần đầu tiên tiêm trong độ tuổi");
+
+                            Mui2 = dataSnapshot.child("PhacDoTiem").child("Mui 2").getValue(Integer.class);
+                            Mui3 = dataSnapshot.child("PhacDoTiem").child("Mui 3").getValue(Integer.class);
+                            tv_pdt_m2.setText(" + Mũi 2: cách mũi 1 " + Mui2 + " tháng");
+                            tv_pdt_m3.setText(" + Mũi 3: cách mũi 2 " + Mui3 + " tháng");
+                        }
+
+
 
 
 
