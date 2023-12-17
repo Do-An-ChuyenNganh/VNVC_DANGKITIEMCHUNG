@@ -151,7 +151,7 @@
                         app:srcCompat="@drawable/icons_menu" />
 
                     <ImageButton
-                        android:id="@+id/imageButton8"
+                        android:id="@+id/img_lichsutiemchung"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_row="0"
@@ -184,7 +184,7 @@
                         android:layout_column="0"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Đặt mua \n vắc xin"
+                        android:text="Đặt mua \n Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -195,7 +195,7 @@
                         android:layout_column="1"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Danh mục \n   vắc xin"
+                        android:text="Danh mục \n   Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -217,7 +217,7 @@
                         android:layout_column="3"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="10dp"
-                        android:text="   Lịch sử \n đặt vắc xin"
+                        android:text="   Lịch sử \nđặt Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -292,7 +292,7 @@
                         android:layout_column="2"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Vắc xin \n    cho bạn"
+                        android:text="    Vắc-xin \n    cho bạn"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
@@ -317,7 +317,7 @@
                         android:layout_column="3"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="    Tin tức \n    vắc xin"
+                        android:text="    Tin tức \n    Vắc-xin"
                         android:textColor="#233249"
                         android:textSize="12dp" />
 
