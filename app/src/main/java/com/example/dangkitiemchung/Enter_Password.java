@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -59,6 +62,13 @@ public class Enter_Password extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
+//
+//        FirebaseApp.initializeApp(/*context=*/ this);
+//        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+//        firebaseAppCheck.installAppCheckProviderFactory(
+//                SafetyNetAppCheckProviderFactory.getInstance());
+
+
         txt_forgetPassword= (TextView)  findViewById(R.id.txt_forgetPassword);
         txt_password = (TextView) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.btn_login);
@@ -87,81 +97,24 @@ public class Enter_Password extends AppCompatActivity {
                     mPhoneNumber = "+84" + mPhoneNumber.substring(1);
                 }
                 System.out.println("Số điện thoại sau khi đổi mã vùng-----------------------" + mPhoneNumber);
-                onClickVerityPhoneNumber(mPhoneNumber);
+                goToEnterOTPActivity(mPhoneNumber);
             }
         });
     }
-    public void onClickVerityPhoneNumber(String strPhoneNumber) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(strPhoneNumber)       // Phone number to verify
-                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                signInWithPhoneAuthCredential(phoneAuthCredential);
-                            }
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                    Toast.makeText(Enter_Password.this,"Yêu cầu không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                } else if (e instanceof FirebaseTooManyRequestsException) {
-                                    Toast.makeText(Enter_Password.this,"Số lần xác thực vượt quá yêu cầu",
-                                            Toast.LENGTH_SHORT).show();
-                                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
-                                    Toast.makeText(Enter_Password.this,"Mã Captcha không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(Enter_Password.this,"Số điện thoại không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                }
 
-                            }
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(verificationId, forceResendingToken);
-                                goToEnterOTPActivity(strPhoneNumber,verificationId);
-                            }
-                        })           // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-    }
     public void goToMenuMain(String phoneNumber){
         Intent intent = new Intent(Enter_Password.this, MenuMainActivity.class);
         intent.putExtra("phone_number",phoneNumber);
         startActivity(intent);
     }
-    private void goToEnterOTPActivity(String strPhoneNumber, String verificationId) {
+    private void goToEnterOTPActivity(String strPhoneNumber) {
         Intent intent = new Intent(this, EnterOTPActivity.class);
         intent.putExtra("phone_number",strPhoneNumber);
-        intent.putExtra("verification_id",verificationId);
         String  flag="1";
         intent.putExtra("flag",flag);
         startActivity(intent);
     }
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Log.e(TAG, "signInWithCredential:success");
-                            FirebaseUser user = task.getResult().getUser();
-                            goToMenuMain(user.getPhoneNumber());
-                        } else {
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(Enter_Password.this,"Mã xác minh không hợp lệ",Toast.LENGTH_SHORT).show();
-                            }
 
-                        }
-                    }
-                });
-    }
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")
@@ -221,7 +174,6 @@ public class Enter_Password extends AppCompatActivity {
             }
         });
 
-        // Giả định: Trả về false nếu không tìm thấy số điện thoại trong cơ sở dữ liệu
 
     }
 

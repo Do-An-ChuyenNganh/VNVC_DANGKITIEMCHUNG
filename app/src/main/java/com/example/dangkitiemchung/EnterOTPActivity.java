@@ -15,12 +15,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -29,16 +33,20 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class EnterOTPActivity extends AppCompatActivity {
 TextView txt_sendOTP,txt_sendOTPAgain,txt_OTP1,txt_OTP2,txt_OTP3,txt_OTP4,txt_OTP5,txt_OTP6, txt_contentSend;
 String mPhoneNumber,mVerificationId;
-FirebaseAuth mAuth;
+ProgressBar processBar2;
+FirebaseAuth   mAuth = FirebaseAuth.getInstance();;
 private TextView[] editTexts;
 private boolean clearedLastEditText = false;
 private AlertDialog alertDialog;
 String  flag="0";
+Long timeoutSeconds= 60L;
 private Handler handler = new Handler();
 private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     public static  final String TAG= EnterOTPActivity.class.getName();
@@ -48,40 +56,54 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_otp);
         hideActionBar();
+//        FirebaseApp.initializeApp(/*context=*/ this);
+//        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+//        firebaseAppCheck.installAppCheckProviderFactory(SafetyNetAppCheckProviderFactory.getInstance());
+
         addControl();
         getDataIntent();
         setTextContent();
         inputOTP();
+        mPhoneNumber=getIntent().getStringExtra("phone_number");
+        onClickSenOTP(mPhoneNumber,false);
 
-        mAuth = FirebaseAuth.getInstance();
         txt_sendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String str =  getTextOTP();
                 System.out.println("flag có null hay không" + flag);
                 if(flag != null) {
                     if (mPhoneNumber.startsWith("+84")) {
                         mPhoneNumber = "0" + mPhoneNumber.substring(3);
                         System.out.println("sdt: ***************" + mPhoneNumber);
                     }
-                    goToSetPassWord(mPhoneNumber);
+                    String stringOTP = getTextOTP();
+                    if(stringOTP.trim().isEmpty()){
+                        Toast.makeText(EnterOTPActivity.this,"Vui lòng nhập OTP !",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, stringOTP);
+                    signInWithPhoneAuthCredential2(credential);
+
+                    //
                 }
                 else{
-                    onClickSenOTP(str);
+                    String stringOTP = getTextOTP();
+                   if(stringOTP.trim().isEmpty()){
+                       Toast.makeText(EnterOTPActivity.this,"Vui lòng nhập OTP !",Toast.LENGTH_SHORT).show();
+                       return;
+                   }
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, stringOTP);
+                    signInWithPhoneAuthCredential(credential);
                 }
-               // showAlertDialog();
             }
         });
 
         txt_sendOTPAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getTextOTP();
-                onClickSenOTPAgain();
+            onClickSenOTP(mPhoneNumber,true);
             }
         });
-
-
 
     }
     public void inputOTP()
@@ -131,13 +153,11 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
                 + txt_OTP3.getText().toString().trim()+ txt_OTP4.getText().toString().trim()
                 +txt_OTP5.getText().toString().trim() + txt_OTP6.getText().toString().trim();
         return strOTP;
-      //  System.out.println("OTP:" +strOTP);
     }
 
     public  void setTextContent(){
         txt_contentSend.setText("Nhập mã xác thực (OTP) được gửi đến số điện thoại \n" + mPhoneNumber);
     }
-
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Đang xác thực, chờ trong giây lát")
@@ -177,25 +197,93 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
         txt_OTP6= (TextView) findViewById(R.id.txt_OTP6);
         txt_contentSend= (TextView) findViewById(R.id.txt_contentSend);
         txt_sendOTPAgain= (TextView) findViewById(R.id.txt_senOTPAgain);
+        processBar2= (ProgressBar) findViewById(R.id.processBar2);
     }
 
-    private  void onClickSenOTP(String strOTP){
-
-        System.out.println("------------------------------------------------------------------------------------------------");
-        System.out.println("mã kiểm tra mVerificationId " + mVerificationId);
-        System.out.println(" chuỗi strOTP " + strOTP);
-        System.out.println("------------------------------------------------------------------------------------------------");
-        txt_sendOTP.setTextColor(Color.RED);
-
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, strOTP);
-        signInWithPhoneAuthCredential(credential);
+    public void startResendTimer(){
+        txt_sendOTPAgain.setEnabled(false);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                timeoutSeconds--;
+                txt_sendOTPAgain.setText("Gửi lại OTP trong " + timeoutSeconds+ " giây");
+                if(timeoutSeconds<=0)
+                {
+                    timeoutSeconds=60L;
+                    timer.cancel();
+                    runOnUiThread(()->{
+                        txt_sendOTPAgain.setEnabled(true);
+                    });
+                }
+            }
+        },0,1000);
     }
 
+    private  void onClickSenOTP(String phoneNumber, Boolean isResend){
+        startResendTimer();
+
+//
+//        System.out.println("------------------------------------------------------------------------------------------------");
+//        System.out.println("mã kiểm tra mVerificationId" + mVerificationId);
+//        System.out.println(" chuỗi strOTP " + strOTP);
+//        System.out.println("------------------------------------------------------------------------------------------------");
+//        txt_sendOTP.setTextColor(Color.RED);
+//
+//        mVerificationId=getIntent().getStringExtra("verification_id");
+//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, strOTP);
+//        signInWithPhoneAuthCredential(credential);
+
+
+        PhoneAuthOptions.Builder builder = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(timeoutSeconds,TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        signInWithPhoneAuthCredential(phoneAuthCredential);
+                        setInProgress(false);
+                    }
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(EnterOTPActivity.this,"Thất bại !",Toast.LENGTH_SHORT).show();
+                        setInProgress(false);
+                    }
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(s, forceResendingToken);
+                        mVerificationId=s;
+                        mForceResendingToken=forceResendingToken;
+                        Toast.makeText(EnterOTPActivity.this," Đã gửi OTP  !",Toast.LENGTH_SHORT).show();
+                        setInProgress(false);
+                    }
+                });
+                if(isResend){
+                        PhoneAuthProvider.verifyPhoneNumber(builder.setForceResendingToken(mForceResendingToken).build());
+                }
+                else{
+                    PhoneAuthProvider.verifyPhoneNumber(builder.build());
+                }
+    }
+
+    void setInProgress(boolean inProgress)
+    {
+        if(inProgress)
+        {
+            processBar2.setVisibility(View.VISIBLE);
+            txt_sendOTP.setVisibility(View.GONE);
+        }
+        else{
+            processBar2.setVisibility(View.GONE);
+            txt_sendOTP.setVisibility(View.VISIBLE);
+        }
+    }
     private  void onClickSenOTPAgain(){
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(mPhoneNumber)       // Phone number to verify
-                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // (optional) Activity for callback binding
                         .setForceResendingToken(mForceResendingToken)
                         // If no activity is passed, reCAPTCHA verification can not be used.
@@ -221,37 +309,60 @@ private  PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     }
 
     private  void getDataIntent(){
-
             mPhoneNumber=getIntent().getStringExtra("phone_number");
-            mVerificationId=getIntent().getStringExtra("verification_id");
             flag= getIntent().getStringExtra("flag");
-
-//          System.out.println( "verification_Id" + mVerificationId);
+            System.out.println("giá trị biến flag: " + flag);
     }
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    private void signInWithPhoneAuthCredential2(PhoneAuthCredential credential) {
+        setInProgress(true);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        processBar2.setVisibility(View.GONE);
+                        txt_sendOTP.setVisibility(View.VISIBLE);
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.e(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
                             Toast.makeText(EnterOTPActivity.this,"Thành công !",Toast.LENGTH_SHORT).show();
-                            goToRegisterPersonalProfileActivity(user.getPhoneNumber());
-
-                            // Update UI
+                            goToSetPassWord(user.getPhoneNumber());
                         } else {
-                            // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
                                 Toast.makeText(EnterOTPActivity.this,"OTP không hợp lệ !",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 });
     }
+
+
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        setInProgress(true);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        processBar2.setVisibility(View.GONE);
+                        txt_sendOTP.setVisibility(View.VISIBLE);
+                        if (task.isSuccessful()) {
+                            Log.e(TAG, "signInWithCredential:success");
+                            FirebaseUser user = task.getResult().getUser();
+                            Toast.makeText(EnterOTPActivity.this,"Thành công !",Toast.LENGTH_SHORT).show();
+                            goToRegisterPersonalProfileActivity(user.getPhoneNumber());
+                        } else {
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(EnterOTPActivity.this,"OTP không hợp lệ !",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+    }
+
+
+
 
     public void goToRegisterPersonalProfileActivity(String phoneNumber){
         Intent intent = new Intent(EnterOTPActivity.this, RegisterPersonalProfileActivity.class);
