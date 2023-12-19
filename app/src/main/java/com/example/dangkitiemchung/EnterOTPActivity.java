@@ -58,8 +58,8 @@ public static  final String TAG= EnterOTPActivity.class.getName();
         hideActionBar();
         addControl();
         mPhoneNumber=getIntent().getStringExtra("phone_number");
+     //   Toast.makeText(EnterOTPActivity.this,"sdt: " + mPhoneNumber,Toast.LENGTH_SHORT).show();
         flag= getIntent().getStringExtra("flag");
-
         setTextContent();
         inputOTP();
         onClickSenOTP(mPhoneNumber,false);

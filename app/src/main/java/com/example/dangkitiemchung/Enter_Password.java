@@ -71,7 +71,7 @@ public class Enter_Password extends AppCompatActivity {
 
         Intent intent = getIntent();
         mPhoneNumber  = intent.getStringExtra("phone_number");
-
+     //   Toast.makeText(Enter_Password.this,"sdt: " + mPhoneNumber,Toast.LENGTH_SHORT).show();
         btn_login.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {

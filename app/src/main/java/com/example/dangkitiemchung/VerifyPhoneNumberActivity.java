@@ -36,6 +36,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -78,14 +80,12 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                         } else { // Số điện thoại mới
                             // Kiểm tra tính hợp lệ của số điện thoại
 
-
-
-
                             String strPhoneNumber = txt_phone.getText().toString().trim();
                             if (strPhoneNumber.startsWith("0")) {
                                 strPhoneNumber = "+84" + strPhoneNumber.substring(1);
                             }
-                            goToEnterOTPActivity(strPhoneNumber);
+                            validateVietnamesePhoneNumber(strPhoneNumber);
+
 
                         }
                     }
@@ -103,6 +103,29 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         Intent intent = new Intent(this, EnterOTPActivity.class);
         intent.putExtra("phone_number",strPhoneNumber);
         startActivity(intent);
+    }
+
+
+    private  void validateVietnamesePhoneNumber(String phoneNumber) {
+        PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+        try {
+            // Mã vùng cho Việt Nam
+            String regionCode = "VN";
+
+            // Kiểm tra xem số điện thoại có hợp lệ không
+            boolean isValid = phoneNumberUtil.isValidNumber(phoneNumberUtil.parse(phoneNumber, regionCode));
+
+            if (isValid) {
+                goToEnterOTPActivity(phoneNumber);
+
+            } else {
+                Toast.makeText(VerifyPhoneNumberActivity.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (NumberParseException e) {
+            // Xử lý lỗi khi phân tích số điện thoại
+            e.printStackTrace();
+        }
     }
 
 
