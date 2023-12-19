@@ -340,7 +340,7 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
 
 
         if(edt_address.getText().toString().equals("")   || edt_name.getText().toString().equals("")
-        || rad_male.isChecked()==false || rad_male.isChecked()==false|| edt_birthday.getText().toString().equals("")
+        || (rad_male.isChecked()==false && rad_female.isChecked() == false)|| edt_birthday.getText().toString().equals("")
         )
         {
             Toast.makeText(RegisterPersonalProfileActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();

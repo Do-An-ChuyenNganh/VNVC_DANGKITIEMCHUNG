@@ -53,11 +53,6 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         setContentView(R.layout.activity_verify_phonenumber);
         Window window = getWindow();
 
-//        FirebaseApp.initializeApp(/*context=*/ this);
-//        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-//        firebaseAppCheck.installAppCheckProviderFactory(SafetyNetAppCheckProviderFactory.getInstance());
-
-
         // Ẩn thanh trạng thái (status bar)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
@@ -81,6 +76,11 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             intent.putExtra("phone_number",strPhoneNumber);
                             startActivity(intent);
                         } else { // Số điện thoại mới
+                            // Kiểm tra tính hợp lệ của số điện thoại
+
+
+
+
                             String strPhoneNumber = txt_phone.getText().toString().trim();
                             if (strPhoneNumber.startsWith("0")) {
                                 strPhoneNumber = "+84" + strPhoneNumber.substring(1);

@@ -62,13 +62,6 @@ public class Enter_Password extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-//
-//        FirebaseApp.initializeApp(/*context=*/ this);
-//        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-//        firebaseAppCheck.installAppCheckProviderFactory(
-//                SafetyNetAppCheckProviderFactory.getInstance());
-
-
         txt_forgetPassword= (TextView)  findViewById(R.id.txt_forgetPassword);
         txt_password = (TextView) findViewById(R.id.txt_password);
         btn_login = (Button) findViewById(R.id.btn_login);
@@ -115,27 +108,27 @@ public class Enter_Password extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")
-                .setCancelable(false);
-
-        alertDialog = builder.create();
-        alertDialog.show();
-
-        // Đặt một sự kiện đóng AlertDialog sau 2 giây
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dismissAlertDialog();
-            }
-        }, 2500);
-    }
-    private void dismissAlertDialog() {
-        if (alertDialog != null && alertDialog.isShowing()) {
-            alertDialog.dismiss();
-        }
-    }
+//    private void showAlertDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")
+//                .setCancelable(false);
+//
+//        alertDialog = builder.create();
+//        alertDialog.show();
+//
+//        // Đặt một sự kiện đóng AlertDialog sau 2 giây
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                dismissAlertDialog();
+//            }
+//        }, 2500);
+//    }
+//    private void dismissAlertDialog() {
+//        if (alertDialog != null && alertDialog.isShowing()) {
+//            alertDialog.dismiss();
+//        }
+//    }
     private void checkPassword(String phoneNumber, String enteredPassword1) {
         System.out.println("mat khau :" + enteredPassword1);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
@@ -156,8 +149,6 @@ public class Enter_Password extends AppCompatActivity {
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(mainIntent);
                             finish();
-
-
                         }
                         else {
                             Toast.makeText(Enter_Password.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
