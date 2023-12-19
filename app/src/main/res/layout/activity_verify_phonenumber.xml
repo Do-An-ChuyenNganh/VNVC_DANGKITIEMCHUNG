@@ -84,15 +84,35 @@
                     android:textColor="#B1B6C9"
                     android:textSize="14dp" />
 
-                <Button
-                    android:id="@+id/btn_continue"
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="#84ABEE"
-                    android:text="Tiếp tục"
-                    android:textAllCaps="false"
-                    android:textSize="13dp" />
+                    android:layout_height="match_parent"
+                    >
+                    <Button
+                        android:id="@+id/btn_continue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="#84ABEE"
+                        android:text="Tiếp tục"
+                        android:textAllCaps="false"
+                        android:textSize="13dp" />
+                    <ProgressBar
+                         android:id="@+id/processBar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone" >
+
+                    </ProgressBar>
+
+
+                </FrameLayout>
+
+
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

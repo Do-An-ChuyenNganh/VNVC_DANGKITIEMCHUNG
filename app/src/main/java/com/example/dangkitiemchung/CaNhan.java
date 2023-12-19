@@ -89,7 +89,14 @@ public class CaNhan extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Kết thúc tất cả các activity và thoát ứng dụng
-                finishAffinity();
+               //
+                // finishAffinity();
+                Intent intent = new Intent(CaNhan.this, VerifyPhoneNumberActivity.class);
+                // Đặt cờ để xóa mọi hoạt động khác và đặt LoginActivity làm hoạt động mới
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+
             }
         });
 

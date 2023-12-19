@@ -7,17 +7,14 @@ plugins {
 android {
     namespace 'com.example.dangkitiemchung'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.example.dangkitiemchung"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -47,13 +44,19 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'   //api
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0' //api
 
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))// firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))// firebase
+    //implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation("com.google.firebase:firebase-analytics-ktx")//firebase
     implementation("com.google.firebase:firebase-auth") //firebase
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-        implementation 'org.threeten:threetenbp:1.5.1'
+    implementation 'org.threeten:threetenbp:1.5.1'
+
+
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.1.2'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.34'
+
 
 //    implementation 'com.google.firebase:firebase-analytics:20.0.0' // Thêm dòng này để sử dụng Firebase Analytics, bạn có thể thêm các dependency khác nếu cần
 //    implementation 'com.google.firebase:firebase-database:22.0.0' // Thêm dòng này nếu bạn muốn sử dụng Realtime Database

@@ -12,13 +12,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -32,14 +36,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneNumberActivity extends AppCompatActivity {
 Button btn_continue;
 TextView txt_phone;
-FirebaseAuth mAuth;
+FirebaseAuth mAuth=FirebaseAuth.getInstance();;
 private AlertDialog alertDialog;
+ProgressBar processBar;
 private Handler handler = new Handler();
 public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
     @Override
@@ -47,12 +54,14 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_phonenumber);
         Window window = getWindow();
+
         // Ẩn thanh trạng thái (status bar)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         btn_continue= (Button) findViewById(R.id.btn_continue);
         txt_phone=(TextView) findViewById(R.id.txt_phone);
-        mAuth=FirebaseAuth.getInstance();
+        processBar = (ProgressBar) findViewById(R.id.processBar);
+
         ///
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,18 +78,19 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
                             intent.putExtra("phone_number",strPhoneNumber);
                             startActivity(intent);
                         } else { // Số điện thoại mới
+                            // Kiểm tra tính hợp lệ của số điện thoại
+
                             String strPhoneNumber = txt_phone.getText().toString().trim();
                             if (strPhoneNumber.startsWith("0")) {
                                 strPhoneNumber = "+84" + strPhoneNumber.substring(1);
                             }
-                            showAlertDialog();
-                            onClickVerityPhoneNumber(strPhoneNumber);
+                            validateVietnamesePhoneNumber(strPhoneNumber);
+
+
                         }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        // Xử lý khi có lỗi truy vấn đến cơ sở dữ liệu
                         Log.e("FirebaseError", databaseError.getMessage());
                     }
                 });
@@ -88,104 +98,35 @@ public static  final String TAG= VerifyPhoneNumberActivity.class.getName();
             }
         });
     }
-    public void onClickVerityPhoneNumber(String strPhoneNumber) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(strPhoneNumber)       // Phone number to verify
-                        .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                signInWithPhoneAuthCredential(phoneAuthCredential);
-                            }
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Yêu cầu không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                } else if (e instanceof FirebaseTooManyRequestsException) {
-                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Số lần xác thực vượt quá yêu cầu",
-                                            Toast.LENGTH_SHORT).show();
-                                } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
-                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Mã Captcha không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",
-                                            Toast.LENGTH_SHORT).show();
-                                }
 
-                            }
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(verificationId, forceResendingToken);
-                                goToEnterOTPActivity(strPhoneNumber,verificationId);
-                            }
-                        })           // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-    public void goToRegisterPersonalProfileActivity(String phoneNumber){
-        Intent intent = new Intent(VerifyPhoneNumberActivity.this, RegisterPersonalProfileActivity.class);
-        intent.putExtra("phone_number",phoneNumber);
-        startActivity(intent);
-    }
-    private void goToEnterOTPActivity(String strPhoneNumber, String verificationId) {
+    private void goToEnterOTPActivity(String strPhoneNumber) {
         Intent intent = new Intent(this, EnterOTPActivity.class);
         intent.putExtra("phone_number",strPhoneNumber);
-        intent.putExtra("verification_id",verificationId);
         startActivity(intent);
     }
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.e(TAG, "signInWithCredential:success");
-                            FirebaseUser user = task.getResult().getUser();
-                            goToRegisterPersonalProfileActivity(user.getPhoneNumber());
-                            // Update UI
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(VerifyPhoneNumberActivity.this,"Mã xác minh không hợp lệ",Toast.LENGTH_SHORT).show();
-                            }
-//                            // Sign in failed, display a message and update the UI
-//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-//                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-//                                // The verification code entered was invalid
-//                                Toast.makeText(VerifyPhoneNumberActivity.this,"Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
-//                            }
 
-                        }
-                    }
-                });
-    }
-    private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Đang xác thực, vui lòng chờ trong giây lát")
-                .setCancelable(false);
 
-        alertDialog = builder.create();
-        alertDialog.show();
+    private  void validateVietnamesePhoneNumber(String phoneNumber) {
+        PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+        try {
+            // Mã vùng cho Việt Nam
+            String regionCode = "VN";
 
-        // Đặt một sự kiện đóng AlertDialog sau 2 giây
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dismissAlertDialog();
+            // Kiểm tra xem số điện thoại có hợp lệ không
+            boolean isValid = phoneNumberUtil.isValidNumber(phoneNumberUtil.parse(phoneNumber, regionCode));
+
+            if (isValid) {
+                goToEnterOTPActivity(phoneNumber);
+
+            } else {
+                Toast.makeText(VerifyPhoneNumberActivity.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+
             }
-        }, 2500);
-    }
-    private void dismissAlertDialog() {
-        if (alertDialog != null && alertDialog.isShowing()) {
-            alertDialog.dismiss();
+        } catch (NumberParseException e) {
+            // Xử lý lỗi khi phân tích số điện thoại
+            e.printStackTrace();
         }
     }
+
 
 }
