@@ -29,7 +29,7 @@
             android:name=".DatLichTiemChung"
             android:exported="true"
             android:label="Đặt lịch tiêm chủng"
-            android:parentActivityName=".MenuMainActivity" />
+            android:parentActivityName=".Linh_Activity_DanhMucVacXin" />
         <activity
             android:name=".ChiTietDaHuy"
             android:exported="false"

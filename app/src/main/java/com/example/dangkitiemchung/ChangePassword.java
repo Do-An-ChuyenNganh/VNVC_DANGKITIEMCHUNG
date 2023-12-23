@@ -64,7 +64,6 @@ public class ChangePassword extends AppCompatActivity {
     }
     public void changePassword( String userNameToFind, String newPassword, String oldPassword)
     {
-
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

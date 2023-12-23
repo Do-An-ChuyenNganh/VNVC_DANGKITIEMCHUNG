@@ -673,7 +673,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 new AlertDialog.Builder(view.getContext()).setTitle("Thông báo").setMessage("Bạn có chắc chắn muốn đặt những Vaccine trên?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(MangDatLich.mangmuon.size()<=3) {
+                        if(MangDatLich.mangmuon.size()<=3||MangDatLich.mangmuon.size()>0) {
 
                             Intent intent = new Intent(Linh_Activity_DanhMucVacXin.this, DatLichTiemChung.class);
                             startActivity(intent);
