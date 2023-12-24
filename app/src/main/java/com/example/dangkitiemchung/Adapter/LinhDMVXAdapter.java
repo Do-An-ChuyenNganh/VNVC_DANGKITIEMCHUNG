@@ -84,6 +84,7 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
         this.context = context;
         this.buttonClickListener = buttonClickListener;
         this.user = user_n;
+
     }
     public LinhDMVXAdapter(ArrayList<VacXin> dataList, Context context, ButtonClickListener buttonClickListener) {
         this.newVacXin = dataList;
@@ -172,28 +173,24 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
                  System.out.println("USER TRUYỀN QUA NE: " + user);
 
                  KT_VXGH(id_Vx, user);
-                 if (trangthai == false)
-                 {
-                     //show messagebox
-                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
-                     flag = 2;
-                     trangthai = true;
-                 }
-                 else
-                 {
-                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
-                 }
-//                 else if (flag == 2)
+                 buttonClickListener.onButtonClick();
+//                 if (trangthai == false)
 //                 {
+//                     //show messagebox
 //                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
-//                     //holder.btn_themgh.setBackgroundColor(Color.GREEN);
-//                     flag = 0;
+//                     flag = 2;
+//                     trangthai = true;
 //                 }
 //                 else
 //                 {
 //                     buttonClickListener.onButtonClick("Vaccine đã thêm vào giỏ hàng");
 //                 }
 
+
+                //notifyDataSetChanged();
+                // notifyItemRangeChanged(0, newVacXin.size());
+
+//
              }
          });
 
@@ -225,6 +222,7 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
                                 // Nếu trùng khớp, thông báo rằng đã tồn tại trong giỏ hàng
                                 System.out.println("Đã tồn tại");
                                 trangthai = false;
+                                //notifyDataSetChanged();
                                 //flag = 1;
                                 //showCustomDialog();
                                 //Toast.makeText((Linh_Activity_DanhMucVacXin )context, "Đã tồn tại", Toast.LENGTH_SHORT).show();
@@ -237,21 +235,18 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
                         //flag = 0;
                         trangthai = true;
                     }
-//                    else
-//                    {
-//                        GioHang gioHang= new GioHang(idvx, username);
-//                        databaseReference_GH.push().setValue(gioHang);
-//                        flag = 2;
-//                    }
+
                 }
 
                 // Nếu không tìm thấy, idvx và username chưa tồn tại trong giỏ hàng
                 GioHang gioHang= new GioHang(idvx, username);
                 databaseReference_GH.push().setValue(gioHang);
                 trangthai = true;
+                //notifyDataSetChanged();
                 //flag = 2;
                 //Toast.makeText(YourActivity.this, "Chưa tồn tại trong giỏ hàng", Toast.LENGTH_SHORT).show();
                 System.out.println("Không tồn tại");
+
             }
 
             @Override
@@ -289,7 +284,8 @@ public class LinhDMVXAdapter extends RecyclerView.Adapter<LinhDMVXAdapter.MyView
     }
 
     public interface ButtonClickListener {
-        void onButtonClick(String item);
+        //void onButtonClick(String item);
+        void onButtonClick();
     }
 
 

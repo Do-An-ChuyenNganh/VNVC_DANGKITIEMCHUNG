@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<VacXin> newArrayList = new ArrayList<>();
     private ArrayList<VacXin> newArrayList_loc = new ArrayList<>();
+
     private ArrayList<GioHang> newArrayList_GioHang = new ArrayList<>();
     private LinhDMVXAdapter adapter;
     private LinhGioHangAdapter adapter_giohang;
@@ -86,8 +88,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         //adapter = new LinhDMVXAdapter(newArrayList, user);
         adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
             @Override
-            public void onButtonClick(String item) {
-                showMessageDialog(item);
+            public void onButtonClick() {
+                showMessageDialog();
+                //LayDL();
             }
         });
         adapter.notifyDataSetChanged();
@@ -260,8 +263,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
         adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
             @Override
-            public void onButtonClick(String item) {
-                showMessageDialog(item);
+            public void onButtonClick() {
+                //showMessageDialog(item);
+                showMessageDialog();
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -278,8 +282,10 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
         //LinhDMVXAdapter adapter = new LinhDMVXAdapter(vacXinList);
         adapter = new LinhDMVXAdapter(vacXinList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
             @Override
-            public void onButtonClick(String item) {
-                showMessageDialog(item);
+            public void onButtonClick() {
+
+                //showMessageDialog(item);
+                showMessageDialog();
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -311,6 +317,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                     VacXin tl = new VacXin(id_VX, hinh,gia , slton, baoquan, chongcd, mota, nguongoc, phongBenh, tenVX);
                     newArrayList.add(tl);
 
+
                 }
                 recyclerView.setAdapter(adapter);
 
@@ -322,6 +329,8 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
             }
         });
     }
+
+    //newArrayList_GioHang
 
 
     private void DuyetGH(ArrayList<GioHang> list)
@@ -435,8 +444,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
                     adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
                         @Override
-                        public void onButtonClick(String item) {
-                            showMessageDialog(item);
+                        public void onButtonClick() {
+                            //showMessageDialog(item);
+                            showMessageDialog();
 
                         }
                     });
@@ -457,8 +467,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
                 adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
                     @Override
-                    public void onButtonClick(String item) {
-                        showMessageDialog(item);
+                    public void onButtonClick() {
+                        //showMessageDialog(item);
+                        showMessageDialog();
 
                     }
                 });
@@ -477,8 +488,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(Linh_Activity_DanhMucVacXin.this));
                 adapter = new LinhDMVXAdapter(newArrayList, this, user, new LinhDMVXAdapter.ButtonClickListener() {
                     @Override
-                    public void onButtonClick(String item) {
-                        showMessageDialog(item);
+                    public void onButtonClick() {
+                        //showMessageDialog(item);
+                        showMessageDialog();
 
                     }
                 });
@@ -620,9 +632,9 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                 }
                 adapter = new LinhDMVXAdapter(newArrayList, Linh_Activity_DanhMucVacXin.this, user, new LinhDMVXAdapter.ButtonClickListener() {
                     @Override
-                    public void onButtonClick(String item) {
-                        showMessageDialog(item);
-
+                    public void onButtonClick() {
+                        //showMessageDialog(item);
+                        showMessageDialog();
                     }
                 });
                 recyclerView.setAdapter(adapter);
@@ -710,7 +722,7 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
 
     }
 
-    private void showMessageDialog(String message) {
+    private void showMessageDialog_2(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Thông báo")
                 .setMessage(message)
@@ -718,9 +730,33 @@ public class Linh_Activity_DanhMucVacXin extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Handle OK button click if needed
+                        dialog.dismiss();
                     }
-                })
-                .show();
+                });
+                //.show();
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+    private void showMessageDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông báo")
+                .setMessage("Vaccine đã thêm vào giỏ hàng")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Handle OK button click if needed
+                        //dialog.dismiss();
+                        //System.out.println("size list: "+newArrayList_bd.size());
+                        //adapter.notifyItemRangeChanged(0, newArrayList.size());
+                    }
+                }).show();
+
+        //AlertDialog alertDialog = builder.create();
+        //alertDialog.show();
+
     }
 
 
