@@ -38,6 +38,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -346,28 +347,32 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
             Toast.makeText(RegisterPersonalProfileActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
         }
         else{
-            // Thêm dữ liệu vào Firebase
-            //myRef.child("1").setValue(taiKhoan);
-            Task<Void> task = myRef.push().setValue(taiKhoan);
-
-            // Đăng ký lắng nghe sự kiện thành công hoặc thất bại của Task
-            task.addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    // Thêm dữ liệu thành công
-                    Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
-                    // Nếu thành công
-                    Intent intent = new Intent(RegisterPersonalProfileActivity.this, PolicyAndPrivacyActivity.class);
-                    intent.putExtra("phone_number",mPhoneNumber);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thật bại " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+         if(ktTuoi(edt_birthday.getText().toString().trim())){
+             // Thêm dữ liệu vào Firebase
+             //myRef.child("1").setValue(taiKhoan);
+             Task<Void> task = myRef.push().setValue(taiKhoan);
+             // Đăng ký lắng nghe sự kiện thành công hoặc thất bại của Task
+             task.addOnSuccessListener(new OnSuccessListener<Void>() {
+                 @Override
+                 public void onSuccess(Void aVoid) {
+                     // Thêm dữ liệu thành công
+                     Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                     // Nếu thành công
+                     Intent intent = new Intent(RegisterPersonalProfileActivity.this, PolicyAndPrivacyActivity.class);
+                     intent.putExtra("phone_number",mPhoneNumber);
+                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                     startActivity(intent);
+                 }
+             }).addOnFailureListener(new OnFailureListener() {
+                 @Override
+                 public void onFailure(@NonNull Exception e) {
+                     Toast.makeText(RegisterPersonalProfileActivity.this, "Đăng kí thật bại " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                 }
+             });
+         }
+         else {
+             Toast.makeText(RegisterPersonalProfileActivity.this, "Bạn phải đủ 18 tuổi " , Toast.LENGTH_SHORT).show();
+         }
         }
 
 
@@ -426,6 +431,41 @@ public class RegisterPersonalProfileActivity extends AppCompatActivity {
                 Toast.makeText(RegisterPersonalProfileActivity.this, "Ngày sinh: " + formattedDate, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+
+
+    public Boolean ktTuoi(String birthdayString){
+        //     String birthdayString = "23/12/2002";
+        int age=0;
+        // Định dạng ngày
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            // Chuyển đổi chuỗi thành đối tượng Date
+            Date birthday = sdf.parse(birthdayString);
+            // Tính tuổi
+            age = calculateAge(birthday);
+            System.out.println("Tuổi---------------------------: " + age);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(age>=18)
+            return true;
+        else
+            return false;
+    }
+    private static int calculateAge(Date birthday) {
+        Calendar birthCalendar = Calendar.getInstance();
+        birthCalendar.setTime(birthday);
+        Calendar currentCalendar = Calendar.getInstance();
+        int age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR);
+        // Kiểm tra xem đã qua sinh nhật chưa
+        if (currentCalendar.get(Calendar.DAY_OF_YEAR) < birthCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--;
+        }
+        return age;
     }
 
 }

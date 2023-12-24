@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -48,6 +49,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.SQLOutput;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -474,14 +476,14 @@ public class PersonalProfileActivity extends AppCompatActivity {
 
         // Hiển thị MaterialDatePicker
         datePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         // Xử lý khi người dùng chọn ngày
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {
                 // Xử lý khi ngày thay đổi
                 Date selectedDate = new Date(selection);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
                 String formattedDate = sdf.format(selectedDate);
 
                 edt_birthday.setText(formattedDate);
@@ -564,18 +566,26 @@ public class PersonalProfileActivity extends AppCompatActivity {
                         {
                             Toast.makeText(PersonalProfileActivity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
                         }
-                        else{
-                            taiKhoanRef.child(taiKhoanId).child("DanToc").setValue(nation);
-                            taiKhoanRef.child(taiKhoanId).child("QuocTich").setValue(nationality);
-                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Tinh").setValue(resultCity);
-                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue(resultDistrict);
-                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Xa").setValue(ward);
-                            taiKhoanRef.child(taiKhoanId).child("DiaChi").child("SoNha").setValue(address);
-                            taiKhoanRef.child(taiKhoanId).child("HoTen").setValue(name);
-                            taiKhoanRef.child(taiKhoanId).child("GioiTinh").setValue(sex);
-                            taiKhoanRef.child(taiKhoanId).child("NgaySinh").setValue(birthday);
 
-                            Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công ", Toast.LENGTH_SHORT).show();
+                        else{
+                            if(ktTuoi(edt_birthday.getText().toString().trim()))
+                            {
+                                taiKhoanRef.child(taiKhoanId).child("DanToc").setValue(nation);
+                                taiKhoanRef.child(taiKhoanId).child("QuocTich").setValue(nationality);
+                                taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Tinh").setValue(resultCity);
+                                taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Huyen").setValue(resultDistrict);
+                                taiKhoanRef.child(taiKhoanId).child("DiaChi").child("Xa").setValue(ward);
+                                taiKhoanRef.child(taiKhoanId).child("DiaChi").child("SoNha").setValue(address);
+                                taiKhoanRef.child(taiKhoanId).child("HoTen").setValue(name);
+                                taiKhoanRef.child(taiKhoanId).child("GioiTinh").setValue(sex);
+                                taiKhoanRef.child(taiKhoanId).child("NgaySinh").setValue(birthday);
+
+                                Toast.makeText(PersonalProfileActivity.this, "Cập nhật thành công ", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(PersonalProfileActivity.this, "Bạn chưa đủ 18 tuôi ", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
 
 
@@ -592,6 +602,40 @@ public class PersonalProfileActivity extends AppCompatActivity {
         });
 
     }
+
+
+    public Boolean ktTuoi(String birthdayString){
+   //     String birthdayString = "23/12/2002";
+        int age=0;
+        // Định dạng ngày
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            // Chuyển đổi chuỗi thành đối tượng Date
+            Date birthday = sdf.parse(birthdayString);
+            // Tính tuổi
+             age = calculateAge(birthday);
+            System.out.println("Tuổi---------------------------: " + age);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(age>=18)
+            return true;
+        else
+            return false;
+    }
+    private static int calculateAge(Date birthday) {
+        Calendar birthCalendar = Calendar.getInstance();
+        birthCalendar.setTime(birthday);
+        Calendar currentCalendar = Calendar.getInstance();
+        int age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR);
+        // Kiểm tra xem đã qua sinh nhật chưa
+        if (currentCalendar.get(Calendar.DAY_OF_YEAR) < birthCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--;
+        }
+        return age;
+    }
+
     public String showInfomation(String phoneNumberToQuery) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("TaiKhoan");
         databaseReference.orderByChild("UserName").equalTo(phoneNumberToQuery).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -647,35 +691,45 @@ public class PersonalProfileActivity extends AppCompatActivity {
                     String address= taiKhoan.getDiaChi().getSoNha();
                     edt_address.setText(address);
 
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            String province= taiKhoan.getDiaChi().getTinh();
+                            PROVINCE = province;
+                            System.out.println( "PROVINCE========" + PROVINCE);
 
-                    String province= taiKhoan.getDiaChi().getTinh();
-                    PROVINCE = province;
-                    ArrayAdapter<String> provinceAdapter = (ArrayAdapter<String>) spinner_city.getAdapter();
-                    int indexItemProvince = -1;
-                    if(provinceAdapter!=null)
-                    {
-                        for (int i = 0; i < provinceAdapter.getCount(); i++) {
-                            String _province = provinceAdapter.getItem(i);
-                            String[] partProvince = _province.split(",");
-                            String str= partProvince[0].trim();
-                            if(str.equals(province) ){
-                                indexItemProvince=i;
-                                break;
+                            ArrayAdapter<String> provinceAdapter = (ArrayAdapter<String>) spinner_city.getAdapter();
+                            int indexItemProvince = -1;
+                            System.out.println("provinceAdapter==============" + provinceAdapter);
+                            if(provinceAdapter!=null)
+                            {
+                                System.out.println( "Vô if======================= " + PROVINCE);
+                                for (int i = 0; i < provinceAdapter.getCount(); i++) {
+                                    String _province = provinceAdapter.getItem(i);
+                                    String[] partProvince = _province.split(",");
+                                    String str= partProvince[0].trim();
+                                    if(str.equals(PROVINCE) ){
+                                        indexItemProvince=i;
+                                        break;
+                                    }
+                                }
                             }
+
+                            if(indexItemProvince!=-1)
+                            {
+                                spinner_city.setSelection(indexItemProvince);
+                            }
+
+                            //++++++++++++++++++++++++++++++++++++++++++++ lấy huyện
+
+                            String dictrics= taiKhoan.getDiaChi().getHuyen();
+                            DISTRICTS = dictrics;
+                            String ward= taiKhoan.getDiaChi().getXa();
+                            WARD = ward;
                         }
-                    }
+                    }, 2300);
 
-                    if(indexItemProvince!=-1)
-                    {
-                        spinner_city.setSelection(indexItemProvince);
-                    }
 
-                    //++++++++++++++++++++++++++++++++++++++++++++ lấy huyện
-
-                    String dictrics= taiKhoan.getDiaChi().getHuyen();
-                    DISTRICTS = dictrics;
-                    String ward= taiKhoan.getDiaChi().getXa();
-                    WARD = ward;
 
                 }
             }
