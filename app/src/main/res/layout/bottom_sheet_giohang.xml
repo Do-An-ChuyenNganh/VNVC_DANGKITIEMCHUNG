@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="Danh sách Vaccine chọn mua"
                 android:textColor="@color/black"
@@ -27,7 +27,7 @@
                 android:id="@+id/imgv_dong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/round_close_24" />
 
@@ -94,6 +94,7 @@
                 android:background="@drawable/shape_button_themgh"
                 android:drawableLeft="@drawable/round_filter_alt_24"
                 android:gravity="center"
+                android:paddingLeft="5dp"
                 android:text="Đăng ký mũi tiêm"
                 android:textColor="@color/white" />
 

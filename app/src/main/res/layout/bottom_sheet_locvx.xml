@@ -16,7 +16,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="130dp"
                 android:layout_marginTop="10dp"
                 android:text="Lọc Vaccine"
                 android:textColor="#223147"
@@ -27,7 +27,7 @@
                 android:id="@+id/imgv_dong_loc"
                 android:layout_width="30dp"
                 android:layout_height="32dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="95dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/round_close_24" />
 
@@ -354,6 +354,7 @@
         android:layout_below="@id/khung_gia"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -361,18 +362,19 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_loc"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:background="@drawable/shape_button_themgh"
                 android:drawableLeft="@drawable/round_filter_alt_24"
-                android:paddingLeft="170dp"
                 android:gravity="center"
+                android:paddingLeft="130dp"
+                android:text="Lọc                                        "
+                android:textSize="15dp"
                 android:textAllCaps="false"
-                android:text="Lọc                                                "
                 android:textColor="@color/white">
-
 
 
             </androidx.appcompat.widget.AppCompatButton>

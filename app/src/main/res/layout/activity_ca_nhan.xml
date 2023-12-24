@@ -74,6 +74,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:background="@drawable/layout_click_effect"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:id="@+id/layout_edit"
@@ -91,6 +92,7 @@
                         app:srcCompat="@drawable/edit" />
 
                     <TextView
+
                         android:id="@+id/textView43"
                         android:layout_width="30dp"
                         android:layout_height="35dp"
@@ -120,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:orientation="horizontal">
-
+                    android:background="@drawable/layout_click_effect"
                     <ImageButton
                         android:id="@+id/imageButton12"
                         android:layout_width="20dp"
@@ -243,6 +245,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/layout_click_effect"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:id="@+id/layout_doimatkhau"
@@ -286,6 +289,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/layout_click_effect"
                     android:id="@+id/layout_dangxuat"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"

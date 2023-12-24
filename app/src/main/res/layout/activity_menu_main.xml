@@ -531,7 +531,7 @@
                 android:layout_width="27dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="37dp"
-                android:background="@color/white"
+                android:background="@drawable/layout_click_effect"
                 android:scaleType="centerCrop"
                 app:layout_column="0"
                 app:layout_gravity="center"
@@ -557,14 +557,14 @@
 
             <ImageButton
                 android:id="@+id/img_lichhentiemchung"
-                     app:layout_gravity="center"
+                app:layout_gravity="center"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_column="1"
                 app:layout_row="0"
-
+                android:background="@drawable/layout_click_effect"
                 android:scaleType="centerCrop"
-                android:background="@color/white"
+
 
                 app:srcCompat="@drawable/icons_calender" />
 
@@ -586,12 +586,12 @@
                 android:id="@+id/imgVacxin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/white"
+
                 android:scaleType="centerCrop"
                 app:layout_column="2"
                 app:layout_gravity="center"
                 app:layout_row="0"
-
+                android:background="@drawable/layout_click_effect"
                 app:srcCompat="@drawable/icons_shield" />
 
 
@@ -613,12 +613,12 @@
                 android:id="@+id/imgHoSo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/white"
+
                 android:scaleType="centerCrop"
                 app:layout_column="3"
                 app:layout_gravity="center"
                 app:layout_row="0"
-
+                android:background="@drawable/layout_click_effect"
                 app:srcCompat="@drawable/icons_heart" />
 
 
@@ -640,13 +640,13 @@
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/white"
+
                 android:scaleType="centerCrop"
                 android:id="@+id/icons_personal"
                 app:layout_column="4"
                 android:layout_marginLeft="10dp"
                 app:layout_row="0"
-
+                android:background="@drawable/layout_click_effect"
                 app:srcCompat="@drawable/icons_personal" />
 
 
