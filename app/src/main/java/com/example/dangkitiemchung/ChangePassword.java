@@ -46,6 +46,7 @@ public class ChangePassword extends AppCompatActivity {
       btn_PressContinue.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+              System.out.println("Só điện thoại là ở trang change password là: " + mPhoneNumber);
               String newPassword="";
               newPassword=edt_ReEnterPassword.getText().toString().trim();
               String oldPassword="";
@@ -53,7 +54,7 @@ public class ChangePassword extends AppCompatActivity {
               System.out.println("Mat khau moi la: +" + edt_ReEnterPassword);
 
 
-                  changePassword(mPhoneNumber,newPassword, oldPassword );
+              changePassword(mPhoneNumber,newPassword, oldPassword );
 
 
           }
@@ -70,8 +71,10 @@ public class ChangePassword extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot taiKhoanSnapshot : dataSnapshot.child("TaiKhoan").getChildren()) {
                     String currentUserName = taiKhoanSnapshot.child("UserName").getValue(String.class);
+
                     if (userNameToFind.equals(currentUserName)) {
                         String passwordKT = taiKhoanSnapshot.child("PassWord").getValue(String.class);
+                        System.out.println("mat khau trong csdl là:" +passwordKT );
                         if(!passwordKT.trim().equals(oldPassword))
                         {
                             Toast.makeText(getApplicationContext(), "Mật khẩu cũ không chính xác", Toast.LENGTH_SHORT).show();
@@ -103,8 +106,8 @@ public class ChangePassword extends AppCompatActivity {
 
     }
     public String getPhone(){
-      //  mPhoneNumber=getIntent().getStringExtra("phone_number");
-        mPhoneNumber="0342621113";
+        mPhoneNumber=getIntent().getStringExtra("phone_number");
+       // mPhoneNumber="0342621113";
         mVerificationId=getIntent().getStringExtra("verification_id");
         System.out.println("sdt: trang set password  ***************" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {

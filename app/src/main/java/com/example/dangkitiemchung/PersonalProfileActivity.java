@@ -105,7 +105,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
         addControl();
 
         String numberPhone=getPhone();
-
+        System.out.println("Số điệnt thoại ơ trang chỉnh sửa thông tin cá nhân :" + numberPhone);
             loadCity();
             loadSpinerNation();
             loadSpinerNationality();
@@ -433,7 +433,6 @@ public class PersonalProfileActivity extends AppCompatActivity {
     }
     public String getPhone(){
         mPhoneNumber= getIntent().getStringExtra("phone_number");
-        //mPhoneNumber= "0366850669";
         System.out.println("sdt: ***************" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {
             mPhoneNumber = "0" + mPhoneNumber.substring(3);

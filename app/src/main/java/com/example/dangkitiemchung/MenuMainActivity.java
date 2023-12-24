@@ -140,7 +140,7 @@ public class MenuMainActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(MenuMainActivity.this, CaNhan.class);
                     mainIntent.putExtra("phone_number",mPhoneNumber);
                     startActivity(mainIntent);
-                    finish();
+                    //finish();
                 }
             });
         }

@@ -69,14 +69,24 @@ public class CaNhan extends AppCompatActivity {
             }
         });
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        System.out.println("có click");
+        Intent mainIntent = new Intent(CaNhan.this, MenuMainActivity.class);
+        mainIntent.putExtra("phone_number",mPhoneNumber);
+        startActivity(mainIntent);
+        finish();
+        super.onBackPressed();
     }
     public void  getPhone(){
         mPhoneNumber= getIntent().getStringExtra("phone_number");
         //mPhoneNumber= "0366850669";
-        System.out.println("sdt: ***************" + mPhoneNumber);
+        System.out.println("sdt: o trang cá nhân" + mPhoneNumber);
         if (mPhoneNumber.startsWith("+84")) {
             mPhoneNumber = "0" + mPhoneNumber.substring(3);
-            System.out.println("sdt: ***************" + mPhoneNumber);
+            System.out.println("sdt: o trang cá nhân " + mPhoneNumber);
         }
 
     }
