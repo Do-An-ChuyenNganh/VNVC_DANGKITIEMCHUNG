@@ -56,11 +56,12 @@ public class Linh_ThongTinVX_ extends AppCompatActivity {
         left_ic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("sdt", user);
-                //System.out.println("User khi tra veef dmvx: "+user);
-                intent.setClass(v.getContext(), Linh_Activity_DanhMucVacXin.class);
-                v.getContext().startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.putExtra("sdt", user);
+//                //System.out.println("User khi tra veef dmvx: "+user);
+//                intent.setClass(v.getContext(), Linh_Activity_DanhMucVacXin.class);
+//                v.getContext().startActivity(intent);
+                finish();
             }
         });
 
