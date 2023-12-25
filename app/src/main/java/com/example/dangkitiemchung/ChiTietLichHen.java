@@ -51,7 +51,7 @@ public class ChiTietLichHen extends AppCompatActivity {
     DatabaseReference myRefMuiTiepTheo = firebaseDatabase.getReference("MuiTiepTheo");
     DatabaseReference myRefTaiKhoan = firebaseDatabase.getReference("TaiKhoan");
 
-    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiem");
+    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiemTiem");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

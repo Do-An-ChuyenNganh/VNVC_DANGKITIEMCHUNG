@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ChiTietDaHuy extends AppCompatActivity {
+public class    ChiTietDaHuy extends AppCompatActivity {
 
     TextView hten, ngaysinh, ngaytiem, tenvx, phongbenh, gia, trungtam, diadiemtiem;
     String id, strNgaydat, strNgaytiem, strNoiTiem;
@@ -29,7 +29,7 @@ public class ChiTietDaHuy extends AppCompatActivity {
     DatabaseReference myRef = firebaseDatabase.getReference("VacXin");
     DatabaseReference myRefTaiKhoan = firebaseDatabase.getReference("TaiKhoan");
 
-    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiem");
+    DatabaseReference myRefDiaDiem = firebaseDatabase.getReference("DiaDiemTiem");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
