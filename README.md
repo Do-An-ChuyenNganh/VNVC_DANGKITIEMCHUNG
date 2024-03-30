@@ -14,6 +14,8 @@
 <h3>3.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
 <p>Màn hình chính</p>
 
+![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/f4cbc98c-7e6f-4197-8695-ed34e400f144)
+
 ![image](https://private-user-images.githubusercontent.com/86176263/318179381-f52f1805-b926-41c9-b615-2b937aca01d7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTE3ODcwODAsIm5iZiI6MTcxMTc4Njc4MCwicGF0aCI6Ii84NjE3NjI2My8zMTgxNzkzODEtZjUyZjE4MDUtYjkyNi00MWM5LWI2MTUtMmI5MzdhY2EwMWQ3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAzMzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMzMwVDA4MTk0MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTlmY2YzMzVjNjhkMGRmOGVhYmZiMWVkZjgzMjNmOTg3OTg1YjgxMzJmYTk0MWE5NDlkOTM5YTI3M2NiNDEyY2ImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.qjORy7ISAhE7ZNtjLeNAW83-cuR_LIWRSxfGH07NUm4)
 
 <p>Màn hình đăng nhập</p>
