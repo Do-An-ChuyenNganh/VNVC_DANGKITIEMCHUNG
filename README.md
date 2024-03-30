@@ -7,5 +7,5 @@
 <p> Giáo viên hướng dẫn: Nguyễn Thị Bích Ngân</p>
 <p>Mô tả chi tiết dự án: link</p>
 <p>File APK cài đặt: </p>
-<h1> Phân công công việc: </h1>
+<h3> Phân công công việc: </h1>
 
