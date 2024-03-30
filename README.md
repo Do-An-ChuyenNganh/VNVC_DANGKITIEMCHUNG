@@ -1,4 +1,4 @@
-![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/dd486af4-305d-4c4a-8af8-1e1b49546218)# DangKiTiemChung
+# DangKiTiemChung
 # 1. Tên dự án: Ứng dụng đăng kí tiêm chủng
 # 2. Thành viên 
 <p> 1. Nguyễn Hữu Trung</p>
