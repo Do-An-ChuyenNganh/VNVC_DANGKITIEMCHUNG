@@ -11,7 +11,6 @@
 <p> 1. Firebase: authentication (phone number), cloud storage, realtime database</p>
 <p> 2. Java</p>
 <h2>3. Các chức năng chính </h2>
-<h3>3.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
 <p> - Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </p>
 <p> - Đăng kí tiêm chủng </p>
 <p> - Đặt lịch hẹn tiêm chủng </p>
@@ -19,6 +18,7 @@
 <p> -  Xem danh mục vắc-xin </p>
 <p> -  Xem chi tiết vắc-xin </p>
 
+<h3>3.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
 
 <p>Màn hình chính</p>
 
