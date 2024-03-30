@@ -12,6 +12,8 @@
 <p> 2. Java</p>
 <h2>3. Các chức năng chính </h2>
 <h3>3.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
+![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/332e7942-aa39-4dd5-800b-8c35b60ae640)
+![image](https://user-images.githubusercontent.com/86176263/253216415-5d2d1252-e138-4d86-9ee8-f811ee2b85fb.jpg)
 <h3>3.2. Đăng kí tiêm chủng </h3>
 <h3>3.3. Đặt lịch hẹn tiêm chủng </h3>
 <h3>3.4. Xem lịch sử tiêm chủng</h3>
