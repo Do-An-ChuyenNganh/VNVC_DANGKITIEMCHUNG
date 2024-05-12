@@ -10,15 +10,15 @@
 <h2>3. Công nghệ thực hiện</h2>
 <p> 1. Firebase: authentication (phone number), cloud storage, realtime database</p>
 <p> 2. Java</p>
-<h2>3. Các chức năng chính </h2>
+<h2>4. Các chức năng chính </h2>
 <p> - Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </p>
 <p> - Đăng kí tiêm chủng </p>
 <p> - Đặt lịch hẹn tiêm chủng </p>
 <p> - Xem lịch sử tiêm chủng </p>
-<p> -  Xem danh mục vắc-xin </p>
-<p> -  Xem chi tiết vắc-xin </p>
+<p> - Xem danh mục vắc-xin </p>
+<p> - Xem chi tiết vắc-xin </p>
 
-<h3>3.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
+<h3>4.1. Đăng nhập, đăng kí xác thực bằng số điện thoại gửi OTP, quản lý tài khoản </h3>
 
 <p>Màn hình chính</p>
 
@@ -39,24 +39,24 @@
 
 
 
-<h3>3.2. Đăng kí tiêm chủng </h3>
+<h3>4.2. Đăng kí tiêm chủng </h3>
 
 ![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/8997d688-ab4d-483f-a613-a673fdfb4dab)
 
 
 
-<h3>3.3. Đặt lịch hẹn tiêm chủng </h3>
+<h3>4.3. Đặt lịch hẹn tiêm chủng </h3>
 
 ![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/5e40b32b-0a8d-4a02-850d-24776e19a7f0)
 
 
-<h3>3.4. Xem lịch sử tiêm chủng</h3>
+<h3>4.4. Xem lịch sử tiêm chủng</h3>
 
 ![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/3be1b367-0356-4237-be30-4b7da12bfe6a)
 
 ![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/d8e30e51-d40c-413e-b057-2dd62a9faa5b)
 
-<h3>3.5. Xem danh mục vắc-xin </h3>
+<h3>4.5. Xem danh mục vắc-xin </h3>
 
 ![image](https://github.com/Do-An-ChuyenNganh/VNVC_DANGKITIEMCHUNG/assets/86176263/09e7c580-61b0-4f69-8aea-3c539509d738)
 
