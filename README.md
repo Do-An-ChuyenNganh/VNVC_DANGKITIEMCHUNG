@@ -6,7 +6,7 @@
 <p> 3. Phan Thị Ánh Linh</p>
 <p> Giáo viên hướng dẫn: Nguyễn Thị Bích Ngân</p>
 <p>Mô tả chi tiết dự án: https://docs.google.com/document/d/1eOWr_kxFuI3VrX_koyaDh6bGSaV3t_e4/edit  </p>
-<p>File APK cài đặt:  https://drive.google.com/file/d/1D3HoEJYLJxirAYRZ4H1waeoPTLpjH4Vm/view?usp=sharing  </p>
+<p>File APK cài đặt:  https://drive.google.com/file/d/1RVY60uNWYV_qrhU4IYpjbs7hCg3psQx3/view?usp=drive_link  </p>
 <h2>3. Công nghệ thực hiện</h2>
 <p> 1. Firebase: authentication (phone number), cloud storage, realtime database</p>
 <p> 2. Java</p>
