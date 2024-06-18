@@ -1,6 +1,7 @@
 # DangKiTiemChung
 # 1. Tên dự án: Ứng dụng đăng kí tiêm chủng
 # 2. Thành viên 
+# Môn đồ án chuyên ngành (1 tín chỉ)
 <p> 1. Nguyễn Hữu Trung</p>
 <p> 2. Huỳnh Thị Kiều Mai</p>
 <p> 3. Phan Thị Ánh Linh</p>
